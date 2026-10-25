@@ -4,23 +4,24 @@
     <h1>البيانات المفتوحة</h1>
     <p class="lead">كل ما يعرضه رائد منشور ملفات JSON يمكن قراءتها من أي أداة، وتتجدد مع كل تحديث للموقع.</p>
   </header>
-  <table class="t">
+  <table class="t stack">
     <thead><tr><th scope="col">الملف</th><th scope="col">المحتوى</th><th scope="col">التحديث</th></tr></thead>
     <tbody>
-      <tr><td><a class="ltr" href="/data/index.json">/data/index.json</a></td><td>وقت آخر تحديث وعدد السجلات في كل يوم بحسب الخطورة</td><td>كل ساعة</td></tr>
-      <tr><td><span class="ltr">/data/days/YYYY-MM-DD.json</span></td><td>سجلات يوم النشر مختصرة مع تقييم الخطورة واحتمال الاستغلال</td><td>كل ساعة</td></tr>
-      <tr><td><a class="ltr" href="/data/search.json">/data/search.json</a></td><td>فهرس البحث لآخر ثلاثين يوماً</td><td>كل ساعة</td></tr>
-      <tr><td><a class="ltr" href="/data/updated.json">/data/updated.json</a></td><td>آخر السجلات القديمة التي عُدّلت</td><td>كل ساعة</td></tr>
-      <tr><td><a class="ltr" href="/data/kev.json">/data/kev.json</a></td><td>قائمة الثغرات المستغلة فعلياً كاملة</td><td>كل ساعة</td></tr>
-      <tr><td><span class="ltr">/data/kev/YYYY.json</span></td><td>القائمة نفسها مقسمة بحسب سنة رقم الثغرة ومفهرسة بالرقم</td><td>كل ساعة</td></tr>
-      <tr><td><a class="ltr" href="/data/weeks/index.json">/data/weeks/index.json</a></td><td>النشرات الأسبوعية، ولكل أسبوع ملف باسمه</td><td>كل اثنين</td></tr>
-      <tr><td><a class="ltr" href="/data/cnas.json">/data/cnas.json</a></td><td>الجهات المرقّمة ودولها ونطاقاتها</td><td>كل ساعة</td></tr>
-      <tr><td><a class="ltr" href="/feed.xml">/feed.xml</a></td><td>موجز Atom للثغرات الحرجة والمستغلة فعلياً</td><td>كل ساعة</td></tr>
+      <tr><td data-label="الملف"><a class="ltr" href="/data/index.json">/data/index.json</a></td><td data-label="المحتوى">وقت آخر تحديث وعدد السجلات في كل يوم بحسب الخطورة</td><td data-label="التحديث">كل ساعة</td></tr>
+      <tr><td data-label="الملف"><span class="ltr">/data/days/YYYY-MM-DD.json</span></td><td data-label="المحتوى">سجلات يوم النشر مختصرة مع تقييم الخطورة واحتمال الاستغلال</td><td data-label="التحديث">كل ساعة</td></tr>
+      <tr><td data-label="الملف"><a class="ltr" href="/data/search.json">/data/search.json</a></td><td data-label="المحتوى">فهرس البحث لآخر ثلاثين يوماً</td><td data-label="التحديث">كل ساعة</td></tr>
+      <tr><td data-label="الملف"><a class="ltr" href="/data/updated.json">/data/updated.json</a></td><td data-label="المحتوى">آخر السجلات القديمة التي عُدّلت</td><td data-label="التحديث">كل ساعة</td></tr>
+      <tr><td data-label="الملف"><a class="ltr" href="/data/kev.json">/data/kev.json</a></td><td data-label="المحتوى">قائمة الثغرات المستغلة فعلياً كاملة</td><td data-label="التحديث">كل ساعة</td></tr>
+      <tr><td data-label="الملف"><span class="ltr">/data/kev/YYYY.json</span></td><td data-label="المحتوى">القائمة نفسها مقسمة بحسب سنة رقم الثغرة ومفهرسة بالرقم</td><td data-label="التحديث">كل ساعة</td></tr>
+      <tr><td data-label="الملف"><a class="ltr" href="/data/weeks/index.json">/data/weeks/index.json</a></td><td data-label="المحتوى">النشرات الأسبوعية، ولكل أسبوع ملف باسمه</td><td data-label="التحديث">كل اثنين</td></tr>
+      <tr><td data-label="الملف"><a class="ltr" href="/data/cnas.json">/data/cnas.json</a></td><td data-label="المحتوى">الجهات المرقّمة ودولها ونطاقاتها</td><td data-label="التحديث">كل ساعة</td></tr>
+      <tr><td data-label="الملف"><a class="ltr" href="/feed.xml">/feed.xml</a></td><td data-label="المحتوى">موجز Atom للثغرات الحرجة والمستغلة فعلياً</td><td data-label="التحديث">كل ساعة</td></tr>
     </tbody>
   </table>
   <div class="prose">
     <h2>حقول السجل المختصر</h2>
-    <p>يستخدم الملف أسماء حقول قصيرة لتصغير حجمه، فالحقل <bdi>i</bdi> هو الرقم، و<bdi>p</bdi> تاريخ النشر، و<bdi>u</bdi> تاريخ آخر تعديل، و<bdi>a</bdi> الجهة المرقّمة، و<bdi>v</bdi> المورّد، و<bdi>r</bdi> المنتج، و<bdi>d</bdi> الوصف الأصلي، و<bdi>s</bdi> درجة الخطورة، و<bdi>sv</bdi> فئتها، و<bdi>vec</bdi> متجه التقييم، و<bdi>c</bdi> أنواع الضعف، و<bdi>x</bdi> تقدير SSVC، و<bdi>e</bdi> احتمال الاستغلال، و<bdi>ep</bdi> ترتيبه المئوي، و<bdi>k</bdi> تاريخ الإدراج في قائمة الثغرات المستغلة إن وُجد.</p>
+    <p>يستخدم الملف أسماء حقول قصيرة لتصغير حجمه، وهذا معنى كل حقل.</p>
+    <dl class="fields"><dt>i</dt><dd>رقم الثغرة</dd><dt>p</dt><dd>تاريخ النشر بتوقيت غرينتش</dd><dt>u</dt><dd>تاريخ آخر تعديل</dd><dt>a</dt><dd>الجهة المرقّمة</dd><dt>v</dt><dd>المورّد</dd><dt>r</dt><dd>المنتج</dd><dt>t</dt><dd>العنوان كما كتبته الجهة</dd><dt>d</dt><dd>الوصف الأصلي</dd><dt>s</dt><dd>درجة الخطورة</dd><dt>sv</dt><dd>فئة الخطورة</dd><dt>vec</dt><dd>متجه التقييم</dd><dt>c</dt><dd>أنواع الضعف</dd><dt>x</dt><dd>تقدير SSVC</dd><dt>e</dt><dd>احتمال الاستغلال</dd><dt>ep</dt><dd>ترتيبه المئوي</dd><dt>k</dt><dd>تاريخ الإدراج في قائمة الثغرات المستغلة إن وُجد</dd></dl>
     <p>ويمكن استخدام محرك الكتابة العربية نفسه من <span class="ltr">/assets/engine/arabic.js</span> في أي متصفح أو في Node، فهو يأخذ السجل المختصر ويعيد الخلاصة العربية.</p>
   </div>
 </div>

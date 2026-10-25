@@ -12,7 +12,7 @@ function row(k) {
   const cw = (k.c || []).map(cweAr).find(Boolean);
   const line = `${cw ? `ثغرة من نوع ${cw.name}` : 'ثغرة'} في ${iso(k.r)} من ${iso(k.v)}، أدرجتها CISA ${dateAr(k.da)} وحددت لمعالجتها موعداً أقصاه ${dateAr(k.due)}${k.ra ? '، وتستخدمها حملات فدية' : ''}.`;
   return `<li><a class="row" href="/record/?id=${esc(k.i)}">
-<span class="id">${esc(k.i)}<small>${dateAr(k.da, { year: true })}</small></span>
+<span class="id"><b dir="ltr">${esc(k.i)}</b><small>${dateAr(k.da, { year: true })}</small></span>
 <span class="what"><span class="prod ltr">${esc(k.n)}</span><p>${html(line)}</p></span>
 <span class="marks"><span class="kev">مستغلة فعلياً</span>${k.ra ? '<span class="sev crit">فدية</span>' : ''}</span>
 </a></li>`;
