@@ -3,7 +3,7 @@ name: update
 on:
   schedule:
     # Changing this line makes GitHub register the schedule again; it had not fired since the repository was created.
-    - cron: '41 * * * *'
+    - cron: '17 * * * *'
   workflow_dispatch:
     inputs:
       full:
