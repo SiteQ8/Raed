@@ -93,6 +93,8 @@ ${body}
           <li><a href="/week/">النشرة الأسبوعية</a></li>
           <li><a href="/cna/join/">نحو جهة ترقيم عربية</a></li>
           <li><a href="/advisories/">نشرات رائد</a></li>
+          <li><a href="/report/">أبلغ عن ثغرة</a></li>
+          <li><a href="/hall-of-fame/">قاعة الشرف</a></li>
           <li><a href="/faq/">الأسئلة الشائعة</a></li>
           <li><a href="/data/">البيانات المفتوحة</a></li>
         </ul>
@@ -173,7 +175,8 @@ async function main() {
   const since = new Date(new Date(index.generated || Date.now()).getTime() - 864e5).toISOString().slice(0, 19);
   const last24 = [...dayItems, ...prevItems].filter((x) => !x.st && x.p >= since).length;
   const advisories = await loadAdvisories();
-  const ctx = { index, kev, days, newest, weeks, latestDay, last24, advisories };
+  const hall = await readJSON(join(DATA, 'hall-of-fame.json'), []);
+  const ctx = { index, kev, days, newest, weeks, latestDay, last24, advisories, hall };
 
   const pages = await loadPages();
   const urls = [];
@@ -265,6 +268,9 @@ async function fill(body, ctx) {
     '{{weeks_list}}': weeks.map((w) => `<li><a href="/week/${w.id}/">${esc(w.titleAr)}</a><p>${esc(w.lineAr)}</p></li>`).join('') || '<li><p>تصدر أول نشرة يوم الاثنين.</p></li>',
     '{{latest_day}}': latestDay || '',
     '{{advisories_n}}': String(ctx.advisories.length),
+    '{{hall_list}}': ctx.hall.length
+      ? ctx.hall.map((h) => `<li><b>${esc(h.name)}</b><span>${h.advisory ? `<a href="/advisories/${esc(h.advisory)}/">${esc(h.advisory)}</a>` : ''}${h.cve ? ` <a class="ltr" href="/record/?id=${esc(h.cve)}">${esc(h.cve)}</a>` : ''}</span><small>${dateAr(h.date)}</small></li>`).join('')
+      : '<li class="empty"><p>القاعة فارغة حتى اليوم، وأول اسم فيها سيكون لأول باحث يُنشر بلاغه.</p></li>',
     '{{advisories_list}}': ctx.advisories.length
       ? ctx.advisories.map((a) => `<li><a href="/advisories/${a.raed.id}/">${esc(a.raed.id)}</a><p>${esc(a.raed.titleAr)}</p><span class="meta">${dateAr(a.raed.published)}، ${esc(STATUS_AR[a.raed.status] || '')}${a.raed.status === 'published' ? `، والرقم <bdi>${esc(a.record.cveMetadata.cveId)}</bdi>` : ''}</span></li>`).join('')
       : '<li><p>لم تصدر نشرة بعد، وستكون أول نشرة لأول ثغرة تبلغنا بها في برمجية أو خدمة عربية.</p></li>',
