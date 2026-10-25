@@ -1,0 +1,5 @@
+Contact: mailto:site@hotmail.com
+Expires: 2027-10-25T00:00:00.000Z
+Preferred-Languages: ar, en
+Canonical: https://cve.3li.info/.well-known/security.txt
+Policy: https://cve.3li.info/security/
