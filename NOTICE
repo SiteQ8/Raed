@@ -1,0 +1,27 @@
+Raed (رائد)
+Copyright (c) 2026 Ali AlEnezi
+
+Data sources
+
+CVE Records: CVE Program, https://www.cve.org/ and https://github.com/CVEProject/cvelistV5.
+CVE® is a registered trademark of The MITRE Corporation. Records are used under the CVE Program
+Terms of Use (https://www.cve.org/Legal/TermsOfUse), which grant a perpetual, worldwide,
+non-exclusive, no-charge, royalty-free licence to reproduce and distribute CVE content with attribution.
+This project is independent and is not affiliated with, endorsed by or sponsored by the CVE Program,
+MITRE or CISA.
+
+Known Exploited Vulnerabilities catalogue: Cybersecurity and Infrastructure Security Agency (CISA),
+https://www.cisa.gov/known-exploited-vulnerabilities-catalog, public domain (US Government work).
+
+Exploit Prediction Scoring System (EPSS): FIRST, https://www.first.org/epss/. Use of EPSS data
+is credited to FIRST as its terms ask.
+
+CNA partner list: CVE Program website repository, https://github.com/CVEProject/cve-website.
+
+CWE names: The MITRE Corporation, https://cwe.mitre.org/. Arabic names and explanations are this
+project's own wording.
+
+Media
+
+The watchtower illustration on the About page and the sharing image, and the Arabic narration of the
+About page, were produced for this project.
