@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>أبلغ عن ثغرة | رائد</title>
+<meta name="description" content="بوابة عربية للإبلاغ عن ثغرة أمنية في برمجية أو خدمة عربية: نموذج يجهّز البلاغ المنظم في متصفحك ثم ترسله عبر الإبلاغ الخاص في GitHub أو البريد، مع إفصاح منسّق خلال تسعين يوماً ونسبة الاكتشاف إليك.">
+<link rel="canonical" href="https://cve.3li.info/report/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:site_name" content="رائد">
+<meta property="og:title" content="أبلغ عن ثغرة | رائد">
+<meta property="og:description" content="بوابة عربية للإبلاغ عن ثغرة أمنية في برمجية أو خدمة عربية: نموذج يجهّز البلاغ المنظم في متصفحك ثم ترسله عبر الإبلاغ الخاص في GitHub أو البريد، مع إفصاح منسّق خلال تسعين يوماً ونسبة الاكتشاف إليك.">
+<meta property="og:url" content="https://cve.3li.info/report/">
+<meta property="og:image" content="https://cve.3li.info/assets/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0f5c63">
+<link rel="icon" href="/assets/img/mark.svg" type="image/svg+xml">
+<link rel="alternate" type="application/atom+xml" title="رائد: الثغرات الحرجة والمستغلة" href="/feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&family=IBM+Plex+Sans:wght@400;600&family=Reem+Kufi:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/mobile.css" media="(max-width: 760px)">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+
+</head>
+<body>
+<a class="skip" href="#main">انتقل إلى المحتوى</a>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/"><svg viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" d="M6 6h6v5h4V6h8v5h4V6h6v12l-3 3v15H9V21l-3-3z" opacity=".18"/><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" d="M6 6h6v5h4V6h8v5h4V6h6v12l-3 3v15H9V21l-3-3z"/><path fill="currentColor" d="M17 36v-7a3 3 0 0 1 6 0v7z"/><rect x="18.8" y="16" width="2.4" height="6" rx="1.2" fill="currentColor"/></svg><span><b>رائد</b><small>سجل الثغرات الأمنية المعلنة بالعربية</small></span></a>
+    <button class="menu" type="button" aria-expanded="false" aria-controls="nav">القائمة</button>
+    <nav class="nav" id="nav" aria-label="الأقسام"><a href="/latest/">أحدث الثغرات</a><a href="/kev/">المستغلة فعلياً</a><a href="/week/">النشرة الأسبوعية</a><a href="/about/">عن البرنامج</a><a href="/cna/">الجهات المرقّمة</a><a href="/glossary/">المصطلحات</a></nav>
+    <button class="theme" type="button" aria-label="تبديل المظهر الفاتح والداكن"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+  </div>
+</header>
+<main id="main">
+<div class="wrap">
+  <header class="head">
+    <h1>أبلغ عن ثغرة</h1>
+    <p class="lead">وجدت ثغرة في برمجية أو خدمة عربية؟ اكتب بلاغك هنا بالعربية، فيجهّزه النموذج بلاغاً منظماً في متصفحك ثم ترسله أنت بإحدى طريقتين خاصتين، ولا يمر شيء منه بأي خادم.</p>
+  </header>
+
+  <div class="report-layout">
+    <form class="report" id="report" novalidate>
+      <fieldset>
+        <legend>أنت</legend>
+        <div class="field"><label for="f-name">الاسم أو الاسم المستعار</label><input id="f-name" name="name" autocomplete="name"><p class="help">يظهر في النشرة وفي سجل CVE وفي قاعة الشرف إن اخترت ذلك.</p></div>
+        <div class="field"><label for="f-email">بريدك للتواصل</label><input id="f-email" name="email" type="email" autocomplete="email" dir="ltr"><p class="help">نحتاجه إن أرسلت بالبريد، أما الإرسال عبر GitHub فيكفي فيه حسابك هناك.</p></div>
+        <div class="field">
+          <span class="label-like" id="credit-l">كيف ننسب الاكتشاف إليك</span>
+          <div class="choices" role="radiogroup" aria-labelledby="credit-l">
+            <label><input type="radio" name="credit" value="name" checked> باسمي المكتوب أعلاه</label>
+            <label><input type="radio" name="credit" value="anon"> دون ذكر اسمي</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>المنتج</legend>
+        <div class="row-2">
+          <div class="field"><label for="f-vendor">المورّد <span class="req">مطلوب</span></label><input id="f-vendor" name="vendor" required dir="auto"></div>
+          <div class="field"><label for="f-product">المنتج أو الخدمة <span class="req">مطلوب</span></label><input id="f-product" name="product" required dir="auto"></div>
+        </div>
+        <div class="row-2">
+          <div class="field"><label for="f-versions">الإصدارات المصابة <span class="req">مطلوب</span></label><input id="f-versions" name="versions" required dir="ltr" placeholder="2.3.0 to 2.4.0"></div>
+          <div class="field"><label for="f-fixed">الإصدار الذي يصلحها إن عُرف</label><input id="f-fixed" name="fixed" dir="ltr"></div>
+        </div>
+        <div class="field"><label for="f-url">رابط المنتج أو الخدمة</label><input id="f-url" name="url" type="url" dir="ltr" placeholder="https://"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>الثغرة</legend>
+        <div class="field"><label for="f-title">عنوان مختصر <span class="req">مطلوب</span></label><input id="f-title" name="title" required dir="auto" placeholder="مثل حقن SQL في صفحة البحث"></div>
+        <div class="row-2">
+          <div class="field"><label for="f-cwe">نوع الضعف</label><select id="f-cwe" name="cwe"><option value="">لا أعرف</option></select></div>
+          <div class="field"><label for="f-av">مسار الهجوم</label><select id="f-av" name="av"><option value="">لا أعرف</option><option value="N">عبر الشبكة</option><option value="A">من الشبكة المجاورة</option><option value="L">بوصول محلي إلى الجهاز</option><option value="P">بوصول مادي إلى الجهاز</option></select></div>
+        </div>
+        <div class="row-2">
+          <div class="field"><label for="f-auth">هل يتطلب الاستغلال تسجيل دخول؟</label><select id="f-auth" name="auth"><option value="">لا أعرف</option><option value="N">لا</option><option value="L">نعم بحساب عادي</option><option value="H">نعم بحساب ذي صلاحيات مرتفعة</option></select></div>
+          <div class="field"><label for="f-state">حالة الثغرة</label><select id="f-state" name="state"><option value="private">لم تُنشر في أي مكان</option><option value="public">منشورة أو معروفة للعامة</option><option value="exploited">رأيت دليلاً على استغلالها</option></select></div>
+        </div>
+        <div class="field"><label for="f-desc">الوصف <span class="req">مطلوب</span></label><textarea id="f-desc" name="desc" rows="5" required dir="auto" placeholder="أين الثغرة وما سببها"></textarea></div>
+        <div class="field"><label for="f-steps">خطوات إعادة الإنتاج <span class="req">مطلوب</span></label><textarea id="f-steps" name="steps" rows="6" required dir="auto" placeholder="1. افتح الصفحة...&#10;2. أدخل القيمة...&#10;3. لاحظ أن..."></textarea></div>
+        <div class="field"><label for="f-impact">الأثر <span class="req">مطلوب</span></label><textarea id="f-impact" name="impact" rows="3" required dir="auto" placeholder="ما الذي يستطيع المهاجم فعله"></textarea></div>
+        <div class="field"><label for="f-poc">إثبات المفهوم</label><textarea id="f-poc" name="poc" rows="3" dir="ltr" placeholder="Request, payload, or a private link"></textarea><p class="help">لا تضع هنا رابطاً عاماً لشيفرة استغلال، فالبلاغ خاص حتى يصدر الإصلاح.</p></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>الإفصاح المنسّق</legend>
+        <label class="consent"><input type="checkbox" name="cvd" required> أوافق على الإفصاح المنسّق، أي ألا أنشر تفاصيل الثغرة حتى يصدر الإصلاح أو تمضي تسعون يوماً من البلاغ أيهما أقرب، ما لم نتفق على غير ذلك.</label>
+        <label class="consent"><input type="checkbox" name="ethics" required> لم أطّلع على بيانات غيري إلا بالقدر اللازم لإثبات الثغرة، ولم أحتفظ بها ولم أعطّل الخدمة.</label>
+      </fieldset>
+
+      <p class="form-error" id="form-error" role="alert" hidden></p>
+      <div class="actions">
+        <button class="btn" type="submit">جهّز البلاغ</button>
+        <button class="btn quiet" type="button" id="clear">ابدأ من جديد</button>
+      </div>
+    </form>
+
+    <aside class="report-side">
+      <div class="panel">
+        <h3>ما الذي نلتزم به</h3>
+        <ul class="plain">
+          <li>نؤكد الاستلام خلال ثلاثة أيام عمل، ونرد بقرارنا خلال عشرة.</li>
+          <li>ننسق مع المورّد ونطلعك على كل تقدم.</li>
+          <li>ننشر بعد الإصلاح أو بعد تسعين يوماً أيهما أقرب.</li>
+          <li>ننسب الاكتشاف إليك في النشرة وفي سجل CVE وفي <a href="/hall-of-fame/">قاعة الشرف</a>.</li>
+        </ul>
+        <p class="count-line">التفاصيل كاملة في <a href="/security/">سياسة الإفصاح</a>.</p>
+      </div>
+      <div class="panel">
+        <h3>خصوصية البلاغ</h3>
+        <p class="count-line">لا يرسل هذا النموذج شيئاً بنفسه، بل يجهّز النص في متصفحك ويحفظ مسودته فيه فقط، ثم تختار أنت طريقة الإرسال.</p>
+      </div>
+    </aside>
+  </div>
+
+  <section class="ready" id="ready" hidden aria-labelledby="ready-h">
+    <h2 id="ready-h" tabindex="-1">البلاغ جاهز، فاختر طريقة الإرسال</h2>
+    <div class="send-ways">
+      <div class="way">
+        <h3>الإبلاغ الخاص في GitHub</h3>
+        <p>الطريقة المفضلة، فالبلاغ يبقى خاصاً بينك وبين «رائد» حتى النشر، ويمكن متابعته والحوار فيه من الصفحة نفسها.</p>
+        <ol class="plain-steps"><li>انسخ البلاغ بالزر أدناه.</li><li>افتح صفحة الإبلاغ الخاص وسجّل دخولك.</li><li>ضع العنوان في خانة Title والبلاغ في خانة Description ثم أرسل.</li></ol>
+        <div class="actions"><button class="btn" type="button" id="copy-gh">انسخ البلاغ وافتح GitHub</button></div>
+      </div>
+      <div class="way">
+        <h3>البريد</h3>
+        <p>إن لم يكن لديك حساب في GitHub، يُفتح بريدك ببلاغ جاهز موجّه إلى <bdi>site@hotmail.com</bdi>.</p>
+        <div class="actions"><a class="btn quiet" id="mail" href="#">افتح البريد بالبلاغ</a><button class="btn quiet" type="button" id="download">نزّل البلاغ ملفاً</button></div>
+        <p class="help" id="mail-note" hidden>البلاغ أطول من أن يحمله رابط البريد كاملاً، لذا يُفتح البريد بالعنوان فقط، فالصق فيه البلاغ المنسوخ أو أرفق الملف.</p>
+      </div>
+    </div>
+    <p class="count-line" id="copied" role="status" aria-live="polite"></p>
+    <details class="preview"><summary>اعرض نص البلاغ</summary><pre id="preview" dir="auto"></pre></details>
+  </section>
+</div>
+
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4>رائد</h4>
+        <p>نسخة عربية مفتوحة من سجل الثغرات الأمنية المعلنة، تقرأ سجلات برنامج CVE كما تنشرها الجهات المرقّمة ثم تعرضها بالعربية وتتجدد كل ساعة.</p>
+        <p>المشروع مستقل ولا يتبع برنامج CVE أو مؤسسة MITRE أو وكالة CISA، والمرجع الرسمي لكل سجل هو موقع <a href="https://www.cve.org/" rel="noopener">cve.org</a>.</p>
+      </div>
+      <div>
+        <h4>الأقسام</h4>
+        <ul>
+          <li><a href="/latest/">أحدث الثغرات</a></li>
+          <li><a href="/kev/">الثغرات المستغلة فعلياً</a></li>
+          <li><a href="/week/">النشرة الأسبوعية</a></li>
+          <li><a href="/cna/join/">نحو جهة ترقيم عربية</a></li>
+          <li><a href="/advisories/">نشرات رائد</a></li>
+          <li><a href="/report/">أبلغ عن ثغرة</a></li>
+          <li><a href="/hall-of-fame/">قاعة الشرف</a></li>
+          <li><a href="/faq/">الأسئلة الشائعة</a></li>
+          <li><a href="/data/">البيانات المفتوحة</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>المصادر</h4>
+        <ul>
+          <li><a href="https://github.com/CVEProject/cvelistV5" rel="noopener">قائمة سجلات CVE</a></li>
+          <li><a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" rel="noopener">قائمة CISA للثغرات المستغلة</a></li>
+          <li><a href="https://www.first.org/epss/" rel="noopener">نظام EPSS من FIRST</a></li>
+          <li><a href="https://cwe.mitre.org/" rel="noopener">تصنيف نقاط الضعف CWE</a></li>
+          <li><a href="https://github.com/SiteQ8/Raed" rel="noopener">الشيفرة المصدرية</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="fine">CVE® علامة تجارية مسجلة لمؤسسة MITRE، وتُستخدم سجلات البرنامج وفق <a href="https://www.cve.org/Legal/TermsOfUse" rel="noopener">شروط الاستخدام</a> التي تتيح نسخها وتوزيعها مع الإشارة إلى المصدر، أما الشيفرة فمنشورة برخصة MIT.</p>
+  </div>
+</footer>
+<script type="module" src="/assets/js/site.js"></script>
+<script type="module" src="/assets/js/report.js"></script>
+</body>
+</html>

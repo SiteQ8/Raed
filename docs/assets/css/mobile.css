@@ -120,3 +120,13 @@ details.faq summary { font-size: 16.5px; padding-block: 6px; }
 /* Record page: the score, exploitation and KEV panels come first on a phone, the long description after */
 .rec-grid { display: flex; flex-direction: column; }
 .rec-grid > aside { order: -1; }
+
+/* Report portal on phones: single column fields, full width buttons */
+.report fieldset { padding: var(--s-3) var(--s-4) var(--s-4); border-radius: var(--r-2); }
+.report legend { font-size: 19px; }
+.row-2 { grid-template-columns: 1fr; }
+.field input, .field select { min-height: 44px; }
+.choices { flex-direction: column; gap: var(--s-3); }
+.actions .btn { flex: 1 1 100%; justify-content: center; }
+.way { padding: var(--s-4); }
+.hall li { grid-template-columns: 1fr; gap: 4px; }
