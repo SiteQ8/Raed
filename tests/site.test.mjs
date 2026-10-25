@@ -6,6 +6,8 @@ import { join } from 'node:path';
 import { summaryAr, nVuln, vectorAr, epssAr, dateAr } from '../docs/assets/engine/arabic.js';
 import { compact } from '../docs/assets/engine/record.js';
 import { CWE_AR } from '../docs/assets/engine/cwe.js';
+import Ajv from 'ajv';
+import addFormats from 'ajv-formats';
 
 const ROOT = new URL('..', import.meta.url).pathname;
 const walk = (dir, ext, out = []) => {
@@ -147,4 +149,37 @@ test('KEV shards hold every catalogue entry under its CVE year', () => {
     for (const id of Object.keys(m)) { assert.equal(id.slice(4, 8), f.slice(0, 4)); n++; }
   }
   assert.equal(n, kev.length);
+});
+
+function cveValidator() {
+  const dir = join(ROOT, 'tests/schema');
+  const load = (p) => JSON.parse(readFileSync(join(dir, p), 'utf8'));
+  const ajv = new Ajv({ strict: false, allErrors: true, validateFormats: true });
+  addFormats(ajv);
+  let main = JSON.stringify(load('CVE_Record_Format.json'));
+  for (const f of ['imports/cvss/cvss-v2.0.json', 'imports/cvss/cvss-v3.0.json', 'imports/cvss/cvss-v3.1.json', 'imports/cvss/cvss-v4.0.json', 'tags/adp-tags.json', 'tags/cna-tags.json', 'tags/reference-tags.json']) {
+    const s = load(f);
+    const id = `raed:${f}`;
+    delete s.$schema; delete s.id; s.$id = id;
+    ajv.addSchema(s, id);
+    main = main.split(`file:${f}`).join(id);
+  }
+  const schema = JSON.parse(main); delete schema.$schema;
+  return ajv.compile(schema);
+}
+
+test('every advisory is a valid CVE JSON 5 record with English and Arabic descriptions', () => {
+  const validate = cveValidator();
+  const dir = join(ROOT, 'advisories');
+  const files = readdirSync(dir).filter((f) => f.endsWith('.json'));
+  assert.ok(files.includes('_template.json'));
+  for (const f of files) {
+    const a = JSON.parse(readFileSync(join(dir, f), 'utf8'));
+    assert.ok(validate(a.record), `${f}: ${JSON.stringify(validate.errors?.slice(0, 3))}`);
+    const langs = a.record.containers.cna.descriptions.map((d) => d.lang);
+    assert.ok(langs.some((l) => /^en/.test(l)) && langs.includes('ar'), `${f} needs en and ar descriptions`);
+    const ar = a.record.containers.cna.descriptions.find((d) => d.lang === 'ar').value;
+    assert.equal(ar.replace(/\d+(\.\d+)+/g, '0').split('.').length, 2, `${f} Arabic description must be one sentence`);
+    if (!f.startsWith('_')) assert.equal(a.raed.id + '.json', f);
+  }
 });

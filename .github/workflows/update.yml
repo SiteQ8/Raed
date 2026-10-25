@@ -15,6 +15,7 @@ on:
       - 'templates/**'
       - 'scripts/**'
       - 'docs/assets/**'
+      - 'advisories/**'
       - '.github/workflows/update.yml'
 
 permissions:
@@ -33,6 +34,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
+
+      - name: Install the test tools
+        run: npm ci --no-audit --no-fund
 
       - name: Fetch new and changed CVE records, KEV and EPSS
         run: node scripts/update.mjs ${{ inputs.full && '--full' || '' }}

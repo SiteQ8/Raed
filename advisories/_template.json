@@ -1,0 +1,68 @@
+{
+  "raed": {
+    "id": "RAED-2026-0000",
+    "status": "draft",
+    "published": "2026-01-01",
+    "titleAr": "حقن SQL في صفحة البحث في المنتج المثال"
+  },
+  "record": {
+    "dataType": "CVE_RECORD",
+    "dataVersion": "5.2.0",
+    "cveMetadata": {
+      "cveId": "CVE-2026-0000",
+      "assignerOrgId": "00000000-0000-4000-8000-000000000000",
+      "assignerShortName": "raed",
+      "state": "PUBLISHED",
+      "datePublished": "2026-01-01T00:00:00.000Z"
+    },
+    "containers": {
+      "cna": {
+        "providerMetadata": {
+          "orgId": "00000000-0000-4000-8000-000000000000",
+          "shortName": "raed"
+        },
+        "title": "SQL injection in the search page of Example Product",
+        "descriptions": [
+          {
+            "lang": "en",
+            "value": "A SQL injection vulnerability in the search page of Example Vendor Example Product before 2.4.1 allows an unauthenticated remote attacker to read and modify database contents via the q parameter."
+          },
+          {
+            "lang": "ar",
+            "value": "ثغرة حقن SQL في صفحة البحث في المنتج المثال من المورّد المثال قبل الإصدار 2.4.1، تتيح لمهاجم عن بُعد دون تسجيل دخول قراءة محتوى قاعدة البيانات وتعديله عبر المعامل q."
+          }
+        ],
+        "affected": [
+          {
+            "vendor": "Example Vendor",
+            "product": "Example Product",
+            "defaultStatus": "unaffected",
+            "versions": [
+              { "version": "0", "lessThan": "2.4.1", "status": "affected", "versionType": "semver" }
+            ]
+          }
+        ],
+        "problemTypes": [
+          { "descriptions": [ { "lang": "en", "type": "CWE", "cweId": "CWE-89", "description": "CWE-89 Improper Neutralization of Special Elements used in an SQL Command" } ] }
+        ],
+        "metrics": [
+          {
+            "format": "CVSS",
+            "cvssV3_1": {
+              "version": "3.1",
+              "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N",
+              "baseScore": 9.1,
+              "baseSeverity": "CRITICAL"
+            }
+          }
+        ],
+        "references": [
+          { "url": "https://cve.3li.info/advisories/RAED-2026-0000/", "tags": ["vendor-advisory"] }
+        ],
+        "credits": [
+          { "lang": "en", "value": "Reporter Name", "type": "finder" }
+        ]
+      }
+    }
+  }
+}
