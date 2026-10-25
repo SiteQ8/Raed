@@ -60,6 +60,7 @@ ${noindex ? '<meta name="robots" content="noindex">' : `<link rel="canonical" hr
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&family=IBM+Plex+Sans:wght@400;600&family=Reem+Kufi:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/mobile.css" media="(max-width: 760px)">
 <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 ${head}
 </head>
@@ -125,7 +126,7 @@ export function sevMark(sv, s) {
 export function rowHtml(it) {
   const prod = it.r || it.v ? `<span class="prod"><bdi>${esc(it.r || it.v)}</bdi>${it.r && it.v && it.v !== it.r ? ` <small><bdi>${esc(it.v)}</bdi></small>` : ''}</span>` : '';
   return `<li><a class="row" href="/record/?id=${it.i}">
-<span class="id">${it.i}<small>${dateAr(it.p, { year: false })}</small></span>
+<span class="id"><b dir="ltr">${it.i}</b><small>${dateAr(it.p, { year: false })}</small></span>
 <span class="what">${prod}<p>${html(summaryAr(it))}</p></span>
 <span class="marks">${sevMark(it.sv, it.s)}${it.k ? '<span class="kev">مستغلة فعلياً</span>' : ''}</span>
 </a></li>`;
