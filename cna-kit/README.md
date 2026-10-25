@@ -13,6 +13,7 @@
 | [advisory-template.md](advisory-template.md) | نموذج نشرة أمنية يحقق متطلبات السجل في القسم الخامس من القواعد |
 | [intake-form.md](intake-form.md) | حقول استقبال البلاغ التي يحتاجها السجل |
 | [security.txt](security.txt) | ملف التواصل الأمني وفق المعيار RFC 9116 |
+| [raed-application.md](raed-application.md) | إجابات طلب «رائد» نفسه، مثالاً معبأً للحزمة |
 
 ## طريقة الاستخدام
 

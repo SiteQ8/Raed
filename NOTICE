@@ -21,6 +21,9 @@ CNA partner list: CVE Program website repository, https://github.com/CVEProject/
 CWE names: The MITRE Corporation, https://cwe.mitre.org/. Arabic names and explanations are this
 project's own wording.
 
+CVE Record Format schema (tests/schema): CVE Program, https://github.com/CVEProject/cve-schema,
+released under CC0 1.0 Universal.
+
 Media
 
 The watchtower illustration on the About page and the sharing image, and the Arabic narration of the
