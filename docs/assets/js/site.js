@@ -28,3 +28,16 @@ for (const form of document.querySelectorAll('form.find')) {
     }
   });
 }
+
+// Contents rail on text pages: mark the section being read.
+const toc = document.querySelector('.toc');
+if (toc && 'IntersectionObserver' in window) {
+  const links = new Map([...toc.querySelectorAll('a')].map((a) => [a.hash.slice(1), a]));
+  const mark = (id) => links.forEach((a, k) => a.setAttribute('aria-current', k === id ? 'true' : 'false'));
+  const io = new IntersectionObserver((entries) => {
+    const seen = entries.filter((e) => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+    if (seen[0]) mark(seen[0].target.id);
+  }, { rootMargin: '0px 0px -65% 0px' });
+  mark(links.keys().next().value);
+  links.forEach((_, id) => { const h = document.getElementById(id); if (h) io.observe(h); });
+}
