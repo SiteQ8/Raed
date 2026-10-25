@@ -183,3 +183,22 @@ test('every advisory is a valid CVE JSON 5 record with English and Arabic descri
     if (!f.startsWith('_')) assert.equal(a.raed.id + '.json', f);
   }
 });
+
+test('internal application material stays out of the public site and repository', () => {
+  assert.ok(!existsSync(join(ROOT, 'docs/cna/raed')), 'docs/cna/raed must not exist');
+  assert.ok(!existsSync(join(ROOT, 'templates/pages/64-cna-raed.html')));
+  for (const f of ['raed-application.md', 'application-checklist.md']) assert.ok(!existsSync(join(ROOT, 'cna-kit', f)), `cna-kit/${f} belongs in the private repository`);
+  for (const f of [...htmlFiles, join(ROOT, 'docs/sitemap.xml'), ...walk(join(ROOT, 'templates'), ['.html']), ...walk(join(ROOT, 'cna-kit'), ['.md']), join(ROOT, 'README.md')]) {
+    assert.ok(!readFileSync(f, 'utf8').includes('/cna/raed'), `${f} links the internal page`);
+  }
+});
+
+test('the report portal hands reports to GitHub private reporting or mail, never to a server', () => {
+  const js = readFileSync(join(ROOT, 'docs/assets/js/report.js'), 'utf8');
+  assert.match(js, /https:\/\/github\.com\/SiteQ8\/Raed\/security\/advisories\/new/);
+  assert.ok(!/fetch\(|XMLHttpRequest|sendBeacon/.test(js), 'the portal must not send data anywhere');
+  const page = readFileSync(join(ROOT, 'docs/report/index.html'), 'utf8');
+  assert.match(page, /تسعون يوماً/);
+  assert.ok(Array.isArray(JSON.parse(readFileSync(join(ROOT, 'docs/data/hall-of-fame.json'), 'utf8'))));
+  assert.match(readFileSync(join(ROOT, 'docs/.well-known/security.txt'), 'utf8'), /Acknowledgments: https:\/\/cve\.3li\.info\/hall-of-fame\//);
+});

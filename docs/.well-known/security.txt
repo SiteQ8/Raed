@@ -1,5 +1,8 @@
+Contact: https://github.com/SiteQ8/Raed/security/advisories/new
+Contact: https://cve.3li.info/report/
 Contact: mailto:site@hotmail.com
 Expires: 2027-10-25T00:00:00.000Z
 Preferred-Languages: ar, en
 Canonical: https://cve.3li.info/.well-known/security.txt
 Policy: https://cve.3li.info/security/
+Acknowledgments: https://cve.3li.info/hall-of-fame/

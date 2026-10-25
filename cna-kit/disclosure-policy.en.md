@@ -16,7 +16,7 @@ Email {SECURITY_EMAIL} in Arabic or English, optionally encrypted with the key a
 - Assess it and tell you our decision within ten business days, explaining why if we conclude it is not a vulnerability.
 - Reserve a CVE ID once confirmed, coordinate a fix date with the supplier and keep you informed.
 - Publish the advisory and record when a fix is available or 90 days after the report, whichever comes first. We may publish earlier if the vulnerability is exploited in the wild, or later by agreement with you.
-- Publish the CVE Record within 24 hours of publicly disclosing the ID, and never later than 72 hours (CNA Rules 4.5.1.3 and 4.5.1.4).
+- Publish the CVE Record within 24 hours of publicly disclosing the ID.
 - Credit you in the advisory and the record unless you ask otherwise.
 
 ## Good faith research
