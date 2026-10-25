@@ -23,7 +23,7 @@ const strip = (s) => String(s).replace(/[⁨⁩]/g, '');
 // Isolates in engine output become <bdi> in HTML.
 export const html = (s) => esc(s).replace(/⁨/g, '<bdi>').replace(/⁩/g, '</bdi>');
 
-const MARK = `<svg viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" d="M6 6h6v5h4V6h8v5h4V6h6v12l-3 3v15H9V21l-3-3z" opacity=".18"/><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" d="M6 6h6v5h4V6h8v5h4V6h6v12l-3 3v15H9V21l-3-3z"/><path fill="currentColor" d="M17 36v-7a3 3 0 0 1 6 0v7z"/><rect x="18.8" y="16" width="2.4" height="6" rx="1.2" fill="currentColor"/></svg>`;
+const MARK = `<svg viewBox="0 0 48 48" aria-hidden="true"> <defs><clipPath id="mk"><rect width="48" height="48" rx="11"/></clipPath></defs> <rect width="48" height="48" rx="11" fill="#0f5c63"/> <path fill="#e0a21b" d="M15 6 L17 11.8 L22.8 13.8 L17 15.8 L15 21.6 L13 15.8 L7.2 13.8 L13 11.8 Z"/> <g clip-path="url(#mk)"> <path fill="#f2e3bf" d="M-2 48 L-2 39 C 4 34.5, 9 33.2, 14 33.8 C 19 28.5, 26 25.8, 33 26.8 C 40 27.9, 45.5 32, 50 37 L50 48 Z"/> <path fill="#0f5c63" d="M31.6 30.2 C 34.6 31.8, 36.4 34.8, 36.2 38.6 C 36 43, 33.6 46.6, 30.4 49.5 L 26.6 49.5 C 29.4 46.4, 31.2 43, 31.2 39.4 C 31.2 36.6, 30 34.6, 27.8 33.4 Z"/> </g> </svg>`;
 
 const NAV = [
   ['latest', '/latest/', 'أحدث الثغرات'],
@@ -55,6 +55,9 @@ ${noindex ? '<meta name="robots" content="noindex">' : `<link rel="canonical" hr
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0f5c63">
 <link rel="icon" href="/assets/img/mark.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
 <link rel="alternate" type="application/atom+xml" title="${NAME}: الثغرات الحرجة والمستغلة" href="/feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
