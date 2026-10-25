@@ -186,6 +186,7 @@ async function main() {
   for (const p of pages) {
     let body = p.body;
     body = await fill(body, ctx);
+    if (p.doc) body = docLayout(body);
     await writePage(p.path, layout({ ...p, body, scripts: p.scripts || [] }));
     if (!p.noindex) urls.push(p.path);
   }
@@ -199,7 +200,7 @@ async function main() {
       desc: descriptionIn(adv.record, 'ar').slice(0, 200),
       path: `/advisories/${id}/`,
       nav: 'cna',
-      body: advisoryBody(adv),
+      body: docLayout(advisoryBody(adv)),
     }));
     await mkdir(join(DOCS, 'advisories'), { recursive: true });
     await writeFile(join(DOCS, 'advisories', `${id}.json`), JSON.stringify(adv.record, null, 2) + '\n');
@@ -215,13 +216,38 @@ async function main() {
       desc: data.lineAr,
       path: `/week/${w.id}/`,
       nav: 'week',
-      body: weekBody(data),
+      body: docLayout(weekBody(data), [WEEK_RAIL]),
     }));
   }
 
   await writeFile(join(DOCS, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((u) => `<url><loc>${SITE}${u}</loc></url>`).join('\n')}\n</urlset>\n`);
   await writeFile(join(DOCS, 'feed.xml'), feed(ctx, await readWindow(days.slice(0, 7))));
   console.log(`built ${pages.length} pages and ${weeks.length} weekly digests`);
+}
+
+// Text pages on wide screens: the reading column on the start side and a sticky rail beside it
+// holding the page's contents and the page's own side panel (an <aside class="rail-extra"> in the template).
+const WEEK_RAIL = '<p class="rail-label">تابع أولاً بأول</p><p>الثغرات الحرجة والمستغلة تصل في <a href="/feed.xml">موجز Atom</a> مع كل تحديث، وكل النشرات السابقة في <a href="/week/">صفحة النشرة الأسبوعية</a>.</p>';
+
+export function docLayout(body, more = []) {
+  const headStart = body.indexOf('<header');
+  const wrapEnd = body.lastIndexOf('</div>');
+  if (headStart < 0 || wrapEnd < headStart) return body;
+  let main = body.slice(headStart, wrapEnd);
+  const extras = [...more];
+  main = main.replace(/<aside class="rail-extra">([\s\S]*?)<\/aside>\s*/g, (_, x) => { extras.push(x); return ''; });
+  const toc = [];
+  let n = 0;
+  main = main.replace(/<h2( id="([^"]+)")?([^>]*)>([\s\S]*?)<\/h2>/g, (_, hasId, id, rest, text) => {
+    const anchor = id || `s${++n}`;
+    toc.push([anchor, text.replace(/<[^>]+>/g, '')]);
+    return `<h2 id="${anchor}"${rest}>${text}</h2>`;
+  });
+  const tocHtml = toc.length >= 2
+    ? `<nav class="toc" aria-labelledby="toc-h"><p class="rail-label" id="toc-h">في هذه الصفحة</p><ol>${toc.map(([a, t]) => `<li><a href="#${a}">${t}</a></li>`).join('')}</ol></nav>`
+    : '';
+  const rail = tocHtml + extras.map((x) => `<div class="rail-box">${x.trim()}</div>`).join('');
+  return `${body.slice(0, headStart)}<div class="doc${rail ? '' : ' solo'}">\n  <div class="doc-main">${main}</div>\n  ${rail ? `<aside class="rail">${rail}</aside>` : ''}\n  </div>\n${body.slice(wrapEnd)}`;
 }
 
 async function readWindow(ds) {
