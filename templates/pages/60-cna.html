@@ -1,0 +1,24 @@
+<!-- {"title":"الجهات المرقّمة","desc":"دليل عربي بالجهات المرقّمة في برنامج CVE: المورّدون وفرق الاستجابة والباحثون الذين يحق لهم ترقيم الثغرات، مع نطاق كل جهة ودولتها.","path":"/cna/","nav":"cna","scripts":["/assets/js/cna.js"]} -->
+<div class="wrap">
+  <header class="head">
+    <h1>الجهات المرقّمة</h1>
+    <p class="lead">الجهة المرقّمة مؤسسة يأذن لها برنامج CVE بحجز أرقام الثغرات ونشر سجلاتها داخل نطاق محدد، كأن يرقّم المورّد ثغرات منتجاته أو يرقّم فريق الاستجابة الوطني ما يُبلّغ به.</p>
+  </header>
+  <div class="stat-row">
+    <div><b class="num">{{cna_count}}</b><span>جهة مرقّمة</span></div>
+    <div><b class="num">{{cna_countries}}</b><span>دولة</span></div>
+    <div><b class="num">{{cna_arab}}</b><span>من الدول العربية</span></div>
+  </div>
+  <div class="notice warn">لا توجد حتى اليوم جهة مرقّمة واحدة في الدول العربية، لذا تذهب ثغرات المنتجات والخدمات العربية إلى جهات في الخارج لترقيمها، و<a href="/cna/join/">هذا طريق جهة ترقيم عربية</a> بشروطه ونماذجه.</div>
+  <div class="filters">
+    <input type="search" id="q" placeholder="ابحث باسم الجهة أو نطاقها" dir="auto" aria-label="بحث">
+    <select id="country" aria-label="الدولة"><option value="">كل الدول</option></select>
+    <select id="type" aria-label="النوع"><option value="">كل الأنواع</option></select>
+  </div>
+  <p class="count-line" id="count" aria-live="polite">يجري تحميل القائمة</p>
+  <table class="t" id="table">
+    <thead><tr><th scope="col">الجهة</th><th scope="col">الدولة</th><th scope="col">النوع</th><th scope="col">النطاق كما كتبته الجهة</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+  <p class="count-line">المصدر قائمة الشركاء التي ينشرها برنامج CVE، وتُقرأ مع كل تحديث للموقع.</p>
+</div>

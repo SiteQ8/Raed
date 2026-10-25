@@ -1,0 +1,8 @@
+# Place at https://{DOMAIN}/.well-known/security.txt (RFC 9116)
+Contact: mailto:{SECURITY_EMAIL}
+Expires: {ISO_DATE_WITHIN_ONE_YEAR}
+Encryption: {PGP_URL}
+Preferred-Languages: ar, en
+Canonical: https://{DOMAIN}/.well-known/security.txt
+Policy: {DISCLOSURE_POLICY_URL}
+Acknowledgments: {HALL_OF_FAME_URL}

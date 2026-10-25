@@ -1,0 +1,46 @@
+<!-- {"title":"الرئيسية","desc":"رائد سجل عربي مفتوح للثغرات الأمنية المعلنة، يعرض كل سجل من سجلات برنامج CVE بالعربية مع درجة الخطورة واحتمال الاستغلال ويتجدد كل ساعة.","path":"/","nav":"","scripts":["/assets/js/home.js"]} -->
+<div class="wrap">
+  <section class="hero">
+    <h1>كل ثغرة أمنية تُعلن في العالم، مكتوبة بالعربية</h1>
+    <p class="lead">يقرأ رائد كل سجل يصدر عن برنامج CVE خلال ساعة من نشره، ثم يعرض لكل ثغرة نوعها والمنتج المصاب وطريقة استغلالها ودرجة خطورتها واحتمال استغلالها.</p>
+    <form class="find" action="/record/" method="get" role="search">
+      <label for="q" class="skip">رقم الثغرة أو اسم المنتج</label>
+      <input id="q" name="id" type="search" autocomplete="off" spellcheck="false" placeholder="رقم الثغرة أو اسم المنتج" dir="auto">
+      <button class="btn" type="submit">ابحث</button>
+    </form>
+    <p class="hint">جرّب <button type="button" data-try="CVE-2024-3094">CVE-2024-3094</button> أو <button type="button" data-try="Fortinet">Fortinet</button> أو <button type="button" data-try="WordPress">WordPress</button></p>
+
+    <div class="watch">
+      <div class="watch-top">
+        <div class="today"><b class="num">{{today_n}}</b><span>{{today_label}}</span></div>
+        <div class="sums">
+          <div><b class="num">{{week_n}}</b>آخر سبعة أيام</div>
+          <div><b class="num">{{week_crit}}</b>حرجة منها</div>
+          <div><b class="num">{{window_n}}</b>آخر ثلاثين يوماً</div>
+        </div>
+      </div>
+      {{wall}}
+    </div>
+  </section>
+
+  <div class="split">
+    <section>
+      <h2>أحدث ما نُشر</h2>
+      <ul class="reg">
+{{newest_rows}}
+      </ul>
+      <div class="more"><a class="btn quiet" href="/latest/">كل ثغرات اليوم والأيام السابقة</a></div>
+    </section>
+    <aside>
+      <h2>أُضيفت مؤخراً إلى المستغلة فعلياً</h2>
+      <ul class="side-list">{{kev_side}}</ul>
+      <p class="count-line">تضم قائمة CISA اليوم {{kev_total}} ثغرة ثبت استغلالها، و<a href="/kev/">هذه القائمة كاملة</a>.</p>
+      <h2>أكثر أنواع الضعف هذا الأسبوع</h2>
+      <ul class="bars">{{top_cwe}}</ul>
+      <h2>أكثر الموردين وروداً</h2>
+      <ul class="bars">{{top_vendor}}</ul>
+      <p class="count-line">آخر نشرة أسبوعية: {{week_link}}</p>
+    </aside>
+  </div>
+  <p class="count-line">آخر تحديث للبيانات {{generated}}.</p>
+</div>
