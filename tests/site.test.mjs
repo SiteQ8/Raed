@@ -132,3 +132,19 @@ test('every page has a title, a description and the custom domain is set', () =>
   }
   assert.equal(readFileSync(join(ROOT, 'docs/CNAME'), 'utf8').trim(), 'cve.3li.info');
 });
+
+test('sparse old records get an honest one sentence summary', () => {
+  const s = summaryAr({ i: 'CVE-1999-0001', p: '1999-12-30T05:00:00' }).replace(/[\u2068\u2069]/g, '');
+  assert.match(s, /^ثغرة لم تذكر الجهة المرقّمة نوعها ولا منتجها/);
+  assert.equal(s.split('.').length, 2);
+});
+
+test('KEV shards hold every catalogue entry under its CVE year', () => {
+  const kev = JSON.parse(readFileSync(join(ROOT, 'docs/data/kev.json'), 'utf8'));
+  let n = 0;
+  for (const f of readdirSync(join(ROOT, 'docs/data/kev'))) {
+    const m = JSON.parse(readFileSync(join(ROOT, 'docs/data/kev', f), 'utf8'));
+    for (const id of Object.keys(m)) { assert.equal(id.slice(4, 8), f.slice(0, 4)); n++; }
+  }
+  assert.equal(n, kev.length);
+});

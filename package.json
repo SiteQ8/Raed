@@ -1,1 +1,1 @@
-{"name":"raed","private":true,"type":"module","scripts":{"update":"node scripts/update.mjs","weekly":"node scripts/weekly.mjs","build":"node scripts/build.mjs","test":"node --test tests/site.test.mjs"}}
+{"name":"raed","private":true,"type":"module","scripts":{"update":"node scripts/update.mjs","weekly":"node scripts/weekly.mjs","build":"node scripts/build.mjs","test":"node --test tests/site.test.mjs"},"devDependencies":{"ajv":"^8.20.0","ajv-formats":"^3.0.1"}}

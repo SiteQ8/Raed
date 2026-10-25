@@ -5,7 +5,7 @@
 import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
-import { summaryAr, dateAr, nVuln, nRecord, SEV_AR, sevClass, iso } from '../docs/assets/engine/arabic.js';
+import { summaryAr, dateAr, timeAr, kwDay, nVuln, nRecord, SEV_AR, sevClass, iso } from '../docs/assets/engine/arabic.js';
 import { cweAr } from '../docs/assets/engine/cwe.js';
 
 const ROOT = new URL('..', import.meta.url).pathname;
@@ -231,7 +231,7 @@ async function fill(body, ctx) {
   const wk = days.slice(0, 7);
   const sum = (k) => wk.reduce((a, d) => a + (d[k] || 0), 0);
   const map = {
-    '{{generated}}': index.generated ? `${dateAr(index.generated)} عند ${index.generated.slice(11, 16)} بتوقيت غرينتش` : '',
+    '{{generated}}': index.generated ? `${dateAr(index.generated)} عند ${timeAr(index.generated)}` : '',
     '{{today_n}}': last24.toLocaleString('en-US'),
     '{{today_label}}': `${last24 >= 3 && last24 % 100 >= 3 && last24 % 100 <= 10 ? 'ثغرات' : 'ثغرة'} نُشرت في آخر 24 ساعة`,
     '{{week_n}}': sum('n').toLocaleString('en-US'),

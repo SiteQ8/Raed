@@ -19,9 +19,19 @@ export const SEV_AR = {
 export const MONTHS = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
 export const DAYS_AR = ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
 
+// The site speaks Kuwait time (UTC+3, no daylight saving). Timestamps are stored in UTC and shifted when shown;
+// a bare date (YYYY-MM-DD) is already a Kuwait calendar day and is shown as is.
+export const KW_OFFSET_MS = 3 * 3600 * 1000;
+export function kwDate(s) {
+  return new Date(new Date(String(s).replace(/Z?$/, 'Z')).getTime() + KW_OFFSET_MS);
+}
+export function kwDay(s) {
+  return kwDate(s).toISOString().slice(0, 10);
+}
+
 export function dateAr(s, { weekday = false, year = true } = {}) {
   if (!s) return '';
-  const d = new Date(String(s).length <= 10 ? s + 'T00:00:00Z' : String(s).replace(/Z?$/, 'Z'));
+  const d = String(s).length <= 10 ? new Date(s + 'T00:00:00Z') : kwDate(s);
   if (isNaN(d)) return '';
   const core = `${d.getUTCDate()} ${MONTHS[d.getUTCMonth()]}${year ? ' ' + d.getUTCFullYear() : ''}`;
   return weekday ? `${DAYS_AR[d.getUTCDay()]} ${core}` : core;
@@ -29,10 +39,10 @@ export function dateAr(s, { weekday = false, year = true } = {}) {
 
 export function timeAr(s) {
   if (!s) return '';
-  const d = new Date(String(s).replace(/Z?$/, 'Z'));
+  const d = kwDate(s);
   const h = d.getUTCHours();
   const m = String(d.getUTCMinutes()).padStart(2, '0');
-  return `${String(h).padStart(2, '0')}:${m} بتوقيت غرينتش`;
+  return `${String(h).padStart(2, '0')}:${m} بتوقيت الكويت`;
 }
 
 // Counted nouns with digits: 1 and 2 take the word alone, 3 to 10 the plural, 11 and above the singular accusative.
@@ -151,6 +161,13 @@ export function summaryAr(it) {
   const cw = (it.c || []).map(cweAr).find(Boolean);
   const kind = cw ? `ثغرة من نوع ${cw.name}` : 'ثغرة';
   const where = productPhrase(it);
+  if (!cw && !where && !it.vec) {
+    // Older records often carry only free text, so say so plainly instead of inventing detail.
+    let t = 'ثغرة لم تذكر الجهة المرقّمة نوعها ولا منتجها في حقول السجل المنظمة، لذا فالوصف الأصلي هو المرجع لتفاصيلها';
+    t += it.s != null && it.sv ? `، ويقدّر التقييم خطورتها بـ ${iso(Number(it.s).toFixed(1))} من 10 أي ${SEV_AR[it.sv] || ''}` : '، ولم يُنشر تقييم لخطورتها في السجل';
+    if (it.k) t += '، وقد أدرجتها CISA في قائمة الثغرات المستغلة فعلياً';
+    return t + '.';
+  }
   let s = [kind, where].filter(Boolean).join(' ');
   const m = parseVector(it.vec);
   const how = [];
@@ -181,7 +198,9 @@ export function sevClass(sv) {
 // Version ranges for one affected entry, in Arabic.
 export function versionsAr(a) {
   const out = [];
+  const na = (x) => !x || /^(n\/a|unspecified|unknown)$/i.test(String(x).trim());
   for (const v of a.versions || []) {
+    if (na(v.version) && na(v.lessThan) && na(v.lessThanOrEqual)) continue;
     const st = v.status === 'affected' ? 'مصاب' : v.status === 'unaffected' ? 'غير مصاب' : 'غير معروف';
     let range;
     if (v.lessThan) range = v.version && v.version !== '0' && v.version !== '*' ? `من ${iso(v.version)} حتى ما قبل ${iso(v.lessThan)}` : `كل الإصدارات قبل ${iso(v.lessThan)}`;
