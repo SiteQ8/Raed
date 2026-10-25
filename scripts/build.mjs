@@ -7,6 +7,8 @@ import { existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { summaryAr, dateAr, timeAr, kwDay, nVuln, nRecord, SEV_AR, sevClass, iso } from '../docs/assets/engine/arabic.js';
 import { cweAr } from '../docs/assets/engine/cwe.js';
+import { detail } from '../docs/assets/engine/record.js';
+import { loadAdvisories, descriptionIn, STATUS_AR } from './lib/advisories.mjs';
 
 const ROOT = new URL('..', import.meta.url).pathname;
 const DOCS = join(ROOT, 'docs');
@@ -89,6 +91,7 @@ ${body}
           <li><a href="/kev/">الثغرات المستغلة فعلياً</a></li>
           <li><a href="/week/">النشرة الأسبوعية</a></li>
           <li><a href="/cna/join/">نحو جهة ترقيم عربية</a></li>
+          <li><a href="/advisories/">نشرات رائد</a></li>
           <li><a href="/faq/">الأسئلة الشائعة</a></li>
           <li><a href="/data/">البيانات المفتوحة</a></li>
         </ul>
@@ -168,7 +171,8 @@ async function main() {
   const newest = [...dayItems, ...prevItems].filter((x) => !x.st).slice(0, 12);
   const since = new Date(new Date(index.generated || Date.now()).getTime() - 864e5).toISOString().slice(0, 19);
   const last24 = [...dayItems, ...prevItems].filter((x) => !x.st && x.p >= since).length;
-  const ctx = { index, kev, days, newest, weeks, latestDay, last24 };
+  const advisories = await loadAdvisories();
+  const ctx = { index, kev, days, newest, weeks, latestDay, last24, advisories };
 
   const pages = await loadPages();
   const urls = [];
@@ -179,6 +183,21 @@ async function main() {
     if (!p.noindex) urls.push(p.path);
   }
   for (const w of weeks) urls.push(`/week/${w.id}/`);
+
+  // Raed's own advisories.
+  for (const adv of ctx.advisories) {
+    const id = adv.raed.id;
+    await writePage(`/advisories/${id}/`, layout({
+      title: `${id}: ${adv.raed.titleAr}`,
+      desc: descriptionIn(adv.record, 'ar').slice(0, 200),
+      path: `/advisories/${id}/`,
+      nav: 'cna',
+      body: advisoryBody(adv),
+    }));
+    await mkdir(join(DOCS, 'advisories'), { recursive: true });
+    await writeFile(join(DOCS, 'advisories', `${id}.json`), JSON.stringify(adv.record, null, 2) + '\n');
+    urls.push(`/advisories/${id}/`);
+  }
 
   // Weekly digest pages.
   for (const w of weeks) {
@@ -244,6 +263,10 @@ async function fill(body, ctx) {
     '{{week_link}}': weeks[0] ? `<a href="/week/${weeks[0].id}/">${esc(weeks[0].titleAr)}</a>` : '',
     '{{weeks_list}}': weeks.map((w) => `<li><a href="/week/${w.id}/">${esc(w.titleAr)}</a><p>${esc(w.lineAr)}</p></li>`).join('') || '<li><p>تصدر أول نشرة يوم الاثنين.</p></li>',
     '{{latest_day}}': latestDay || '',
+    '{{advisories_n}}': String(ctx.advisories.length),
+    '{{advisories_list}}': ctx.advisories.length
+      ? ctx.advisories.map((a) => `<li><a href="/advisories/${a.raed.id}/">${esc(a.raed.id)}</a><p>${esc(a.raed.titleAr)}</p><span class="meta">${dateAr(a.raed.published)}، ${esc(STATUS_AR[a.raed.status] || '')}${a.raed.status === 'published' ? `، والرقم <bdi>${esc(a.record.cveMetadata.cveId)}</bdi>` : ''}</span></li>`).join('')
+      : '<li><p>لم تصدر نشرة بعد، وستكون أول نشرة لأول ثغرة تبلغنا بها في برمجية أو خدمة عربية.</p></li>',
   };
   if (body.includes('{{wall}}')) {
     const w = wallHtml(days);
@@ -292,6 +315,34 @@ ${w.kevAdded.length ? `<h2>ما أُضيف إلى قائمة الثغرات ال
 </div>
 <p class="count-line">البيانات حتى ${dateAr(w.generated)} وتشمل السجلات المنشورة من ${dateAr(w.from)} إلى ${dateAr(w.to)}.</p>
 </div>`;
+}
+
+function advisoryBody(adv) {
+  const d = detail(adv.record);
+  const ar = descriptionIn(adv.record, 'ar');
+  const en = descriptionIn(adv.record, 'en');
+  const cve = adv.raed.status === 'published' ? adv.record.cveMetadata.cveId : '';
+  const affected = d.affected.map((a) => `<tr><td><bdi>${esc(a.product)}</bdi><br><small style="color:var(--muted)"><bdi>${esc(a.vendor)}</bdi></small></td><td>${a.versions.filter((v) => v.status === 'affected').map((v) => v.lessThan ? `${v.version && v.version !== '0' ? `من <bdi>${esc(v.version)}</bdi> ` : 'كل الإصدارات '}حتى ما قبل <bdi>${esc(v.lessThan)}</bdi>` : `الإصدار <bdi>${esc(v.version)}</bdi>`).join('<br>')}</td></tr>`).join('');
+  return `<div class="wrap">
+<header class="rec-head">
+  <p class="lead"><a href="/advisories/">نشرات رائد</a></p>
+  <h1 class="cve">${esc(adv.raed.id)}</h1>
+  <div class="state">${sevMark(d.sv, d.s)}<span class="sev na">${esc(STATUS_AR[adv.raed.status] || '')}</span>${cve ? `<a class="ltr" href="/record/?id=${cve}">${cve}</a>` : ''}</div>
+  <p class="summary">${esc(adv.raed.titleAr)}</p>
+  <p class="dates">صدرت ${dateAr(adv.raed.published)}.</p>
+</header>
+<div class="rec-grid"><div>
+  <h2>الوصف</h2>
+  <p class="summary" style="font-size:19px">${esc(ar)}</p>
+  <p class="label">الوصف الإنجليزي كما يُنشر في سجل CVE</p>
+  <div class="original">${esc(en)}</div>
+  ${d.c?.length ? `<h2>نوع الضعف</h2><p>${d.c.map((c) => `${esc(cweAr(c)?.name || c)} <bdi>${esc(c)}</bdi>`).join('، ')}</p>` : ''}
+  ${affected ? `<h2>المنتجات والإصدارات المصابة</h2><table class="t"><thead><tr><th scope="col">المنتج</th><th scope="col">الإصدارات</th></tr></thead><tbody>${affected}</tbody></table>` : ''}
+  ${d.refs.length ? `<h2>المراجع</h2><ul class="refs">${d.refs.map((r) => `<li><a href="${esc(r.url)}" rel="noopener">${esc(r.url)}</a></li>`).join('')}</ul>` : ''}
+  ${d.credits.length ? `<h2>الشكر</h2><ul class="refs">${d.credits.map((c) => `<li><bdi>${esc(c.who)}</bdi></li>`).join('')}</ul>` : ''}
+</div><aside>
+  <div class="panel"><h3>السجل بصيغة CVE JSON 5</h3><p class="count-line">هذا الملف هو ما يُرفع إلى خدمات CVE كما هو، ويحمل الوصفين العربي والإنجليزي معاً.</p><a class="btn quiet" href="/advisories/${esc(adv.raed.id)}.json">تنزيل السجل</a></div>
+</aside></div></div>`;
 }
 
 export { weekOf };
