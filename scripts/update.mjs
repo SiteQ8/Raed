@@ -8,6 +8,7 @@ import { readFile, writeFile, mkdir, readdir, rm } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { compact } from '../docs/assets/engine/record.js';
+import { kwDay } from '../docs/assets/engine/arabic.js';
 import { getJSON, pool } from './lib/net.mjs';
 
 const ROOT = new URL('..', import.meta.url).pathname;
@@ -20,7 +21,8 @@ const EPSS = 'https://api.first.org/data/v1/epss';
 
 const full = process.argv.includes('--full');
 const today = new Date().toISOString().slice(0, 10);
-const cutoff = new Date(Date.now() - WINDOW_DAYS * 864e5).toISOString().slice(0, 10);
+// Days are Kuwait calendar days (UTC+3).
+const cutoff = kwDay(new Date(Date.now() - WINDOW_DAYS * 864e5).toISOString().slice(0, 19));
 
 async function readJSON(p, fallback) {
   try { return JSON.parse(await readFile(p, 'utf8')); } catch { return fallback; }
@@ -73,7 +75,7 @@ async function main() {
     if (!it || it.error) { failed++; continue; }
     const old = items.get(it.i);
     if (old?.e != null) { it.e = old.e; it.ep = old.ep; }
-    if (it.p.slice(0, 10) >= cutoff) items.set(it.i, it);
+    if (kwDay(it.p) >= cutoff) items.set(it.i, it);
     else changedOld.push({ i: it.i, u: it.u, sv: it.sv, s: it.s, v: it.v, r: it.r, st: it.st, p: it.p });
   }
   if (failed) console.log(`${failed} records could not be fetched this run, they stay for the next run`);
@@ -82,7 +84,7 @@ async function main() {
     .slice(0, 400);
 
   // Drop what left the window.
-  for (const [id, it] of items) if (it.p.slice(0, 10) < cutoff) items.delete(id);
+  for (const [id, it] of items) if (kwDay(it.p) < cutoff) items.delete(id);
 
   console.log('reading the KEV catalogue');
   const kevRaw = await getJSON(KEV);
@@ -123,7 +125,7 @@ async function main() {
   // Write day files.
   const byDay = new Map();
   for (const it of items.values()) {
-    const d = it.p.slice(0, 10);
+    const d = kwDay(it.p);
     if (!byDay.has(d)) byDay.set(d, []);
     byDay.get(d).push(it);
   }
@@ -148,9 +150,21 @@ async function main() {
   const search = [...items.values()]
     .filter((x) => !x.st)
     .sort((a, b) => (a.p < b.p ? 1 : -1))
-    .map((x) => [x.i, x.v || '', x.r || '', (x.t || x.d || '').slice(0, 90), x.sv || '', x.s ?? '', x.p.slice(0, 10), x.k ? 1 : 0]);
+    .map((x) => [x.i, x.v || '', x.r || '', (x.t || x.d || '').slice(0, 90), x.sv || '', x.s ?? '', kwDay(x.p), x.k ? 1 : 0]);
 
   await writeJSON(join(DATA, 'kev.json'), kev);
+  // Small per year shards keyed by CVE year, so a record page fetches a few kilobytes instead of the whole catalogue.
+  await mkdir(join(DATA, 'kev'), { recursive: true });
+  const shards = new Map();
+  for (const k of kev) {
+    const y = k.i.slice(4, 8);
+    if (!shards.has(y)) shards.set(y, {});
+    shards.get(y)[k.i] = k;
+  }
+  for (const f of await readdir(join(DATA, 'kev'))) if (!shards.has(f.slice(0, 4))) await rm(join(DATA, 'kev', f));
+  const thisYear = new Date().getUTCFullYear();
+  for (let y = 1999; y <= thisYear; y++) if (!shards.has(String(y))) shards.set(String(y), {});
+  for (const [y, m] of shards) await writeJSON(join(DATA, 'kev', `${y}.json`), m);
   await writeJSON(join(DATA, 'updated.json'), updated);
   await writeJSON(join(DATA, 'search.json'), search);
   await writeJSON(join(DATA, 'index.json'), {
