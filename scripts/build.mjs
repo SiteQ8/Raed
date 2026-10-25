@@ -31,7 +31,7 @@ const NAV = [
   ['week', '/week/', 'النشرة الأسبوعية'],
   ['about', '/about/', 'عن البرنامج'],
   ['cna', '/cna/', 'الجهات المرقّمة'],
-  ['glossary', '/glossary/', 'المسرد'],
+  ['glossary', '/glossary/', 'المصطلحات'],
 ];
 
 export function layout({ title, desc, path, nav = '', body, scripts = [], head = '', noindex = false }) {
