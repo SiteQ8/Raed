@@ -1,0 +1,122 @@
+/* رائد on phones. Loaded only at 760px and below (see the media attribute on its link), after site.css.
+   Phones get their own layout rather than a squeezed desktop: one column, rows as cards, controls sized for thumbs. */
+
+body { font-size: 16px; line-height: 1.8; }
+.wrap { padding: 0 var(--s-4); }
+
+/* Header: compact bar, full width menu sheet, 44px targets */
+.top .wrap { min-height: 60px; gap: var(--s-3); }
+.brand svg { width: 30px; height: 30px; }
+.brand b { font-size: 26px; }
+.brand small { display: none; }
+.menu, .theme { min-height: 44px; min-width: 44px; }
+.nav { top: 60px; }
+.nav a { padding: 12px 8px; border-bottom: 1px solid var(--line-2); }
+.nav a:last-child { border-bottom: 0; }
+
+/* Page heads */
+.head { padding: var(--s-6) 0 var(--s-4); }
+.head h1 { font-size: 32px; }
+.head p.lead { font-size: 17px; }
+h2 { font-size: 23px; margin: var(--s-6) 0 var(--s-3); }
+h3 { font-size: 17.5px; }
+
+/* Home */
+.hero { padding: var(--s-6) 0 var(--s-5); }
+.hero h1 { font-size: 34px; max-width: none; }
+.hero .lead { font-size: 17px; margin: var(--s-3) 0 var(--s-5); }
+.find { padding: 4px; }
+.find input { font-size: 17px; padding: 10px; }
+.btn { min-height: 44px; padding: 10px 18px; }
+.hint { line-height: 2.1; }
+.watch { padding: var(--s-4); margin-top: var(--s-5); }
+.watch-top { flex-direction: column; align-items: stretch; gap: var(--s-4); }
+.watch-top .today b { font-size: 46px; }
+.watch-top .sums { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-2); font-size: 13px; }
+.watch-top .sums b { font-size: 18px; }
+.wall { height: 130px; gap: 2px; }
+.col i { height: 2px; }
+.legend { gap: var(--s-2) var(--s-4); font-size: 12.5px; }
+.split { gap: 0; }
+
+/* Register rows become cards: number and severity on one line, then product, then the summary */
+.reg a.row {
+  grid-template-columns: 1fr auto;
+  grid-template-areas: 'id marks' 'what what';
+  gap: var(--s-2) var(--s-3);
+  padding: var(--s-4) 0;
+}
+.reg .id { grid-area: id; font-size: 15.5px; display: flex; align-items: baseline; gap: var(--s-3); }
+.reg .id b { display: inline; }
+.reg .id small { display: inline; font-size: 12.5px; }
+.reg .marks { grid-area: marks; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; gap: 6px; }
+.reg .what { grid-area: what; }
+.reg .what p { font-size: 15px; }
+
+/* Filters: search on its own line, chips in one scrollable row */
+.filters { flex-direction: column; align-items: stretch; gap: var(--s-3); }
+.filters input[type='search'], .filters select { flex: none; width: 100%; min-height: 44px; font-size: 16px; }
+.filters > * { min-width: 0; max-width: 100%; }
+.chips { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+.chips::-webkit-scrollbar { display: none; }
+.chip { flex: none; min-height: 40px; padding: 6px 16px; }
+.days-strip button { min-width: 72px; }
+
+/* Tables marked .stack read as labelled cards */
+table.stack thead { display: none; }
+table.stack, table.stack tbody, table.stack tr, table.stack td { display: block; width: 100%; }
+table.stack tr { border: 1px solid var(--line-2); border-radius: var(--r-3); background: var(--surface); padding: var(--s-3) var(--s-4); margin-bottom: var(--s-3); }
+table.stack td { border: 0; padding: 4px 0; }
+table.stack td[data-label]::before { content: attr(data-label); display: block; font-size: 12.5px; color: var(--muted); }
+table.stack td.ltr, table.stack td[dir='ltr'] { text-align: left; }
+
+/* Record page */
+.rec-head { padding: var(--s-6) 0 var(--s-4); }
+.rec-head .cve { font-size: 28px; }
+.summary { font-size: 18px; line-height: 1.9; }
+.rec-grid { gap: var(--s-4); margin-top: var(--s-5); }
+.panel { padding: var(--s-4); }
+.score b { font-size: 42px; }
+.original { padding: var(--s-3) var(--s-4); font-size: 14.5px; }
+dl.facts { font-size: 14.5px; }
+
+/* Glossary: groups as a scrollable chip row, search full width, one column of terms */
+.gloss-layout > * { min-width: 0; }
+.gloss-index { padding: var(--s-2) 0; position: sticky; top: 0; z-index: 2; background: var(--ground); border-bottom: 1px solid var(--line-2); }
+.gloss-find input { min-height: 44px; font-size: 16px; }
+.gloss-index ol { display: flex; gap: 6px; overflow-x: auto; border: 0; margin-top: var(--s-3); scrollbar-width: none; }
+.gloss-index ol::-webkit-scrollbar { display: none; }
+.gloss-index li a { white-space: nowrap; border: 1px solid var(--line); border-radius: 99px; padding: 6px 14px; margin: 0; background: var(--raised); font-size: 14.5px; }
+.gloss-count { margin-top: var(--s-2); }
+.gloss-group { scroll-margin-top: 150px; }
+.gloss-group + .gloss-group { margin-top: var(--s-6); }
+.terms { gap: var(--s-3); }
+.term { padding: var(--s-4); scroll-margin-top: 150px; }
+.term dt { flex-direction: column; align-items: flex-start; gap: 4px; }
+.term .ar { font-size: 17px; }
+.term dd { font-size: 15px; }
+
+/* Data page field list stacks */
+dl.fields { grid-template-columns: 1fr; }
+dl.fields dt { border-bottom: 0; padding-bottom: 0; }
+
+/* Steps, lists, figures */
+.steps > li { grid-template-columns: 36px 1fr; gap: var(--s-3); }
+.steps > li::before { font-size: 24px; }
+.stat-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-4); }
+.stat-row div b { font-size: 28px; }
+.listen { padding: var(--s-4); }
+.figure { margin: var(--s-5) calc(-1 * var(--s-4)); }
+.figure img { border-radius: 0; border-inline: 0; }
+.figure figcaption { padding: 0 var(--s-4); }
+details.faq summary { font-size: 16.5px; padding-block: 6px; }
+.cols-2 { grid-template-columns: 1fr; gap: 0; }
+
+/* Footer */
+.foot { margin-top: var(--s-8); padding: var(--s-6) 0 var(--s-5); }
+.foot .cols { grid-template-columns: 1fr; gap: var(--s-5); }
+.foot li { margin: 8px 0; }
+
+/* Record page: the score, exploitation and KEV panels come first on a phone, the long description after */
+.rec-grid { display: flex; flex-direction: column; }
+.rec-grid > aside { order: -1; }

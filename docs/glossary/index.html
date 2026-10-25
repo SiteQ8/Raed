@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>المصطلحات | رائد</title>
-<meta name="description" content="شرح عربي لمصطلحات الثغرات الأمنية وبرنامج CVE: السجل والجهة المرقّمة وتقييم CVSS واحتمال EPSS وتصنيف CWE وقائمة الثغرات المستغلة وغيرها.">
+<meta name="description" content="شرح عربي لمصطلحات الثغرات الأمنية وبرنامج CVE مرتبة في أربع مجموعات: الثغرة وسجلها، والجهات في البرنامج، ومقاييس الخطورة والاستغلال، والإفصاح والمعالجة.">
 <link rel="canonical" href="https://cve.3li.info/glossary/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ar_AR">
 <meta property="og:site_name" content="رائد">
 <meta property="og:title" content="المصطلحات | رائد">
-<meta property="og:description" content="شرح عربي لمصطلحات الثغرات الأمنية وبرنامج CVE: السجل والجهة المرقّمة وتقييم CVSS واحتمال EPSS وتصنيف CWE وقائمة الثغرات المستغلة وغيرها.">
+<meta property="og:description" content="شرح عربي لمصطلحات الثغرات الأمنية وبرنامج CVE مرتبة في أربع مجموعات: الثغرة وسجلها، والجهات في البرنامج، ومقاييس الخطورة والاستغلال، والإفصاح والمعالجة.">
 <meta property="og:url" content="https://cve.3li.info/glossary/">
 <meta property="og:image" content="https://cve.3li.info/assets/img/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -21,6 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&family=IBM+Plex+Sans:wght@400;600&family=Reem+Kufi:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/mobile.css" media="(max-width: 760px)">
 <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 
 </head>
@@ -38,50 +39,73 @@
 <div class="wrap">
   <header class="head">
     <h1>المصطلحات</h1>
-    <p class="lead">المصطلحات التي تتكرر في سجلات الثغرات، بالعربية التي يستخدمها رائد وبجانبها المصطلح الإنجليزي كما يرد في المصادر.</p>
+    <p class="lead">المصطلحات التي تتكرر في سجلات الثغرات مرتبة في أربع مجموعات، ولكل مصطلح عربيته التي يستخدمها «رائد» ومقابله الإنجليزي كما يرد في المصادر.</p>
   </header>
-  <dl class="gloss">
-    <dt>الثغرة<span>Vulnerability</span></dt>
-    <dd>ضعف في منتج يمكن استغلاله فيؤثر سلباً في سرية البيانات أو سلامتها أو توافر الخدمة.</dd>
-    <dt>سجل الثغرة<span>CVE Record</span></dt>
-    <dd>الوثيقة التي تنشرها الجهة المرقّمة لكل رقم، وتضم وصف الثغرة والمنتجات والإصدارات المصابة والمراجع، وقد تضيف إليها جهات النشر المعتمدة معلومات أخرى.</dd>
-    <dt>رقم الثغرة<span>CVE ID</span></dt>
-    <dd>المعرّف الفريد للثغرة بصيغة CVE ثم السنة ثم رقم تسلسلي من أربع خانات أو أكثر.</dd>
-    <dt>الجهة المرقّمة<span>CNA</span></dt>
-    <dd>مؤسسة مأذون لها بحجز أرقام الثغرات ونشر سجلاتها داخل نطاق محدد.</dd>
-    <dt>الجهة الجذرية<span>Root</span></dt>
-    <dd>جهة تشرف على مجموعة من الجهات المرقّمة وتدربها وتفصل في ما يقع بينها، وتعلوها الجهة الجذرية العليا.</dd>
-    <dt>الجهة المرقّمة الأخيرة<span>CNA of Last Resort</span></dt>
-    <dd>جهة ترقّم الثغرات التي لا يشملها نطاق أي جهة مرقّمة أخرى.</dd>
-    <dt>جهة النشر المعتمدة<span>ADP</span></dt>
-    <dd>جهة يأذن لها البرنامج بإضافة معلومات إلى السجلات المنشورة، كتقييم الخطورة الذي تضيفه وكالة CISA.</dd>
-    <dt>المورّد<span>Supplier</span></dt>
-    <dd>الجهة التي تطوّر المنتج أو تصونه، سواء كانت شركة أو مشروعاً مفتوح المصدر.</dd>
-    <dt>نوع الضعف<span>CWE</span></dt>
-    <dd>تصنيف عالمي لأنواع الأخطاء البرمجية التي تنشأ منها الثغرات، كحقن SQL والكتابة خارج الحدود، وتديره مؤسسة MITRE.</dd>
-    <dt>تقييم الخطورة<span>CVSS</span></dt>
-    <dd>نظام لتقدير شدة الثغرة من صفر إلى عشرة بحسب طريقة استغلالها وأثرها، وإصداراه المستخدمان اليوم هما 3.1 و4.0، وتصنف الدرجة إلى منخفضة ومتوسطة وعالية وحرجة.</dd>
-    <dt>متجه التقييم<span>CVSS Vector</span></dt>
-    <dd>السلسلة المختصرة التي تشرح عناصر التقييم، مثل مسار الهجوم والصلاحيات المطلوبة وتدخل المستخدم والأثر، ويفكها رائد إلى العربية في كل سجل.</dd>
-    <dt>احتمال الاستغلال<span>EPSS</span></dt>
-    <dd>نموذج تنشره منظمة FIRST يقدّر يومياً احتمال أن تُستغل الثغرة خلال الثلاثين يوماً المقبلة.</dd>
-    <dt>الثغرات المستغلة فعلياً<span>KEV</span></dt>
-    <dd>قائمة تنشرها وكالة CISA للثغرات التي ثبت استغلالها في هجمات حقيقية.</dd>
-    <dt>تقدير الاستغلال وأثره<span>SSVC</span></dt>
-    <dd>إطار لاتخاذ قرار المعالجة، ويضيف إلى السجل هل الثغرة مستغلة، وهل يمكن أتمتة استغلالها، وهل يمنح استغلالها سيطرة جزئية أو كاملة.</dd>
-    <dt>إثبات المفهوم<span>Proof of Concept</span></dt>
-    <dd>شيفرة أو خطوات تثبت أن الثغرة قابلة للاستغلال دون أن تكون بالضرورة أداة هجوم كاملة.</dd>
-    <dt>فترة الحظر<span>Embargo</span></dt>
-    <dd>المدة التي يتفق فيها المبلّغ والمورّد على عدم نشر الثغرة حتى يصدر الإصلاح.</dd>
-    <dt>سياسة الإفصاح<span>Disclosure Policy</span></dt>
-    <dd>الوثيقة التي تشرح طريقة استقبال الجهة للبلاغات ومدد ردها ومتى تنشر.</dd>
-    <dt>الثغرة غير المعروفة سابقاً<span>Zero-day</span></dt>
-    <dd>ثغرة يستغلها المهاجمون قبل أن يعلم بها المورّد أو قبل أن يصدر لها إصلاح.</dd>
-    <dt>السجل المرفوض<span>Rejected</span></dt>
-    <dd>رقم أُلغي لأنه مكرر أو لأن ما وُصف فيه لا يمثل ثغرة، فلا يُستند إليه.</dd>
-    <dt>السجل المحجوز<span>Reserved</span></dt>
-    <dd>رقم حجزته جهة مرقّمة ولم تنشر تفاصيله بعد.</dd>
-  </dl>
+
+  <div class="gloss-layout">
+    <nav class="gloss-index" aria-label="مجموعات المصطلحات">
+      <label class="gloss-find"><span class="skip">ابحث في المصطلحات</span><input type="search" id="gq" placeholder="ابحث بالعربية أو الإنجليزية" dir="auto"></label>
+      <ol>
+        <li><a href="#g-record">الثغرة وسجلها</a></li>
+        <li><a href="#g-roles">الجهات في البرنامج</a></li>
+        <li><a href="#g-metrics">الخطورة والاستغلال</a></li>
+        <li><a href="#g-disclosure">الإفصاح والمعالجة</a></li>
+      </ol>
+      <p class="gloss-count" id="gcount" aria-live="polite"></p>
+    </nav>
+
+    <div class="gloss-groups">
+      <section class="gloss-group" id="g-record" aria-labelledby="h-record">
+        <h2 id="h-record">الثغرة وسجلها</h2>
+        <dl class="terms">
+          <div class="term" id="vulnerability"><dt><span class="ar">الثغرة</span><span class="en">Vulnerability</span></dt><dd>ضعف في منتج يمكن استغلاله فيؤثر سلباً في سرية البيانات أو سلامتها أو توافر الخدمة.</dd></div>
+          <div class="term" id="cve-record"><dt><span class="ar">سجل الثغرة</span><span class="en">CVE Record</span></dt><dd>الوثيقة التي تنشرها الجهة المرقّمة لكل رقم، وتضم وصف الثغرة والمنتجات والإصدارات المصابة والمراجع، وقد تضيف إليها جهات النشر المعتمدة معلومات أخرى.</dd></div>
+          <div class="term" id="cve-id"><dt><span class="ar">رقم الثغرة</span><span class="en">CVE ID</span></dt><dd>المعرّف الفريد للثغرة بصيغة CVE ثم السنة ثم رقم تسلسلي من أربع خانات أو أكثر.</dd></div>
+          <div class="term" id="reserved"><dt><span class="ar">السجل المحجوز</span><span class="en">Reserved</span></dt><dd>رقم حجزته جهة مرقّمة ولم تنشر تفاصيله بعد.</dd></div>
+          <div class="term" id="rejected"><dt><span class="ar">السجل المرفوض</span><span class="en">Rejected</span></dt><dd>رقم أُلغي لأنه مكرر أو لأن ما وُصف فيه لا يمثل ثغرة، فلا يُستند إليه.</dd></div>
+          <div class="term" id="cwe"><dt><span class="ar">نوع الضعف</span><span class="en">CWE</span></dt><dd>تصنيف عالمي لأنواع الأخطاء البرمجية التي تنشأ منها الثغرات، كحقن SQL والكتابة خارج الحدود، وتديره مؤسسة MITRE.</dd></div>
+          <div class="term" id="zero-day"><dt><span class="ar">الثغرة غير المعروفة سابقاً</span><span class="en">Zero-day</span></dt><dd>ثغرة يستغلها المهاجمون قبل أن يعلم بها المورّد أو قبل أن يصدر لها إصلاح.</dd></div>
+        </dl>
+      </section>
+
+      <section class="gloss-group" id="g-roles" aria-labelledby="h-roles">
+        <h2 id="h-roles">الجهات في البرنامج</h2>
+        <dl class="terms">
+          <div class="term" id="cna"><dt><span class="ar">الجهة المرقّمة</span><span class="en">CNA</span></dt><dd>مؤسسة مأذون لها بحجز أرقام الثغرات ونشر سجلاتها داخل نطاق محدد.</dd></div>
+          <div class="term" id="root"><dt><span class="ar">الجهة الجذرية</span><span class="en">Root</span></dt><dd>جهة تشرف على مجموعة من الجهات المرقّمة وتدربها وتفصل في ما يقع بينها، وتعلوها الجهة الجذرية العليا.</dd></div>
+          <div class="term" id="cna-lr"><dt><span class="ar">الجهة المرقّمة الأخيرة</span><span class="en">CNA of Last Resort</span></dt><dd>جهة ترقّم الثغرات التي لا يشملها نطاق أي جهة مرقّمة أخرى.</dd></div>
+          <div class="term" id="adp"><dt><span class="ar">جهة النشر المعتمدة</span><span class="en">ADP</span></dt><dd>جهة يأذن لها البرنامج بإضافة معلومات إلى السجلات المنشورة، كتقييم الخطورة الذي تضيفه وكالة CISA.</dd></div>
+          <div class="term" id="supplier"><dt><span class="ar">المورّد</span><span class="en">Supplier</span></dt><dd>الجهة التي تطوّر المنتج أو تصونه، سواء كانت شركة أو مشروعاً مفتوح المصدر.</dd></div>
+          <div class="term" id="scope"><dt><span class="ar">نطاق الجهة</span><span class="en">Scope</span></dt><dd>الوصف المكتوب للثغرات التي ترقّمها الجهة المرقّمة، كمنتجاتها أو الثغرات التي تبحثها أو تنسقها.</dd></div>
+        </dl>
+      </section>
+
+      <section class="gloss-group" id="g-metrics" aria-labelledby="h-metrics">
+        <h2 id="h-metrics">الخطورة والاستغلال</h2>
+        <dl class="terms">
+          <div class="term" id="cvss"><dt><span class="ar">تقييم الخطورة</span><span class="en">CVSS</span></dt><dd>نظام لتقدير شدة الثغرة من صفر إلى عشرة بحسب طريقة استغلالها وأثرها، وإصداراه المستخدمان اليوم هما 3.1 و4.0، وتصنف الدرجة إلى منخفضة ومتوسطة وعالية وحرجة.</dd></div>
+          <div class="term" id="cvss-vector"><dt><span class="ar">متجه التقييم</span><span class="en">CVSS Vector</span></dt><dd>السلسلة المختصرة التي تشرح عناصر التقييم، مثل مسار الهجوم والصلاحيات المطلوبة وتدخل المستخدم والأثر، ويفكها «رائد» إلى العربية في كل سجل.</dd></div>
+          <div class="term" id="epss"><dt><span class="ar">احتمال الاستغلال</span><span class="en">EPSS</span></dt><dd>نموذج تنشره منظمة FIRST يقدّر يومياً احتمال أن تُستغل الثغرة خلال الثلاثين يوماً المقبلة.</dd></div>
+          <div class="term" id="kev"><dt><span class="ar">الثغرات المستغلة فعلياً</span><span class="en">KEV</span></dt><dd>قائمة تنشرها وكالة CISA للثغرات التي ثبت استغلالها في هجمات حقيقية.</dd></div>
+          <div class="term" id="ssvc"><dt><span class="ar">تقدير الاستغلال وأثره</span><span class="en">SSVC</span></dt><dd>إطار لاتخاذ قرار المعالجة، ويضيف إلى السجل هل الثغرة مستغلة، وهل يمكن أتمتة استغلالها، وهل يمنح استغلالها سيطرة جزئية أو كاملة.</dd></div>
+          <div class="term" id="poc"><dt><span class="ar">إثبات المفهوم</span><span class="en">Proof of Concept</span></dt><dd>شيفرة أو خطوات تثبت أن الثغرة قابلة للاستغلال دون أن تكون بالضرورة أداة هجوم كاملة.</dd></div>
+        </dl>
+      </section>
+
+      <section class="gloss-group" id="g-disclosure" aria-labelledby="h-disclosure">
+        <h2 id="h-disclosure">الإفصاح والمعالجة</h2>
+        <dl class="terms">
+          <div class="term" id="disclosure-policy"><dt><span class="ar">سياسة الإفصاح</span><span class="en">Disclosure Policy</span></dt><dd>الوثيقة التي تشرح طريقة استقبال الجهة للبلاغات ومدد ردها ومتى تنشر.</dd></div>
+          <div class="term" id="embargo"><dt><span class="ar">فترة الحظر</span><span class="en">Embargo</span></dt><dd>المدة التي يتفق فيها المبلّغ والمورّد على عدم نشر الثغرة حتى يصدر الإصلاح.</dd></div>
+          <div class="term" id="advisory"><dt><span class="ar">النشرة الأمنية</span><span class="en">Security Advisory</span></dt><dd>إعلان المورّد أو الجهة المرقّمة عن الثغرة وأثرها والإصدارات المصابة وطريقة معالجتها.</dd></div>
+          <div class="term" id="patch"><dt><span class="ar">الإصلاح</span><span class="en">Patch</span></dt><dd>التحديث الذي يصدره المورّد فيزيل الثغرة من المنتج.</dd></div>
+          <div class="term" id="workaround"><dt><span class="ar">التخفيف المؤقت</span><span class="en">Workaround</span></dt><dd>إجراء يقلل خطر الثغرة حين يتعذر تطبيق الإصلاح، كتعطيل خاصية أو تقييد الوصول إليها.</dd></div>
+          <div class="term" id="bug-bounty"><dt><span class="ar">برنامج مكافآت الثغرات</span><span class="en">Bug Bounty</span></dt><dd>برنامج يكافئ فيه المورّد من يبلّغه بثغرة في منتجاته وفق شروط منشورة.</dd></div>
+        </dl>
+      </section>
+      <p class="count-line" id="gempty" hidden>لا يطابق بحثك أي مصطلح، فجرّب كلمة أقصر أو المقابل الإنجليزي.</p>
+    </div>
+  </div>
 </div>
 
 </main>
@@ -120,6 +144,6 @@
   </div>
 </footer>
 <script type="module" src="/assets/js/site.js"></script>
-
+<script type="module" src="/assets/js/glossary.js"></script>
 </body>
 </html>
