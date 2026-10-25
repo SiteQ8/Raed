@@ -22,4 +22,3 @@
 >
 > **English:** Vulnerabilities discovered by, or coordinated through, {ORG_NAME} in Arabic-language software and services, unless covered by the scope of another CNA.
 
-هذه الصيغة الأخيرة هي التي يعتزم مشروع «رائد» التقدم بها.

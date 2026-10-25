@@ -1,0 +1,103 @@
+<!-- {"title":"أبلغ عن ثغرة","desc":"بوابة عربية للإبلاغ عن ثغرة أمنية في برمجية أو خدمة عربية: نموذج يجهّز البلاغ المنظم في متصفحك ثم ترسله عبر الإبلاغ الخاص في GitHub أو البريد، مع إفصاح منسّق خلال تسعين يوماً ونسبة الاكتشاف إليك.","path":"/report/","nav":"","scripts":["/assets/js/report.js"]} -->
+<div class="wrap">
+  <header class="head">
+    <h1>أبلغ عن ثغرة</h1>
+    <p class="lead">وجدت ثغرة في برمجية أو خدمة عربية؟ اكتب بلاغك هنا بالعربية، فيجهّزه النموذج بلاغاً منظماً في متصفحك ثم ترسله أنت بإحدى طريقتين خاصتين، ولا يمر شيء منه بأي خادم.</p>
+  </header>
+
+  <div class="report-layout">
+    <form class="report" id="report" novalidate>
+      <fieldset>
+        <legend>أنت</legend>
+        <div class="field"><label for="f-name">الاسم أو الاسم المستعار</label><input id="f-name" name="name" autocomplete="name"><p class="help">يظهر في النشرة وفي سجل CVE وفي قاعة الشرف إن اخترت ذلك.</p></div>
+        <div class="field"><label for="f-email">بريدك للتواصل</label><input id="f-email" name="email" type="email" autocomplete="email" dir="ltr"><p class="help">نحتاجه إن أرسلت بالبريد، أما الإرسال عبر GitHub فيكفي فيه حسابك هناك.</p></div>
+        <div class="field">
+          <span class="label-like" id="credit-l">كيف ننسب الاكتشاف إليك</span>
+          <div class="choices" role="radiogroup" aria-labelledby="credit-l">
+            <label><input type="radio" name="credit" value="name" checked> باسمي المكتوب أعلاه</label>
+            <label><input type="radio" name="credit" value="anon"> دون ذكر اسمي</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>المنتج</legend>
+        <div class="row-2">
+          <div class="field"><label for="f-vendor">المورّد <span class="req">مطلوب</span></label><input id="f-vendor" name="vendor" required dir="auto"></div>
+          <div class="field"><label for="f-product">المنتج أو الخدمة <span class="req">مطلوب</span></label><input id="f-product" name="product" required dir="auto"></div>
+        </div>
+        <div class="row-2">
+          <div class="field"><label for="f-versions">الإصدارات المصابة <span class="req">مطلوب</span></label><input id="f-versions" name="versions" required dir="ltr" placeholder="2.3.0 to 2.4.0"></div>
+          <div class="field"><label for="f-fixed">الإصدار الذي يصلحها إن عُرف</label><input id="f-fixed" name="fixed" dir="ltr"></div>
+        </div>
+        <div class="field"><label for="f-url">رابط المنتج أو الخدمة</label><input id="f-url" name="url" type="url" dir="ltr" placeholder="https://"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>الثغرة</legend>
+        <div class="field"><label for="f-title">عنوان مختصر <span class="req">مطلوب</span></label><input id="f-title" name="title" required dir="auto" placeholder="مثل حقن SQL في صفحة البحث"></div>
+        <div class="row-2">
+          <div class="field"><label for="f-cwe">نوع الضعف</label><select id="f-cwe" name="cwe"><option value="">لا أعرف</option></select></div>
+          <div class="field"><label for="f-av">مسار الهجوم</label><select id="f-av" name="av"><option value="">لا أعرف</option><option value="N">عبر الشبكة</option><option value="A">من الشبكة المجاورة</option><option value="L">بوصول محلي إلى الجهاز</option><option value="P">بوصول مادي إلى الجهاز</option></select></div>
+        </div>
+        <div class="row-2">
+          <div class="field"><label for="f-auth">هل يتطلب الاستغلال تسجيل دخول؟</label><select id="f-auth" name="auth"><option value="">لا أعرف</option><option value="N">لا</option><option value="L">نعم بحساب عادي</option><option value="H">نعم بحساب ذي صلاحيات مرتفعة</option></select></div>
+          <div class="field"><label for="f-state">حالة الثغرة</label><select id="f-state" name="state"><option value="private">لم تُنشر في أي مكان</option><option value="public">منشورة أو معروفة للعامة</option><option value="exploited">رأيت دليلاً على استغلالها</option></select></div>
+        </div>
+        <div class="field"><label for="f-desc">الوصف <span class="req">مطلوب</span></label><textarea id="f-desc" name="desc" rows="5" required dir="auto" placeholder="أين الثغرة وما سببها"></textarea></div>
+        <div class="field"><label for="f-steps">خطوات إعادة الإنتاج <span class="req">مطلوب</span></label><textarea id="f-steps" name="steps" rows="6" required dir="auto" placeholder="1. افتح الصفحة...&#10;2. أدخل القيمة...&#10;3. لاحظ أن..."></textarea></div>
+        <div class="field"><label for="f-impact">الأثر <span class="req">مطلوب</span></label><textarea id="f-impact" name="impact" rows="3" required dir="auto" placeholder="ما الذي يستطيع المهاجم فعله"></textarea></div>
+        <div class="field"><label for="f-poc">إثبات المفهوم</label><textarea id="f-poc" name="poc" rows="3" dir="ltr" placeholder="Request, payload, or a private link"></textarea><p class="help">لا تضع هنا رابطاً عاماً لشيفرة استغلال، فالبلاغ خاص حتى يصدر الإصلاح.</p></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>الإفصاح المنسّق</legend>
+        <label class="consent"><input type="checkbox" name="cvd" required> أوافق على الإفصاح المنسّق، أي ألا أنشر تفاصيل الثغرة حتى يصدر الإصلاح أو تمضي تسعون يوماً من البلاغ أيهما أقرب، ما لم نتفق على غير ذلك.</label>
+        <label class="consent"><input type="checkbox" name="ethics" required> لم أطّلع على بيانات غيري إلا بالقدر اللازم لإثبات الثغرة، ولم أحتفظ بها ولم أعطّل الخدمة.</label>
+      </fieldset>
+
+      <p class="form-error" id="form-error" role="alert" hidden></p>
+      <div class="actions">
+        <button class="btn" type="submit">جهّز البلاغ</button>
+        <button class="btn quiet" type="button" id="clear">ابدأ من جديد</button>
+      </div>
+    </form>
+
+    <aside class="report-side">
+      <div class="panel">
+        <h3>ما الذي نلتزم به</h3>
+        <ul class="plain">
+          <li>نؤكد الاستلام خلال ثلاثة أيام عمل، ونرد بقرارنا خلال عشرة.</li>
+          <li>ننسق مع المورّد ونطلعك على كل تقدم.</li>
+          <li>ننشر بعد الإصلاح أو بعد تسعين يوماً أيهما أقرب.</li>
+          <li>ننسب الاكتشاف إليك في النشرة وفي سجل CVE وفي <a href="/hall-of-fame/">قاعة الشرف</a>.</li>
+        </ul>
+        <p class="count-line">التفاصيل كاملة في <a href="/security/">سياسة الإفصاح</a>.</p>
+      </div>
+      <div class="panel">
+        <h3>خصوصية البلاغ</h3>
+        <p class="count-line">لا يرسل هذا النموذج شيئاً بنفسه، بل يجهّز النص في متصفحك ويحفظ مسودته فيه فقط، ثم تختار أنت طريقة الإرسال.</p>
+      </div>
+    </aside>
+  </div>
+
+  <section class="ready" id="ready" hidden aria-labelledby="ready-h">
+    <h2 id="ready-h" tabindex="-1">البلاغ جاهز، فاختر طريقة الإرسال</h2>
+    <div class="send-ways">
+      <div class="way">
+        <h3>الإبلاغ الخاص في GitHub</h3>
+        <p>الطريقة المفضلة، فالبلاغ يبقى خاصاً بينك وبين «رائد» حتى النشر، ويمكن متابعته والحوار فيه من الصفحة نفسها.</p>
+        <ol class="plain-steps"><li>انسخ البلاغ بالزر أدناه.</li><li>افتح صفحة الإبلاغ الخاص وسجّل دخولك.</li><li>ضع العنوان في خانة Title والبلاغ في خانة Description ثم أرسل.</li></ol>
+        <div class="actions"><button class="btn" type="button" id="copy-gh">انسخ البلاغ وافتح GitHub</button></div>
+      </div>
+      <div class="way">
+        <h3>البريد</h3>
+        <p>إن لم يكن لديك حساب في GitHub، يُفتح بريدك ببلاغ جاهز موجّه إلى <bdi>site@hotmail.com</bdi>.</p>
+        <div class="actions"><a class="btn quiet" id="mail" href="#">افتح البريد بالبلاغ</a><button class="btn quiet" type="button" id="download">نزّل البلاغ ملفاً</button></div>
+        <p class="help" id="mail-note" hidden>البلاغ أطول من أن يحمله رابط البريد كاملاً، لذا يُفتح البريد بالعنوان فقط، فالصق فيه البلاغ المنسوخ أو أرفق الملف.</p>
+      </div>
+    </div>
+    <p class="count-line" id="copied" role="status" aria-live="polite"></p>
+    <details class="preview"><summary>اعرض نص البلاغ</summary><pre id="preview" dir="auto"></pre></details>
+  </section>
+</div>
