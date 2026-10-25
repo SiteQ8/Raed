@@ -202,3 +202,13 @@ test('the report portal hands reports to GitHub private reporting or mail, never
   assert.ok(Array.isArray(JSON.parse(readFileSync(join(ROOT, 'docs/data/hall-of-fame.json'), 'utf8'))));
   assert.match(readFileSync(join(ROOT, 'docs/.well-known/security.txt'), 'utf8'), /Acknowledgments: https:\/\/cve\.3li\.info\/hall-of-fame\//);
 });
+
+test('text pages carry the reading column and the rail on wide screens', () => {
+  for (const path of ['about', 'security', 'faq', 'data', 'advisories', 'hall-of-fame', 'week', 'cna/join']) {
+    const html = readFileSync(new URL(`../docs/${path}/index.html`, import.meta.url), 'utf8');
+    assert.match(html, /<div class="doc">/, path);
+    assert.match(html, /<aside class="rail">/, path);
+  }
+  const home = readFileSync(new URL('../docs/index.html', import.meta.url), 'utf8');
+  assert.match(home, /class="hero-grid"/);
+});
