@@ -1,5 +1,5 @@
 import { detail } from '../engine/record.js';
-import { summaryAr, dateAr, SEV_AR, sevClass, vectorAr, epssAr, versionsAr, SSVC_X, SSVC_A, SSVC_T, iso } from '../engine/arabic.js';
+import { summaryAr, dateAr, timeAr, SEV_AR, sevClass, vectorAr, epssAr, versionsAr, SSVC_X, SSVC_A, SSVC_T, iso } from '../engine/arabic.js';
 import { cweAr } from '../engine/cwe.js';
 import { esc, html, sevMark, getJSON } from './ui.js';
 
@@ -79,14 +79,18 @@ ${d.x.t ? `<dt>الأثر التقني</dt><dd>${SSVC_T[d.x.t] || esc(d.x.t)}</d
 function affectedTable(d) {
   if (!d.affected.length) return '';
   const rows = [];
+  // Rows are skipped when the record names neither product nor versions, so the table can end up empty.
   for (const a of d.affected.slice(0, 40)) {
     const vs = versionsAr(a);
     const shown = vs.filter((v) => v.status === 'affected').slice(0, 6);
     const unaffected = vs.filter((v) => v.status === 'unaffected').slice(0, 3);
-    rows.push(`<tr><td><bdi>${esc(a.product || '')}</bdi>${a.vendor && a.vendor !== 'n/a' ? `<br><small style="color:var(--muted)"><bdi>${esc(a.vendor)}</bdi></small>` : ''}</td>
+    const prodName = a.product && a.product !== 'n/a' ? a.product : '';
+    if (!prodName && !shown.length && !unaffected.length) continue;
+    rows.push(`<tr><td><bdi>${esc(prodName || 'لم يُحدد')}</bdi>${a.vendor && a.vendor !== 'n/a' ? `<br><small style="color:var(--muted)"><bdi>${esc(a.vendor)}</bdi></small>` : ''}</td>
 <td>${shown.map((v) => html(v.range)).join('<br>') || (a.defaultStatus === 'affected' ? 'كل الإصدارات' : 'لم تُحدد')}${vs.length > shown.length + unaffected.length ? '<br><small style="color:var(--muted)">وإصدارات أخرى في السجل الأصلي</small>' : ''}</td>
 <td>${unaffected.map((v) => html(v.range)).join('<br>') || '<span style="color:var(--muted)">لم تُذكر</span>'}</td></tr>`);
   }
+  if (!rows.length) return '';
   return `<h2>المنتجات والإصدارات</h2><div style="overflow-x:auto"><table class="t"><thead><tr><th scope="col">المنتج</th><th scope="col">الإصدارات المصابة</th><th scope="col">غير المصابة</th></tr></thead><tbody>${rows.join('')}</tbody></table></div>${d.affected.length > 40 ? `<p class="count-line">يذكر السجل ${d.affected.length} منتجاً، والقائمة كاملة في السجل الأصلي.</p>` : ''}`;
 }
 
@@ -111,7 +115,7 @@ function render(d, kev, ep) {
   <h1 class="cve">${esc(d.i)}</h1>
   <div class="state">${stateMark}${kev ? '<span class="kev">مستغلة فعلياً</span>' : ''}${d.r || d.v ? `<span class="prod-line"><bdi>${esc(d.r || d.v)}</bdi>${d.r && d.v && d.v !== d.r ? ` <small><bdi>${esc(d.v)}</bdi></small>` : ''}</span>` : ''}</div>
   <p class="summary">${html(summaryAr(it))}</p>
-  <p class="dates">نُشر ${dateAr(d.p)}، وآخر تعديل ${dateAr(d.u)}، والجهة المرقّمة <bdi>${esc(d.a)}</bdi>${d.reserved ? `، وحُجز الرقم ${dateAr(d.reserved)}` : ''}.</p>
+  <p class="dates">نُشر ${dateAr(d.p)} عند ${timeAr(d.p)}، وآخر تعديل ${dateAr(d.u)}، والجهة المرقّمة <bdi>${esc(d.a)}</bdi>${d.reserved ? `، وحُجز الرقم ${dateAr(d.reserved)}` : ''}.</p>
 </header>
 <div class="rec-grid">
   <div>
@@ -141,10 +145,10 @@ async function main() {
   if (!/^CVE-\d{4}-\d{4,}$/.test(id)) { status.textContent = 'رقم الثغرة يبدأ بـ CVE ثم السنة ثم رقم من أربع خانات أو أكثر، مثل CVE-2024-3094.'; return; }
   document.getElementById('q').value = id;
   status.textContent = `يجري جلب السجل ${id} من خدمة CVE الرسمية.`;
-  const [rec, kevList, ep] = await Promise.all([fetchRecord(id), getJSON('/data/kev.json').catch(() => []), epss(id)]);
+  const [rec, kevShard, ep] = await Promise.all([fetchRecord(id), (Number(id.slice(4, 8)) <= new Date().getUTCFullYear() ? getJSON(`/data/kev/${id.slice(4, 8)}.json`).catch(() => ({})) : Promise.resolve({})), epss(id)]);
   if (!rec) { status.textContent = `لم نجد السجل ${id} في قائمة CVE، فتأكد من الرقم، وقد يكون الرقم محجوزاً لم يُنشر بعد.`; return; }
   const d = detail(rec);
-  const kev = kevList.find((k) => k.i === id) || null;
+  const kev = kevShard[id] || null;
   render(d, kev, ep);
 }
 

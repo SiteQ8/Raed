@@ -33,7 +33,8 @@ async function main() {
   const dayFiles = (index.days || []).map((d) => d.d).sort();
   if (!dayFiles.length) return;
   const first = dayFiles[0];
-  const now = new Date();
+  // Weeks run Monday to Sunday in Kuwait time.
+  const now = new Date(Date.now() + 3 * 3600 * 1000);
   // Last Sunday that has fully passed (UTC). On Sunday itself the week is not complete yet.
   const lastSunday = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
   lastSunday.setUTCDate(lastSunday.getUTCDate() - ((lastSunday.getUTCDay() + 7) % 7 || 7));
