@@ -1,0 +1,18 @@
+<!-- {"title":"الثغرات المستغلة فعلياً","desc":"قائمة الثغرات التي ثبت استغلالها في هجمات حقيقية كما تنشرها وكالة CISA، بالعربية مع تاريخ الإدراج والمهلة واستخدامها في حملات الفدية.","path":"/kev/","nav":"kev","scripts":["/assets/js/kev.js"]} -->
+<div class="wrap">
+  <header class="head">
+    <h1>الثغرات المستغلة فعلياً</h1>
+    <p class="lead">تنشر وكالة الأمن السيبراني وأمن البنية التحتية الأمريكية CISA قائمة بالثغرات التي ثبت أن المهاجمين يستغلونها، وتضم القائمة اليوم {{kev_total}} ثغرة، لذا فهي أول ما ينبغي معالجته في أي مؤسسة.</p>
+  </header>
+  <div class="notice">تُلزم CISA الجهات الاتحادية الأمريكية بمعالجة كل ثغرة قبل الموعد المحدد لها، بينما تعتمد عليها المؤسسات في المنطقة مرجعاً لترتيب أولويات التصحيح، وتعني عبارة «تستخدمها حملات فدية» أن الوكالة رصدت استغلالها في هجمات فدية معروفة.</div>
+  <div class="filters">
+    <input type="search" id="q" placeholder="ابحث بالمورّد أو المنتج أو الرقم" dir="auto" aria-label="بحث">
+    <div class="chips" role="group" aria-label="تصفية">
+      <button class="chip" type="button" data-f="ra" aria-pressed="false">تستخدمها حملات فدية</button>
+      <button class="chip" type="button" data-f="y" aria-pressed="false">أُضيفت هذا العام</button>
+    </div>
+  </div>
+  <p class="count-line" id="count" aria-live="polite">يجري تحميل القائمة</p>
+  <ul class="reg" id="list"></ul>
+  <div class="more"><button class="btn quiet" type="button" id="more" hidden>اعرض المزيد</button></div>
+</div>

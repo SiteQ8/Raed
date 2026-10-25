@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>رائد: سجل الثغرات الأمنية المعلنة بالعربية</title>
+<meta name="description" content="رائد سجل عربي مفتوح للثغرات الأمنية المعلنة، يعرض كل سجل من سجلات برنامج CVE بالعربية مع درجة الخطورة واحتمال الاستغلال ويتجدد كل ساعة.">
+<link rel="canonical" href="https://cve.3li.info/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:site_name" content="رائد">
+<meta property="og:title" content="رائد: سجل الثغرات الأمنية المعلنة بالعربية">
+<meta property="og:description" content="رائد سجل عربي مفتوح للثغرات الأمنية المعلنة، يعرض كل سجل من سجلات برنامج CVE بالعربية مع درجة الخطورة واحتمال الاستغلال ويتجدد كل ساعة.">
+<meta property="og:url" content="https://cve.3li.info/">
+<meta property="og:image" content="https://cve.3li.info/assets/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0f5c63">
+<link rel="icon" href="/assets/img/mark.svg" type="image/svg+xml">
+<link rel="alternate" type="application/atom+xml" title="رائد: الثغرات الحرجة والمستغلة" href="/feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&family=IBM+Plex+Sans:wght@400;600&family=Reem+Kufi:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+
+</head>
+<body>
+<a class="skip" href="#main">انتقل إلى المحتوى</a>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/"><svg viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" d="M6 6h6v5h4V6h8v5h4V6h6v12l-3 3v15H9V21l-3-3z" opacity=".18"/><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" d="M6 6h6v5h4V6h8v5h4V6h6v12l-3 3v15H9V21l-3-3z"/><path fill="currentColor" d="M17 36v-7a3 3 0 0 1 6 0v7z"/><rect x="18.8" y="16" width="2.4" height="6" rx="1.2" fill="currentColor"/></svg><span><b>رائد</b><small>سجل الثغرات الأمنية المعلنة بالعربية</small></span></a>
+    <button class="menu" type="button" aria-expanded="false" aria-controls="nav">القائمة</button>
+    <nav class="nav" id="nav" aria-label="الأقسام"><a href="/latest/">أحدث الثغرات</a><a href="/kev/">المستغلة فعلياً</a><a href="/week/">النشرة الأسبوعية</a><a href="/about/">عن البرنامج</a><a href="/cna/">الجهات المرقّمة</a><a href="/glossary/">المسرد</a></nav>
+    <button class="theme" type="button" aria-label="تبديل المظهر الفاتح والداكن"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+  </div>
+</header>
+<main id="main">
+<div class="wrap">
+  <section class="hero">
+    <h1>كل ثغرة أمنية تُعلن في العالم، مكتوبة بالعربية</h1>
+    <p class="lead">يقرأ رائد كل سجل يصدر عن برنامج CVE خلال ساعة من نشره، ثم يعرض لكل ثغرة نوعها والمنتج المصاب وطريقة استغلالها ودرجة خطورتها واحتمال استغلالها.</p>
+    <form class="find" action="/record/" method="get" role="search">
+      <label for="q" class="skip">رقم الثغرة أو اسم المنتج</label>
+      <input id="q" name="id" type="search" autocomplete="off" spellcheck="false" placeholder="رقم الثغرة أو اسم المنتج" dir="auto">
+      <button class="btn" type="submit">ابحث</button>
+    </form>
+    <p class="hint">جرّب <button type="button" data-try="CVE-2024-3094">CVE-2024-3094</button> أو <button type="button" data-try="Fortinet">Fortinet</button> أو <button type="button" data-try="WordPress">WordPress</button></p>
+
+    <div class="watch">
+      <div class="watch-top">
+        <div class="today"><b class="num">76</b><span>ثغرة نُشرت في آخر 24 ساعة</span></div>
+        <div class="sums">
+          <div><b class="num">3,963</b>آخر سبعة أيام</div>
+          <div><b class="num">345</b>حرجة منها</div>
+          <div><b class="num">16,243</b>آخر ثلاثين يوماً</div>
+        </div>
+      </div>
+      <div class="wall" style="--days:30" role="img" aria-label="عدد الثغرات المنشورة في كل يوم خلال آخر 30 يوماً"><a class="col" href="/latest/?day=2026-09-26" title="السبت 26 سبتمبر 2026: 244 ثغرة، منها 16 حرجة و133 عالية" aria-label="السبت 26 سبتمبر 2026: 244 ثغرة، منها 16 حرجة و133 عالية"><i class="high" style="--n:0"></i><i class="high" style="--n:1"></i><i class="med" style="--n:2"></i></a><a class="col" href="/latest/?day=2026-09-27" title="الأحد 27 سبتمبر 2026: 151 ثغرة، منها 11 حرجة و60 عالية" aria-label="الأحد 27 سبتمبر 2026: 151 ثغرة، منها 11 حرجة و60 عالية"><i class="high" style="--n:3"></i><i class="med" style="--n:4"></i></a><a class="col" href="/latest/?day=2026-09-28" title="الاثنين 28 سبتمبر 2026: 314 ثغرة، منها 46 حرجة و94 عالية" aria-label="الاثنين 28 سبتمبر 2026: 314 ثغرة، منها 46 حرجة و94 عالية"><i class="crit" style="--n:5"></i><i class="high" style="--n:6"></i><i class="med" style="--n:7"></i><i class="med" style="--n:8"></i></a><a class="col" href="/latest/?day=2026-09-29" title="الثلاثاء 29 سبتمبر 2026: 611 ثغرة، منها 93 حرجة و256 عالية" aria-label="الثلاثاء 29 سبتمبر 2026: 611 ثغرة، منها 93 حرجة و256 عالية"><i class="crit" style="--n:9"></i><i class="high" style="--n:10"></i><i class="high" style="--n:11"></i><i class="high" style="--n:12"></i><i class="med" style="--n:13"></i><i class="med" style="--n:14"></i><i class="med" style="--n:15"></i></a><a class="col" href="/latest/?day=2026-09-30" title="الأربعاء 30 سبتمبر 2026: 636 ثغرة، منها 67 حرجة و302 عالية" aria-label="الأربعاء 30 سبتمبر 2026: 636 ثغرة، منها 67 حرجة و302 عالية"><i class="crit" style="--n:16"></i><i class="high" style="--n:17"></i><i class="high" style="--n:18"></i><i class="high" style="--n:19"></i><i class="high" style="--n:20"></i><i class="med" style="--n:21"></i><i class="med" style="--n:22"></i><i class="med" style="--n:23"></i></a><a class="col" href="/latest/?day=2026-10-01" title="الخميس 1 أكتوبر 2026: 395 ثغرة، منها 52 حرجة و170 عالية" aria-label="الخميس 1 أكتوبر 2026: 395 ثغرة، منها 52 حرجة و170 عالية"><i class="crit" style="--n:24"></i><i class="high" style="--n:25"></i><i class="high" style="--n:26"></i><i class="med" style="--n:27"></i><i class="med" style="--n:28"></i></a><a class="col" href="/latest/?day=2026-10-02" title="الجمعة 2 أكتوبر 2026: 398 ثغرة، منها 40 حرجة و188 عالية" aria-label="الجمعة 2 أكتوبر 2026: 398 ثغرة، منها 40 حرجة و188 عالية"><i class="crit" style="--n:29"></i><i class="high" style="--n:30"></i><i class="high" style="--n:31"></i><i class="high" style="--n:32"></i><i class="med" style="--n:33"></i><i class="med" style="--n:34"></i></a><a class="col" href="/latest/?day=2026-10-03" title="السبت 3 أكتوبر 2026: 114 ثغرة، منها 5 حرجة و45 عالية" aria-label="السبت 3 أكتوبر 2026: 114 ثغرة، منها 5 حرجة و45 عالية"><i class="high" style="--n:35"></i><i class="med" style="--n:36"></i></a><a class="col" href="/latest/?day=2026-10-04" title="الأحد 4 أكتوبر 2026: 64 ثغرة، منها 13 حرجة و13 عالية" aria-label="الأحد 4 أكتوبر 2026: 64 ثغرة، منها 13 حرجة و13 عالية"></a><a class="col" href="/latest/?day=2026-10-05" title="الاثنين 5 أكتوبر 2026: 412 ثغرة، منها 33 حرجة و122 عالية" aria-label="الاثنين 5 أكتوبر 2026: 412 ثغرة، منها 33 حرجة و122 عالية"><i class="high" style="--n:37"></i><i class="high" style="--n:38"></i><i class="med" style="--n:39"></i><i class="med" style="--n:40"></i><i class="med" style="--n:41"></i></a><a class="col" href="/latest/?day=2026-10-06" title="الثلاثاء 6 أكتوبر 2026: 1,016 ثغرة، منها 102 حرجة و370 عالية" aria-label="الثلاثاء 6 أكتوبر 2026: 1,016 ثغرة، منها 102 حرجة و370 عالية"><i class="crit" style="--n:42"></i><i class="high" style="--n:43"></i><i class="high" style="--n:44"></i><i class="high" style="--n:45"></i><i class="high" style="--n:46"></i><i class="high" style="--n:47"></i><i class="med" style="--n:48"></i><i class="med" style="--n:49"></i><i class="med" style="--n:50"></i><i class="med" style="--n:51"></i><i class="med" style="--n:52"></i><i class="na" style="--n:53"></i><i class="na" style="--n:54"></i></a><a class="col" href="/latest/?day=2026-10-07" title="الأربعاء 7 أكتوبر 2026: 330 ثغرة، منها 51 حرجة و118 عالية" aria-label="الأربعاء 7 أكتوبر 2026: 330 ثغرة، منها 51 حرجة و118 عالية"><i class="crit" style="--n:55"></i><i class="high" style="--n:56"></i><i class="high" style="--n:57"></i><i class="med" style="--n:58"></i><i class="med" style="--n:59"></i></a><a class="col" href="/latest/?day=2026-10-08" title="الخميس 8 أكتوبر 2026: 494 ثغرة، منها 51 حرجة و198 عالية" aria-label="الخميس 8 أكتوبر 2026: 494 ثغرة، منها 51 حرجة و198 عالية"><i class="crit" style="--n:60"></i><i class="high" style="--n:61"></i><i class="high" style="--n:62"></i><i class="high" style="--n:63"></i><i class="med" style="--n:64"></i><i class="med" style="--n:65"></i><i class="med" style="--n:66"></i></a><a class="col" href="/latest/?day=2026-10-09" title="الجمعة 9 أكتوبر 2026: 316 ثغرة، منها 42 حرجة و147 عالية" aria-label="الجمعة 9 أكتوبر 2026: 316 ثغرة، منها 42 حرجة و147 عالية"><i class="crit" style="--n:67"></i><i class="high" style="--n:68"></i><i class="high" style="--n:69"></i><i class="med" style="--n:70"></i></a><a class="col" href="/latest/?day=2026-10-10" title="السبت 10 أكتوبر 2026: 411 ثغرة، منها 77 حرجة و143 عالية" aria-label="السبت 10 أكتوبر 2026: 411 ثغرة، منها 77 حرجة و143 عالية"><i class="crit" style="--n:71"></i><i class="high" style="--n:72"></i><i class="high" style="--n:73"></i><i class="med" style="--n:74"></i><i class="med" style="--n:75"></i></a><a class="col" href="/latest/?day=2026-10-11" title="الأحد 11 أكتوبر 2026: 233 ثغرة، منها 17 حرجة و72 عالية" aria-label="الأحد 11 أكتوبر 2026: 233 ثغرة، منها 17 حرجة و72 عالية"><i class="high" style="--n:76"></i><i class="med" style="--n:77"></i><i class="med" style="--n:78"></i></a><a class="col" href="/latest/?day=2026-10-12" title="الاثنين 12 أكتوبر 2026: 683 ثغرة، منها 54 حرجة و261 عالية" aria-label="الاثنين 12 أكتوبر 2026: 683 ثغرة، منها 54 حرجة و261 عالية"><i class="crit" style="--n:79"></i><i class="high" style="--n:80"></i><i class="high" style="--n:81"></i><i class="high" style="--n:82"></i><i class="med" style="--n:83"></i><i class="med" style="--n:84"></i><i class="med" style="--n:85"></i><i class="med" style="--n:86"></i></a><a class="col" href="/latest/?day=2026-10-13" title="الثلاثاء 13 أكتوبر 2026: 2,291 ثغرة، منها 164 حرجة و1351 عالية" aria-label="الثلاثاء 13 أكتوبر 2026: 2,291 ثغرة، منها 164 حرجة و1351 عالية"><i class="crit" style="--n:87"></i><i class="crit" style="--n:88"></i><i class="high" style="--n:89"></i><i class="high" style="--n:90"></i><i class="high" style="--n:91"></i><i class="high" style="--n:92"></i><i class="high" style="--n:93"></i><i class="high" style="--n:94"></i><i class="high" style="--n:95"></i><i class="high" style="--n:96"></i><i class="high" style="--n:97"></i><i class="high" style="--n:98"></i><i class="high" style="--n:99"></i><i class="high" style="--n:100"></i><i class="high" style="--n:101"></i><i class="high" style="--n:102"></i><i class="high" style="--n:103"></i><i class="high" style="--n:104"></i><i class="high" style="--n:105"></i><i class="high" style="--n:106"></i><i class="med" style="--n:107"></i><i class="med" style="--n:108"></i><i class="med" style="--n:109"></i><i class="med" style="--n:110"></i><i class="med" style="--n:111"></i><i class="med" style="--n:112"></i><i class="med" style="--n:113"></i><i class="med" style="--n:114"></i><i class="med" style="--n:115"></i><i class="med" style="--n:116"></i></a><a class="col" href="/latest/?day=2026-10-14" title="الأربعاء 14 أكتوبر 2026: 824 ثغرة، منها 90 حرجة و376 عالية" aria-label="الأربعاء 14 أكتوبر 2026: 824 ثغرة، منها 90 حرجة و376 عالية"><i class="crit" style="--n:117"></i><i class="high" style="--n:118"></i><i class="high" style="--n:119"></i><i class="high" style="--n:120"></i><i class="high" style="--n:121"></i><i class="high" style="--n:122"></i><i class="med" style="--n:123"></i><i class="med" style="--n:124"></i><i class="med" style="--n:125"></i><i class="med" style="--n:126"></i><i class="na" style="--n:127"></i></a><a class="col" href="/latest/?day=2026-10-15" title="الخميس 15 أكتوبر 2026: 553 ثغرة، منها 48 حرجة و236 عالية" aria-label="الخميس 15 أكتوبر 2026: 553 ثغرة، منها 48 حرجة و236 عالية"><i class="crit" style="--n:128"></i><i class="high" style="--n:129"></i><i class="high" style="--n:130"></i><i class="high" style="--n:131"></i><i class="med" style="--n:132"></i><i class="med" style="--n:133"></i><i class="med" style="--n:134"></i></a><a class="col" href="/latest/?day=2026-10-16" title="الجمعة 16 أكتوبر 2026: 458 ثغرة، منها 54 حرجة و175 عالية" aria-label="الجمعة 16 أكتوبر 2026: 458 ثغرة، منها 54 حرجة و175 عالية"><i class="crit" style="--n:135"></i><i class="high" style="--n:136"></i><i class="high" style="--n:137"></i><i class="med" style="--n:138"></i><i class="med" style="--n:139"></i><i class="med" style="--n:140"></i></a><a class="col" href="/latest/?day=2026-10-17" title="السبت 17 أكتوبر 2026: 100 ثغرة، منها 3 حرجة و42 عالية" aria-label="السبت 17 أكتوبر 2026: 100 ثغرة، منها 3 حرجة و42 عالية"><i class="high" style="--n:141"></i><i class="med" style="--n:142"></i></a><a class="col" href="/latest/?day=2026-10-18" title="الأحد 18 أكتوبر 2026: 551 ثغرة، منها 10 حرجة و54 عالية" aria-label="الأحد 18 أكتوبر 2026: 551 ثغرة، منها 10 حرجة و54 عالية"><i class="high" style="--n:143"></i><i class="med" style="--n:144"></i><i class="na" style="--n:145"></i><i class="na" style="--n:146"></i><i class="na" style="--n:147"></i><i class="na" style="--n:148"></i><i class="na" style="--n:149"></i></a><a class="col" href="/latest/?day=2026-10-19" title="الاثنين 19 أكتوبر 2026: 440 ثغرة، منها 28 حرجة و116 عالية" aria-label="الاثنين 19 أكتوبر 2026: 440 ثغرة، منها 28 حرجة و116 عالية"><i class="high" style="--n:150"></i><i class="high" style="--n:151"></i><i class="med" style="--n:152"></i><i class="med" style="--n:153"></i><i class="med" style="--n:154"></i></a><a class="col" href="/latest/?day=2026-10-20" title="الثلاثاء 20 أكتوبر 2026: 1,922 ثغرة، منها 161 حرجة و770 عالية" aria-label="الثلاثاء 20 أكتوبر 2026: 1,922 ثغرة، منها 161 حرجة و770 عالية"><i class="crit" style="--n:155"></i><i class="crit" style="--n:156"></i><i class="high" style="--n:157"></i><i class="high" style="--n:158"></i><i class="high" style="--n:159"></i><i class="high" style="--n:160"></i><i class="high" style="--n:161"></i><i class="high" style="--n:162"></i><i class="high" style="--n:163"></i><i class="high" style="--n:164"></i><i class="high" style="--n:165"></i><i class="high" style="--n:166"></i><i class="med" style="--n:167"></i><i class="med" style="--n:168"></i><i class="med" style="--n:169"></i><i class="med" style="--n:170"></i><i class="med" style="--n:171"></i><i class="med" style="--n:172"></i><i class="med" style="--n:173"></i><i class="med" style="--n:174"></i><i class="med" style="--n:175"></i><i class="med" style="--n:176"></i><i class="med" style="--n:177"></i><i class="low" style="--n:178"></i><i class="na" style="--n:179"></i></a><a class="col" href="/latest/?day=2026-10-21" title="الأربعاء 21 أكتوبر 2026: 549 ثغرة، منها 40 حرجة و185 عالية" aria-label="الأربعاء 21 أكتوبر 2026: 549 ثغرة، منها 40 حرجة و185 عالية"><i class="crit" style="--n:180"></i><i class="high" style="--n:181"></i><i class="high" style="--n:182"></i><i class="med" style="--n:183"></i><i class="med" style="--n:184"></i><i class="med" style="--n:185"></i><i class="na" style="--n:186"></i></a><a class="col" href="/latest/?day=2026-10-22" title="الخميس 22 أكتوبر 2026: 481 ثغرة، منها 65 حرجة و158 عالية" aria-label="الخميس 22 أكتوبر 2026: 481 ثغرة، منها 65 حرجة و158 عالية"><i class="crit" style="--n:187"></i><i class="high" style="--n:188"></i><i class="high" style="--n:189"></i><i class="med" style="--n:190"></i><i class="med" style="--n:191"></i><i class="med" style="--n:192"></i><i class="low" style="--n:193"></i></a><a class="col" href="/latest/?day=2026-10-23" title="الجمعة 23 أكتوبر 2026: 492 ثغرة، منها 39 حرجة و167 عالية" aria-label="الجمعة 23 أكتوبر 2026: 492 ثغرة، منها 39 حرجة و167 عالية"><i class="crit" style="--n:194"></i><i class="high" style="--n:195"></i><i class="high" style="--n:196"></i><i class="med" style="--n:197"></i><i class="na" style="--n:198"></i><i class="na" style="--n:199"></i></a><a class="col" href="/latest/?day=2026-10-24" title="السبت 24 أكتوبر 2026: 74 ثغرة، منها 12 حرجة و19 عالية" aria-label="السبت 24 أكتوبر 2026: 74 ثغرة، منها 12 حرجة و19 عالية"><i class="med" style="--n:200"></i></a><a class="col" href="/latest/?day=2026-10-25" title="الأحد 25 أكتوبر 2026: 5 ثغرات، منها 0 حرجة و0 عالية" aria-label="الأحد 25 أكتوبر 2026: 5 ثغرات، منها 0 حرجة و0 عالية"></a></div><div class="wall-axis"><span>26 سبتمبر</span><span>25 أكتوبر</span></div><p class="legend"><span style="--c:var(--crit)">حرجة</span><span style="--c:var(--high)">عالية</span><span style="--c:var(--med)">متوسطة</span><span style="--c:var(--low)">منخفضة</span><span style="--c:var(--na)">بلا تقييم</span><span>كل شرطة تمثل 75 سجلاً</span></p>
+    </div>
+  </section>
+
+  <div class="split">
+    <section>
+      <h2>أحدث ما نُشر</h2>
+      <ul class="reg">
+<li><a class="row" href="/record/?id=CVE-2026-116007">
+<span class="id">CVE-2026-116007<small>25 أكتوبر</small></span>
+<span class="what"><span class="prod"><bdi>ruoyi-vue-pro</bdi> <small><bdi>YunaiV</bdi></small></span><p>ثغرة من نوع عدم تقييد محاولات المصادقة المتكررة في <bdi>ruoyi-vue-pro</bdi> من <bdi>YunaiV</bdi>، ويمكن استغلالها عبر الشبكة ودون أي صلاحيات ودون تدخل من المستخدم للمساس جزئياً بسرية البيانات، ويقدّر التقييم خطورتها بـ <bdi>6.3</bdi> من 10 أي متوسطة.</p></span>
+<span class="marks"><span class="sev med">متوسطة <span class="num">6.3</span></span></span>
+</a></li>
+<li><a class="row" href="/record/?id=CVE-2026-116006">
+<span class="id">CVE-2026-116006<small>25 أكتوبر</small></span>
+<span class="what"><span class="prod"><bdi>ruoyi-vue-pro</bdi> <small><bdi>YunaiV</bdi></small></span><p>ثغرة من نوع مصادقة غير سليمة في <bdi>ruoyi-vue-pro</bdi> من <bdi>YunaiV</bdi>، ويمكن استغلالها عبر الشبكة ودون أي صلاحيات ودون تدخل من المستخدم للمساس جزئياً بسرية البيانات وسلامتها وتوافر الخدمة، ويقدّر التقييم خطورتها بـ <bdi>6.9</bdi> من 10 أي متوسطة.</p></span>
+<span class="marks"><span class="sev med">متوسطة <span class="num">6.9</span></span></span>
+</a></li>
+<li><a class="row" href="/record/?id=CVE-2026-116004">
+<span class="id">CVE-2026-116004<small>25 أكتوبر</small></span>
+<span class="what"><span class="prod"><bdi>Onyx</bdi> <small><bdi>onyx-dot-app</bdi></small></span><p>ثغرة من نوع البرمجة النصية عبر المواقع (XSS) في <bdi>Onyx</bdi> من <bdi>onyx-dot-app</bdi>، ويمكن استغلالها عبر الشبكة وبصلاحيات مستخدم عادي وبتدخل من المستخدم للمساس جزئياً بسلامتها، ويقدّر التقييم خطورتها بـ <bdi>5.1</bdi> من 10 أي متوسطة.</p></span>
+<span class="marks"><span class="sev med">متوسطة <span class="num">5.1</span></span></span>
+</a></li>
+<li><a class="row" href="/record/?id=CVE-2026-116000">
+<span class="id">CVE-2026-116000<small>25 أكتوبر</small></span>
+<span class="what"><span class="prod"><bdi>PrivateGPT</bdi> <small><bdi>Zylon</bdi></small></span><p>ثغرة من نوع تزوير الطلبات من جهة الخادم (SSRF) في <bdi>PrivateGPT</bdi> من <bdi>Zylon</bdi>، ويمكن استغلالها عبر الشبكة ودون أي صلاحيات ودون تدخل من المستخدم للمساس جزئياً بسرية البيانات وسلامتها وتوافر الخدمة، ويقدّر التقييم خطورتها بـ <bdi>6.9</bdi> من 10 أي متوسطة.</p></span>
+<span class="marks"><span class="sev med">متوسطة <span class="num">6.9</span></span></span>
+</a></li>
+<li><a class="row" href="/record/?id=CVE-2026-115999">
+<span class="id">CVE-2026-115999<small>25 أكتوبر</small></span>
+<span class="what"><span class="prod"><bdi>Restaurant_IMS</bdi> <small><bdi>mansi-k</bdi></small></span><p>ثغرة من نوع حقن SQL في <bdi>Restaurant_IMS</bdi> من <bdi>mansi-k</bdi>، ويمكن استغلالها عبر الشبكة ودون أي صلاحيات ودون تدخل من المستخدم للمساس جزئياً بسرية البيانات وسلامتها وتوافر الخدمة، ويقدّر التقييم خطورتها بـ <bdi>6.9</bdi> من 10 أي متوسطة.</p></span>
+<span class="marks"><span class="sev med">متوسطة <span class="num">6.9</span></span></span>
+</a></li>
+<li><a class="row" href="/record/?id=CVE-2026-115997">
+<span class="id">CVE-2026-115997<small>24 أكتوبر</small></span>
+<span class="what"><span class="prod"><bdi>pig</bdi> <small><bdi>pig-mesh</bdi></small></span><p>ثغرة من نوع حقن SQL في <bdi>pig</bdi> من <bdi>pig-mesh</bdi>، ويمكن استغلالها عبر الشبكة وبصلاحيات مستخدم عادي ودون تدخل من المستخدم للمساس جزئياً بسرية البيانات وسلامتها وتوافر الخدمة، ويقدّر التقييم خطورتها بـ <bdi>5.3</bdi> من 10 أي متوسطة.</p></span>
+<span class="marks"><span class="sev med">متوسطة <span class="num">5.3</span></span></span>
+</a></li>
+<li><a class="row" href="/record/?id=CVE-2026-115996">
+<span class="id">CVE-2026-115996<small>24 أكتوبر</small></span>
+<span class="what"><span class="prod"><bdi>Unitree Go2</bdi> <small><bdi>Unitree Robotics</bdi></small></span><p>ثغرة من نوع التحقق غير السليم من الشهادات في <bdi>Unitree Go2</bdi> من <bdi>Unitree Robotics</bdi>، ويمكن استغلالها عبر الشبكة ودون أي صلاحيات ودون تدخل من المستخدم للمساس جزئياً بسلامتها، ويقدّر التقييم خطورتها بـ <bdi>6.3</bdi> من 10 أي متوسطة.</p></span>
+<span class="marks"><span class="sev med">متوسطة <span class="num">6.3</span></span></span>
+</a></li>
+<li><a class="row" href="/record/?id=CVE-2026-115995">
+<span class="id">CVE-2026-115995<small>24 أكتوبر</small></span>
+<span class="what"><span class="prod"><bdi>Unitree Go2</bdi> <small><bdi>Unitree Robotics</bdi></small></span><p>ثغرة من نوع حقن أوامر نظام التشغيل في <bdi>Unitree Go2</bdi> من <bdi>Unitree Robotics</bdi>، ويمكن استغلالها عبر الشبكة ودون أي صلاحيات وبتدخل من المستخدم للمساس بسرية البيانات وسلامتها وتوافر الخدمة، ويقدّر التقييم خطورتها بـ <bdi>9.4</bdi> من 10 أي حرجة.</p></span>
+<span class="marks"><span class="sev crit">حرجة <span class="num">9.4</span></span></span>
+</a></li>
+<li><a class="row" href="/record/?id=CVE-2026-115982">
+<span class="id">CVE-2026-115982<small>24 أكتوبر</small></span>
+<span class="what"><span class="prod"><bdi>phpIPAM</bdi></span><p>ثغرة من نوع البرمجة النصية عبر المواقع (XSS) في <bdi>phpIPAM</bdi>، ويمكن استغلالها عبر الشبكة ودون أي صلاحيات وبتدخل من المستخدم للمساس جزئياً بسلامتها، ويقدّر التقييم خطورتها بـ <bdi>5.3</bdi> من 10 أي متوسطة.</p></span>
+<span class="marks"><span class="sev med">متوسطة <span class="num">5.3</span></span></span>
+</a></li>
+<li><a class="row" href="/record/?id=CVE-2026-115981">
+<span class="id">CVE-2026-115981<small>24 أكتوبر</small></span>
+<span class="what"><span class="prod"><bdi>phpIPAM</bdi></span><p>ثغرة من نوع البرمجة النصية عبر المواقع (XSS) في <bdi>phpIPAM</bdi>، ويمكن استغلالها عبر الشبكة وبصلاحيات مرتفعة وبتدخل من المستخدم للمساس جزئياً بسلامتها، ويقدّر التقييم خطورتها بـ <bdi>4.8</bdi> من 10 أي متوسطة.</p></span>
+<span class="marks"><span class="sev med">متوسطة <span class="num">4.8</span></span></span>
+</a></li>
+<li><a class="row" href="/record/?id=CVE-2026-114820">
+<span class="id">CVE-2026-114820<small>24 أكتوبر</small></span>
+<span class="what"><span class="prod"><bdi>Oracle Java SE</bdi> <small><bdi>Oracle Corporation</bdi></small></span><p>ثغرة في <bdi>Oracle Java SE</bdi> من <bdi>Oracle Corporation</bdi>، ويمكن استغلالها عبر الشبكة ودون أي صلاحيات ودون تدخل من المستخدم للمساس بسرية البيانات وسلامتها، ويقدّر التقييم خطورتها بـ <bdi>9.1</bdi> من 10 أي حرجة.</p></span>
+<span class="marks"><span class="sev crit">حرجة <span class="num">9.1</span></span></span>
+</a></li>
+<li><a class="row" href="/record/?id=CVE-2026-115973">
+<span class="id">CVE-2026-115973<small>24 أكتوبر</small></span>
+<span class="what"><span class="prod"><bdi>Faveo Helpdesk</bdi> <small><bdi>FaveoSuite</bdi></small></span><p>ثغرة من نوع آلية ضعيفة لاستعادة كلمة المرور في <bdi>Faveo Helpdesk</bdi> من <bdi>FaveoSuite</bdi>، ويمكن استغلالها عبر الشبكة ودون أي صلاحيات ودون تدخل من المستخدم للمساس جزئياً بسرية البيانات وسلامتها وتوافر الخدمة، ويقدّر التقييم خطورتها بـ <bdi>6.9</bdi> من 10 أي متوسطة.</p></span>
+<span class="marks"><span class="sev med">متوسطة <span class="num">6.9</span></span></span>
+</a></li>
+      </ul>
+      <div class="more"><a class="btn quiet" href="/latest/">كل ثغرات اليوم والأيام السابقة</a></div>
+    </section>
+    <aside>
+      <h2>أُضيفت مؤخراً إلى المستغلة فعلياً</h2>
+      <ul class="side-list"><li><a href="/record/?id=CVE-2026-114625">CVE-2026-114625</a><p><bdi>VeloCloud Orchestrator</bdi> من <bdi>Arista</bdi></p><span class="meta">أُدرجت 23 أكتوبر 2026</span></li><li><a href="/record/?id=CVE-2026-110447">CVE-2026-110447</a><p><bdi>Collabora Online – Built-in CODE Server</bdi> من <bdi>Collabora</bdi></p><span class="meta">أُدرجت 23 أكتوبر 2026</span></li><li><a href="/record/?id=CVE-2026-96656">CVE-2026-96656</a><p><bdi>Media Server</bdi> من <bdi>Plex</bdi></p><span class="meta">أُدرجت 20 أكتوبر 2026</span></li><li><a href="/record/?id=CVE-2026-96655">CVE-2026-96655</a><p><bdi>Media Server</bdi> من <bdi>Plex</bdi></p><span class="meta">أُدرجت 20 أكتوبر 2026</span></li><li><a href="/record/?id=CVE-2026-96654">CVE-2026-96654</a><p><bdi>Media Server</bdi> من <bdi>Plex</bdi></p><span class="meta">أُدرجت 20 أكتوبر 2026</span></li><li><a href="/record/?id=CVE-2026-96652">CVE-2026-96652</a><p><bdi>Media Server</bdi> من <bdi>Plex</bdi></p><span class="meta">أُدرجت 20 أكتوبر 2026</span></li></ul>
+      <p class="count-line">تضم قائمة CISA اليوم 1,756 ثغرة ثبت استغلالها، و<a href="/kev/">هذه القائمة كاملة</a>.</p>
+      <h2>أكثر أنواع الضعف هذا الأسبوع</h2>
+      <ul class="bars"><li><span>ضبط وصول غير سليم</span><span class="num">338</span><span class="bar"><i style="width:100%"></i></span></li><li><span>البرمجة النصية عبر المواقع (XSS)</span><span class="num">188</span><span class="bar"><i style="width:56%"></i></span></li><li><span>تجاوز حدود الذاكرة المخصصة</span><span class="num">182</span><span class="bar"><i style="width:54%"></i></span></li><li><span>غياب التخويل</span><span class="num">174</span><span class="bar"><i style="width:51%"></i></span></li><li><span>استخدام الذاكرة بعد تحريرها</span><span class="num">153</span><span class="bar"><i style="width:45%"></i></span></li><li><span>اجتياز المسار</span><span class="num">108</span><span class="bar"><i style="width:32%"></i></span></li><li><span>استهلاك غير منضبط للموارد</span><span class="num">90</span><span class="bar"><i style="width:27%"></i></span></li><li><span>حقن SQL</span><span class="num">89</span><span class="bar"><i style="width:26%"></i></span></li></ul>
+      <h2>أكثر الموردين وروداً</h2>
+      <ul class="bars"><li><span><bdi>Oracle Corporation</bdi></span><span class="num">1078</span><span class="bar"><i style="width:100%"></i></span></li><li><span><bdi>Google</bdi></span><span class="num">359</span><span class="bar"><i style="width:33%"></i></span></li><li><span><bdi>Linux</bdi></span><span class="num">220</span><span class="bar"><i style="width:20%"></i></span></li><li><span><bdi>Apache Software Foundation</bdi></span><span class="num">153</span><span class="bar"><i style="width:14%"></i></span></li><li><span><bdi>Drupal</bdi></span><span class="num">72</span><span class="bar"><i style="width:7%"></i></span></li><li><span><bdi>Hewlett Packard Enterprise (HPE)</bdi></span><span class="num">71</span><span class="bar"><i style="width:7%"></i></span></li><li><span><bdi>IBM</bdi></span><span class="num">49</span><span class="bar"><i style="width:5%"></i></span></li><li><span><bdi>Apple</bdi></span><span class="num">47</span><span class="bar"><i style="width:4%"></i></span></li></ul>
+      <p class="count-line">آخر نشرة أسبوعية: <a href="/week/2026-W42/">الأسبوع 42 من 2026</a></p>
+    </aside>
+  </div>
+  <p class="count-line">آخر تحديث للبيانات 25 أكتوبر 2026 عند 04:55 بتوقيت غرينتش.</p>
+</div>
+
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4>رائد</h4>
+        <p>نسخة عربية مفتوحة من سجل الثغرات الأمنية المعلنة، تقرأ سجلات برنامج CVE كما تنشرها الجهات المرقّمة ثم تعرضها بالعربية وتتجدد كل ساعة.</p>
+        <p>المشروع مستقل ولا يتبع برنامج CVE أو مؤسسة MITRE أو وكالة CISA، والمرجع الرسمي لكل سجل هو موقع <a href="https://www.cve.org/" rel="noopener">cve.org</a>.</p>
+      </div>
+      <div>
+        <h4>الأقسام</h4>
+        <ul>
+          <li><a href="/latest/">أحدث الثغرات</a></li>
+          <li><a href="/kev/">الثغرات المستغلة فعلياً</a></li>
+          <li><a href="/week/">النشرة الأسبوعية</a></li>
+          <li><a href="/cna/join/">نحو جهة ترقيم عربية</a></li>
+          <li><a href="/faq/">الأسئلة الشائعة</a></li>
+          <li><a href="/data/">البيانات المفتوحة</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>المصادر</h4>
+        <ul>
+          <li><a href="https://github.com/CVEProject/cvelistV5" rel="noopener">قائمة سجلات CVE</a></li>
+          <li><a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" rel="noopener">قائمة CISA للثغرات المستغلة</a></li>
+          <li><a href="https://www.first.org/epss/" rel="noopener">نظام EPSS من FIRST</a></li>
+          <li><a href="https://cwe.mitre.org/" rel="noopener">تصنيف نقاط الضعف CWE</a></li>
+          <li><a href="https://github.com/SiteQ8/Raed" rel="noopener">الشيفرة المصدرية</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="fine">CVE® علامة تجارية مسجلة لمؤسسة MITRE، وتُستخدم سجلات البرنامج وفق <a href="https://www.cve.org/Legal/TermsOfUse" rel="noopener">شروط الاستخدام</a> التي تتيح نسخها وتوزيعها مع الإشارة إلى المصدر، أما الشيفرة فمنشورة برخصة MIT.</p>
+  </div>
+</footer>
+<script type="module" src="/assets/js/site.js"></script>
+<script type="module" src="/assets/js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!-- {"title":"أحدث الثغرات","desc":"الثغرات الأمنية المنشورة في برنامج CVE خلال آخر ثلاثين يوماً، يوماً بيوم، مع تصفية بحسب الخطورة والمنتج والاستغلال الفعلي.","path":"/latest/","nav":"latest","scripts":["/assets/js/latest.js"]} -->
+<div class="wrap">
+  <header class="head">
+    <h1>أحدث الثغرات</h1>
+    <p class="lead">كل سجل نُشر في برنامج CVE خلال آخر ثلاثين يوماً مرتباً بحسب يوم النشر، ويمكنك البحث في السجلات كلها باسم المنتج أو المورّد أو رقم الثغرة.</p>
+  </header>
+  <div class="days-strip" id="days" aria-label="أيام النشر"></div>
+  <div class="filters">
+    <input type="search" id="q" placeholder="ابحث بالمنتج أو المورّد أو الرقم في آخر ثلاثين يوماً" dir="auto" aria-label="بحث">
+    <div class="chips" role="group" aria-label="الخطورة">
+      <button class="chip" type="button" data-sev="CRITICAL" aria-pressed="false">حرجة</button>
+      <button class="chip" type="button" data-sev="HIGH" aria-pressed="false">عالية</button>
+      <button class="chip" type="button" data-sev="MEDIUM" aria-pressed="false">متوسطة</button>
+      <button class="chip" type="button" data-sev="LOW" aria-pressed="false">منخفضة</button>
+      <button class="chip" type="button" data-kev="1" aria-pressed="false">مستغلة فعلياً</button>
+    </div>
+  </div>
+  <p class="count-line" id="count" aria-live="polite">يجري تحميل السجلات</p>
+  <ul class="reg" id="list"></ul>
+  <div class="more"><button class="btn quiet" type="button" id="more" hidden>اعرض المزيد</button></div>
+</div>
