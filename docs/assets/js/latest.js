@@ -92,7 +92,12 @@ async function main() {
   $('more').addEventListener('click', () => { state.shown += PAGE; draw(); });
   if (state.q) search = await getJSON('/data/search.json');
   await draw();
-  document.querySelector('#days [aria-pressed="true"]')?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  // Bring the chosen day into view by scrolling the strip itself; scrollIntoView would also move the keyboard starting point.
+  const strip = $('days'), on = strip.querySelector('[aria-pressed="true"]');
+  if (on && strip.scrollWidth > strip.clientWidth) {
+    const s = strip.getBoundingClientRect(), r = on.getBoundingClientRect();
+    strip.scrollLeft += r.left - s.left - (s.width - r.width) / 2;
+  }
 }
 
 main().catch(() => { $('count').textContent = 'تعذر تحميل السجلات، فأعد تحميل الصفحة بعد قليل.'; });

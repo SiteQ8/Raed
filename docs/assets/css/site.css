@@ -463,3 +463,8 @@ ul.plain li { margin: 4px 0; }
 .doc-main .stat-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-5) var(--s-6); }
 .cid { white-space: nowrap; direction: ltr; unicode-bidi: isolate; }
 .copied { margin-top: var(--s-3); min-height: 1.6em; }
+/* KEV rows: the Arabic summary leads, the CISA name follows as a quiet reference line */
+.reg .what p .en { display: block; unicode-bidi: isolate; text-align: right; font-family: 'IBM Plex Sans', var(--f-body); font-size: 13.5px; color: var(--muted); margin-top: 4px; }
+/* The CVSS vector breaks only between its metrics */
+.vec { overflow-wrap: normal; word-break: normal; }
+.vec wbr { display: inline; }
