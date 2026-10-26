@@ -33,7 +33,7 @@ async function main() {
     const c = $('country').value;
     const t = $('type').value;
     const list = all.filter((x) => (!c || x.co === c) && (!t || x.t.includes(t)) && words.every((w) => norm(`${x.n} ${x.s} ${x.scope}`).includes(w)));
-    $('rows').innerHTML = list.slice(0, shown).map((x) => `<tr><td><bdi style="font-weight:600">${esc(x.n)}</bdi>${x.adv ? `<br><a href="${esc(x.adv)}" rel="noopener" style="font-size:13.5px">النشرات الأمنية</a>` : ''}</td><td data-label="الدولة">${esc(co(x.co))}</td><td data-label="النوع">${x.t.map((v) => esc(ty(v))).join('، ')}</td><td data-label="النطاق كما كتبته الجهة" dir="ltr" style="text-align:left;font-size:14px;color:var(--ink-2)">${esc(x.scope)}</td></tr>`).join('');
+    $('rows').innerHTML = list.slice(0, shown).map((x) => `<tr><td><bdi style="font-weight:600">${esc(x.n)}</bdi>${x.adv ? `<br><a href="${esc(x.adv)}" rel="noopener" style="font-size:13.5px">النشرات الأمنية</a>` : ''}</td><td class="co" data-label="الدولة">${esc(co(x.co))}</td><td class="ty" data-label="النوع">${x.t.map((v) => esc(ty(v))).join('، ')}</td><td class="sc" data-label="النطاق كما كتبته الجهة" dir="ltr" style="text-align:left;font-size:14px;color:var(--ink-2)">${esc(x.scope)}</td></tr>`).join('');
     $('count').textContent = `${list.length.toLocaleString('en-US')} من ${all.length.toLocaleString('en-US')} جهة${list.length > shown ? `، تظهر منها أول ${shown}` : ''}`;
     $('more').hidden = list.length <= shown;
   };

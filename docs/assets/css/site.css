@@ -268,7 +268,7 @@ details.faq p { color: var(--ink-2); margin: var(--s-2) 0 0; }
 
 .cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5) var(--s-7); }
 .stat-row { display: flex; gap: var(--s-6); flex-wrap: wrap; margin: var(--s-5) 0; }
-.stat-row div b { display: block; font-size: 34px; font-weight: 700; line-height: 1.2; }
+.stat-row div b { display: block; font-size: 34px; font-weight: 700; line-height: 1.2; text-align: right; }
 .stat-row div span { color: var(--muted); font-size: 14.5px; }
 
 /* Footer */
