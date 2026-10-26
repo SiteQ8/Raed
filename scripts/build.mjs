@@ -5,7 +5,7 @@
 import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
-import { summaryAr, dateAr, timeAr, kwDay, nVuln, nRecord, SEV_AR, sevClass, iso } from '../docs/assets/engine/arabic.js';
+import { summaryAr, dateAr, timeAr, kwDay, nVuln, nRecord, countAr, SEV_AR, sevClass, iso } from '../docs/assets/engine/arabic.js';
 import { cweAr } from '../docs/assets/engine/cwe.js';
 import { detail } from '../docs/assets/engine/record.js';
 import { loadAdvisories, descriptionIn, STATUS_AR } from './lib/advisories.mjs';
@@ -283,16 +283,16 @@ async function fill(body, ctx) {
   const wk = days.slice(0, 7);
   const sum = (k) => wk.reduce((a, d) => a + (d[k] || 0), 0);
   const map = {
-    '{{generated}}': index.generated ? `${dateAr(index.generated)} عند ${timeAr(index.generated)}` : '',
+    '{{generated}}': index.generated ? `في ${dateAr(index.generated)} الساعة ${timeAr(index.generated)}` : '',
     '{{today_n}}': last24.toLocaleString('en-US'),
-    '{{today_label}}': `${last24 >= 3 && last24 % 100 >= 3 && last24 % 100 <= 10 ? 'ثغرات' : 'ثغرة'} نُشرت في آخر 24 ساعة`,
+    '{{today_label}}': `${last24 === 2 ? 'ثغرتان نُشرتا' : last24 % 100 >= 3 && last24 % 100 <= 10 ? 'ثغرات نُشرت' : 'ثغرة نُشرت'} في آخر 24 ساعة`,
     '{{week_n}}': sum('n').toLocaleString('en-US'),
     '{{week_crit}}': sum('c').toLocaleString('en-US'),
     '{{week_kev}}': kev.filter((k) => k.da >= (wk[wk.length - 1]?.d || '9')).length.toString(),
     '{{window_n}}': (index.total || 0).toLocaleString('en-US'),
     '{{kev_total}}': kev.length.toLocaleString('en-US'),
     '{{newest_rows}}': newest.map(rowHtml).join('\n'),
-    '{{kev_side}}': kev.slice(0, 6).map((k) => `<li><a href="/record/?id=${k.i}">${k.i}</a><p>${html(`${iso(k.r)} من ${iso(k.v)}`)}</p><span class="meta">أُدرجت ${dateAr(k.da)}${k.ra ? ' وتستخدمها حملات فدية' : ''}</span></li>`).join(''),
+    '{{kev_side}}': kev.slice(0, 6).map((k) => `<li><a href="/record/?id=${k.i}">${k.i}</a><p>${html(`${iso(k.r)} من ${iso(k.v)}`)}</p><span class="meta">أُدرجت في ${dateAr(k.da)}${k.ra ? ' وتستخدمها حملات فدية' : ''}</span></li>`).join(''),
     '{{week_link}}': weeks[0] ? `<a href="/week/${weeks[0].id}/">${esc(weeks[0].titleAr)}</a>` : '',
     '{{weeks_list}}': weeks.map((w) => `<li><a href="/week/${w.id}/">${esc(w.titleAr)}</a><p>${esc(w.lineAr)}</p></li>`).join('') || '<li><p>تصدر أول نشرة يوم الاثنين.</p></li>',
     '{{latest_day}}': latestDay || '',
@@ -306,7 +306,7 @@ async function fill(body, ctx) {
   };
   if (body.includes('{{wall}}')) {
     const w = wallHtml(days);
-    map['{{wall}}'] = `<div class="wall" style="--days:${w.count}" role="img" aria-label="عدد الثغرات المنشورة في كل يوم خلال آخر ${w.count} يوماً">${w.html}</div><div class="wall-axis"><span>${dateAr(w.first, { year: false })}</span><span>${dateAr(w.last, { year: false })}</span></div><p class="legend"><span style="--c:var(--crit)">حرجة</span><span style="--c:var(--high)">عالية</span><span style="--c:var(--med)">متوسطة</span><span style="--c:var(--low)">منخفضة</span><span style="--c:var(--na)">بلا تقييم</span><span>كل شرطة تمثل ${w.per} ${w.per <= 10 ? 'سجلات' : 'سجلاً'}</span></p>`;
+    map['{{wall}}'] = `<div class="wall" style="--days:${w.count}" role="img" aria-label="عدد الثغرات المنشورة في كل يوم خلال آخر ${countAr(w.count, { plural: 'أيام', acc: 'يوماً', gen: 'يوم' })}">${w.html}</div><div class="wall-axis"><span>${dateAr(w.first, { year: false })}</span><span>${dateAr(w.last, { year: false })}</span></div><p class="legend"><span style="--c:var(--crit)">حرجة</span><span style="--c:var(--high)">عالية</span><span style="--c:var(--med)">متوسطة</span><span style="--c:var(--low)">منخفضة</span><span style="--c:var(--na)">بلا تقييم</span><span>كل شرطة تمثل ${countAr(w.per, { one: 'سجلاً واحداً', two: 'سجلين', plural: 'سجلات', acc: 'سجلاً', gen: 'سجل' })}</span></p>`;
   }
   if (body.includes('{{top_cwe}}') || body.includes('{{top_vendor}}')) {
     const items = await readWindow(wk);
@@ -337,17 +337,17 @@ function weekBody(w) {
 <div class="stat-row">
 <div><b class="num">${w.total.toLocaleString('en-US')}</b><span>مجموع السجلات</span></div>
 ${sevs.map(([s, n]) => `<div><b class="num">${n.toLocaleString('en-US')}</b><span>${SEV_AR[s]}</span></div>`).join('')}
-<div><b class="num">${w.kevAdded.length}</b><span>أُضيفت إلى المستغلة فعلياً</span></div>
+<div><b class="num">${w.kevAdded.length}</b><span>أُضيفت إلى قائمة الثغرات المستغلة فعلياً</span></div>
 </div>
-<div class="prose">${w.paragraphsAr.map((p) => `<p>${html(p)}</p>`).join('')}</div>
-${w.kevAdded.length ? `<h2>ما أُضيف إلى قائمة الثغرات المستغلة فعلياً</h2><ul class="side-list">${w.kevAdded.map((k) => `<li><a href="/record/?id=${k.i}">${k.i}</a><p>${html(`${iso(k.r)} من ${iso(k.v)}`)}</p><span class="meta">أُدرجت ${dateAr(k.da)} وموعد المعالجة للجهات الاتحادية الأمريكية ${dateAr(k.due)}${k.ra ? ' وتستخدمها حملات فدية' : ''}</span></li>`).join('')}</ul>` : ''}
+<div class="prose">${w.paragraphsAr.map((p) => `<p>${html(p).replace(/CVE-\d{4}-\d{4,}/g, (m) => `<span class="cid">${m}</span>`)}</p>`).join('')}</div>
+${w.kevAdded.length ? `<h2>ما أُضيف إلى قائمة الثغرات المستغلة فعلياً</h2><ul class="side-list">${w.kevAdded.map((k) => `<li><a href="/record/?id=${k.i}">${k.i}</a><p>${html(`${iso(k.r)} من ${iso(k.v)}`)}</p><span class="meta">أُدرجت في ${dateAr(k.da)} وموعد المعالجة للجهات الاتحادية الأمريكية ${dateAr(k.due)}${k.ra ? ' وتستخدمها حملات فدية' : ''}</span></li>`).join('')}</ul>` : ''}
 <h2>أخطر ما نُشر هذا الأسبوع</h2>
 <ul class="reg">${w.top.map(rowHtml).join('\n')}</ul>
-<h2>أعلى احتمالاً للاستغلال</h2>
+<h2>الأعلى احتمالاً للاستغلال</h2>
 <ul class="reg">${w.epssTop.map(rowHtml).join('\n')}</ul>
 <div class="cols-2">
 <div><h2>أكثر أنواع الضعف</h2><ul class="bars">${w.cwe.map(([k, v]) => `<li><span>${esc(cweAr(k)?.name || k)}</span><span class="num">${v}</span><span class="bar"><i style="width:${Math.round((v / w.cwe[0][1]) * 100)}%"></i></span></li>`).join('')}</ul></div>
-<div><h2>أكثر الموردين وروداً</h2><ul class="bars">${w.vendors.map(([k, v]) => `<li><span><bdi>${esc(k)}</bdi></span><span class="num">${v}</span><span class="bar"><i style="width:${Math.round((v / w.vendors[0][1]) * 100)}%"></i></span></li>`).join('')}</ul></div>
+<div><h2>المورّدون الأكثر وروداً</h2><ul class="bars">${w.vendors.map(([k, v]) => `<li><span><bdi>${esc(k)}</bdi></span><span class="num">${v}</span><span class="bar"><i style="width:${Math.round((v / w.vendors[0][1]) * 100)}%"></i></span></li>`).join('')}</ul></div>
 </div>
 <p class="count-line">البيانات حتى ${dateAr(w.generated)} وتشمل السجلات المنشورة من ${dateAr(w.from)} إلى ${dateAr(w.to)}.</p>
 </div>`;
@@ -365,7 +365,7 @@ function advisoryBody(adv) {
   <h1 class="cve">${esc(adv.raed.id)}</h1>
   <div class="state">${sevMark(d.sv, d.s)}<span class="sev na">${esc(STATUS_AR[adv.raed.status] || '')}</span>${cve ? `<a class="ltr" href="/record/?id=${cve}">${cve}</a>` : ''}</div>
   <p class="summary">${esc(adv.raed.titleAr)}</p>
-  <p class="dates">صدرت ${dateAr(adv.raed.published)}.</p>
+  <p class="dates">صدرت في ${dateAr(adv.raed.published)}.</p>
 </header>
 <div class="rec-grid"><div>
   <h2>الوصف</h2>

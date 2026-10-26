@@ -11,7 +11,8 @@ function nTerms(n) {
   if (n === 0) return 'لا مصطلحات';
   if (n === 1) return 'مصطلح واحد';
   if (n === 2) return 'مصطلحان';
-  return `${n} ${n % 100 >= 3 && n % 100 <= 10 ? 'مصطلحات' : 'مصطلحاً'}`;
+  const m = n % 100;
+  return `${n} ${m >= 3 && m <= 10 ? 'مصطلحات' : m >= 11 ? 'مصطلحاً' : 'مصطلح'}`;
 }
 
 function filter() {

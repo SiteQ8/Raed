@@ -37,7 +37,7 @@ npm test         # بوابات العربية والتسمية وسلامة ا�
 
 ## المصادر والترخيص
 
-السجلات من [قائمة CVE](https://github.com/CVEProject/cvelistV5) وفق [شروط استخدام البرنامج](https://www.cve.org/Legal/TermsOfUse)، والثغرات المستغلة من [CISA](https://www.cisa.gov/known-exploited-vulnerabilities-catalog)، واحتمالات الاستغلال من [FIRST EPSS](https://www.first.org/epss/)، والتفاصيل في [NOTICE](NOTICE). CVE® علامة تجارية مسجلة لمؤسسة MITRE، والمشروع مستقل لا يتبع البرنامج. الشيفرة برخصة MIT.
+السجلات من [قائمة CVE](https://github.com/CVEProject/cvelistV5) وفق [شروط استخدام البرنامج](https://www.cve.org/Legal/TermsOfUse)، والثغرات المستغلة من [CISA](https://www.cisa.gov/known-exploited-vulnerabilities-catalog)، واحتمالات الاستغلال من [FIRST EPSS](https://www.first.org/epss/)، والتفاصيل في [NOTICE](NOTICE)، وCVE® علامة تجارية مسجلة لمؤسسة MITRE، والمشروع مستقل لا يتبع البرنامج، أما الشيفرة فمنشورة برخصة MIT.
 
 ---
 
