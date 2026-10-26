@@ -19,6 +19,9 @@ const TYPE_AR = {
 const co = (c) => COUNTRY_AR[c] || c;
 const ty = (t) => TYPE_AR[t] || t;
 
+const PAGE = 50;
+let shown = PAGE;
+
 async function main() {
   const all = await getJSON('/data/cnas.json');
   const countries = [...new Set(all.map((c) => c.co))].sort((a, b) => co(a).localeCompare(co(b), 'ar'));
@@ -30,10 +33,12 @@ async function main() {
     const c = $('country').value;
     const t = $('type').value;
     const list = all.filter((x) => (!c || x.co === c) && (!t || x.t.includes(t)) && words.every((w) => norm(`${x.n} ${x.s} ${x.scope}`).includes(w)));
-    $('rows').innerHTML = list.map((x) => `<tr><td><bdi style="font-weight:600">${esc(x.n)}</bdi>${x.adv ? `<br><a href="${esc(x.adv)}" rel="noopener" style="font-size:13.5px">النشرات الأمنية</a>` : ''}</td><td data-label="الدولة">${esc(co(x.co))}</td><td data-label="النوع">${x.t.map((v) => esc(ty(v))).join('، ')}</td><td data-label="النطاق كما كتبته الجهة" dir="ltr" style="text-align:left;font-size:14px;color:var(--ink-2)">${esc(x.scope)}</td></tr>`).join('');
-    $('count').textContent = `${list.length.toLocaleString('en-US')} من ${all.length.toLocaleString('en-US')} جهة`;
+    $('rows').innerHTML = list.slice(0, shown).map((x) => `<tr><td><bdi style="font-weight:600">${esc(x.n)}</bdi>${x.adv ? `<br><a href="${esc(x.adv)}" rel="noopener" style="font-size:13.5px">النشرات الأمنية</a>` : ''}</td><td data-label="الدولة">${esc(co(x.co))}</td><td data-label="النوع">${x.t.map((v) => esc(ty(v))).join('، ')}</td><td data-label="النطاق كما كتبته الجهة" dir="ltr" style="text-align:left;font-size:14px;color:var(--ink-2)">${esc(x.scope)}</td></tr>`).join('');
+    $('count').textContent = `${list.length.toLocaleString('en-US')} من ${all.length.toLocaleString('en-US')} جهة${list.length > shown ? `، تظهر منها أول ${shown}` : ''}`;
+    $('more').hidden = list.length <= shown;
   };
-  for (const el of ['q', 'country', 'type']) $(el).addEventListener('input', draw);
+  for (const el of ['q', 'country', 'type']) $(el).addEventListener('input', () => { shown = PAGE; draw(); });
+  $('more').addEventListener('click', () => { shown += PAGE; draw(); });
   draw();
 }
 
