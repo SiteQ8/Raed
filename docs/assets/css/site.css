@@ -364,7 +364,7 @@ ul.plain { margin: 0; padding-inline-start: 18px; color: var(--ink-2); font-size
 ul.plain li { margin: 4px 0; }
 .ready { margin-top: var(--s-7); padding-top: var(--s-5); border-top: 2px solid var(--sea); scroll-margin-top: var(--s-5); }
 .ready h2:focus { outline: none; }
-.send-ways { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5); }
+.send-ways { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: var(--s-5); align-items: start; }
 .way { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-3); padding: var(--s-5); }
 .way h3 { margin-top: 0; }
 .way p { color: var(--ink-2); margin: 0 0 var(--s-3); }
@@ -385,3 +385,21 @@ ul.plain li { margin: 4px 0; }
 /* Engravings sit on paper white, so they are dimmed a little on the dark theme */
 @media (prefers-color-scheme: dark) { :root:not([data-theme='light']) .hero-art img, :root:not([data-theme='light']) .figure img { filter: brightness(0.82) contrast(1.05); } }
 :root[data-theme='dark'] .hero-art img, :root[data-theme='dark'] .figure img { filter: brightness(0.82) contrast(1.05); }
+
+/* Report portal: sending through GitHub, step by step with a copy button per field */
+.gh-steps { list-style: none; counter-reset: g; margin: var(--s-4) 0 0; padding: 0; display: grid; gap: var(--s-3); }
+.gh-steps > li { counter-increment: g; display: grid; grid-template-columns: 32px 1fr auto; gap: var(--s-3); align-items: center; padding: var(--s-3) 0; border-top: 1px solid var(--line-2); }
+.gh-steps > li:first-child { border-top: 0; }
+.gh-steps > li::before { content: counter(g); width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--sea-wash); color: var(--sea); font-weight: 600; font-size: 15px; }
+.gh-steps > li > span { color: var(--ink-2); line-height: 1.7; }
+.gh-steps > li:last-child { grid-template-columns: 32px 1fr; }
+.gh-steps > li:last-child .gh-fields { grid-column: 2; }
+.gh-steps .btn { white-space: nowrap; }
+.btn.done, .copy.mini.done { background: var(--sea); color: #fff; border-color: var(--sea); }
+.gh-fields { margin: var(--s-2) 0 0; display: grid; gap: var(--s-2); }
+.gh-fields div { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px var(--s-3); align-items: center; background: var(--raised); border: 1px solid var(--line-2); border-radius: var(--r-2); padding: var(--s-2) var(--s-3); }
+.gh-fields dt { grid-column: 1 / -1; font-size: 13px; color: var(--muted); }
+.gh-fields dd { display: contents; }
+.gh-fields bdi { font-family: 'IBM Plex Sans', var(--f-body); font-size: 15px; overflow-wrap: anywhere; text-align: left; }
+.copy.mini { font: inherit; font-size: 13.5px; font-weight: 600; color: var(--sea); background: transparent; border: 1px solid var(--line); border-radius: var(--r-1); padding: 4px 12px; cursor: pointer; min-height: 32px; }
+.copy.mini:hover { background: var(--sea-wash); }

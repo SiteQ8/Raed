@@ -75,6 +75,27 @@ _أُعدّ هذا البلاغ في بوابة رائد https://cve.3li.info/re
 `;
 }
 
+function fillFields(d) {
+  const rows = [
+    ['المنتج (Package name)', d.product],
+    ['الإصدارات المصابة (Affected versions)', d.versions],
+    ['الإصدار المصلح (Patched versions)', d.fixed],
+    ['نوع الضعف (CWE)', d.cwe],
+  ].filter(([, v]) => v && String(v).trim());
+  const dl = document.getElementById('gh-fields');
+  dl.replaceChildren();
+  for (const [k, v] of rows) {
+    const wrap = document.createElement('div');
+    const dt = document.createElement('dt'); dt.textContent = k;
+    const dd = document.createElement('dd');
+    const val = document.createElement('bdi'); val.dir = 'ltr'; val.textContent = v;
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'copy mini'; b.dataset.copy = 'value'; b.dataset.value = v; b.textContent = 'انسخ';
+    b.addEventListener('click', () => copy(v, b, 'نُسخت القيمة، فالصقها في خانتها.'));
+    dd.append(val, b); wrap.append(dt, dd); dl.append(wrap);
+  }
+  dl.hidden = !rows.length;
+}
+
 function check(d) {
   const missing = [];
   for (const el of form.querySelectorAll('[required]')) {
@@ -108,22 +129,52 @@ form.addEventListener('submit', (e) => {
   document.getElementById('mail-note').hidden = !tooLong;
   ready.hidden = false;
   ready.dataset.title = d.title;
+  fillFields(d);
   ready.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
   document.getElementById('ready-h').focus({ preventScroll: true });
 });
 
-async function copyText() {
-  try { await navigator.clipboard.writeText(preview.textContent); return true; } catch (e) {
-    const r = document.createRange(); r.selectNodeContents(preview); const s = getSelection(); s.removeAllRanges(); s.addRange(r);
-    try { return document.execCommand('copy'); } catch (e2) { return false; }
-  }
+// Copying starts inside the click itself, so browsers that guard the clipboard and pop-ups (Safari, iOS) allow it.
+function fallbackCopy(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; ta.style.top = '0';
+  document.body.append(ta); ta.select(); ta.setSelectionRange(0, text.length);
+  let ok = false;
+  try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+  ta.remove();
+  return ok;
 }
 
-document.getElementById('copy-gh').addEventListener('click', async () => {
-  const ok = await copyText();
-  copied.textContent = ok ? 'نُسخ البلاغ، فالصقه في خانة Description في الصفحة التي فُتحت.' : 'تعذر النسخ التلقائي، فافتح «اعرض نص البلاغ» وانسخه بنفسك.';
-  window.open(GH, '_blank', 'noopener');
+function copy(text, btn, okMsg) {
+  const done = (ok) => {
+    copied.textContent = ok ? okMsg : 'تعذر النسخ التلقائي، فافتح «اعرض نص البلاغ» وانسخه بنفسك.';
+    if (btn && ok) {
+      const label = btn.dataset.label || btn.textContent;
+      btn.dataset.label = label; btn.textContent = 'نُسخ'; btn.classList.add('done');
+      setTimeout(() => { btn.textContent = label; btn.classList.remove('done'); }, 2200);
+    }
+  };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(() => done(true), () => done(fallbackCopy(text)));
+  } else done(fallbackCopy(text));
+}
+
+const texts = () => ({ title: ready.dataset.title || '', body: preview.textContent });
+
+// The link opens GitHub by itself, so no pop-up blocker stands in the way, and the report is copied in the same click.
+document.getElementById('open-gh').addEventListener('click', () => {
+  copy(texts().body, null, 'نُسخ البلاغ، فالصقه في خانة Description في صفحة GitHub التي فُتحت، ثم انسخ العنوان من الخطوة الثانية.');
 });
+
+for (const btn of document.querySelectorAll('.gh-steps .copy, .gh-fields .copy')) {
+  btn.addEventListener('click', () => {
+    const t = texts();
+    const what = btn.dataset.copy;
+    const text = what === 'title' ? t.title : what === 'body' ? t.body : btn.dataset.value;
+    const msg = what === 'title' ? 'نُسخ العنوان، فالصقه في خانة Title.' : what === 'body' ? 'نُسخ البلاغ، فالصقه في خانة Description.' : 'نُسخت القيمة، فالصقها في خانتها.';
+    copy(text, btn, msg);
+  });
+}
 
 document.getElementById('download').addEventListener('click', () => {
   const blob = new Blob([preview.textContent], { type: 'text/markdown;charset=utf-8' });

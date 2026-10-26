@@ -126,9 +126,13 @@
     <div class="send-ways">
       <div class="way">
         <h3>الإبلاغ الخاص في GitHub</h3>
-        <p>الطريقة المفضلة، فالبلاغ يبقى خاصاً بينك وبين «رائد» حتى النشر، ويمكن متابعته والحوار فيه من الصفحة نفسها.</p>
-        <ol class="plain-steps"><li>انسخ البلاغ بالزر أدناه.</li><li>افتح صفحة الإبلاغ الخاص وسجّل دخولك.</li><li>ضع العنوان في خانة Title والبلاغ في خانة Description ثم أرسل.</li></ol>
-        <div class="actions"><button class="btn" type="button" id="copy-gh">انسخ البلاغ وافتح GitHub</button></div>
+        <p>الطريقة المفضلة، لأن البلاغ يبقى خاصاً بينك وبين «رائد» حتى النشر، وتتابعه وتتحاور فيه من الصفحة نفسها.</p>
+        <ol class="gh-steps">
+          <li><span>افتح صفحة الإبلاغ الخاص وسجّل دخولك إلى GitHub، فيُنسخ البلاغ تلقائياً عند الضغط</span><a class="btn" id="open-gh" href="https://github.com/SiteQ8/Raed/security/advisories/new" target="_blank" rel="noopener">افتح GitHub</a></li>
+          <li><span>انسخ العنوان والصقه في خانة <bdi>Title</bdi></span><button class="btn quiet copy" type="button" data-copy="title">انسخ العنوان</button></li>
+          <li><span>انسخ البلاغ والصقه في خانة <bdi>Description</bdi></span><button class="btn quiet copy" type="button" data-copy="body">انسخ البلاغ</button></li>
+          <li><span>املأ إن شئت خانات المنتج والإصدارات ونوع الضعف بالقيم التالية، ثم اضغط <bdi>Submit report</bdi></span><dl class="gh-fields" id="gh-fields"></dl></li>
+        </ol>
       </div>
       <div class="way">
         <h3>البريد</h3>

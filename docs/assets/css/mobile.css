@@ -130,3 +130,6 @@ details.faq summary { font-size: 16.5px; padding-block: 6px; }
 .actions .btn { flex: 1 1 100%; justify-content: center; }
 .way { padding: var(--s-4); }
 .hall li { grid-template-columns: 1fr; gap: 4px; }
+.gh-steps > li { grid-template-columns: 32px 1fr; }
+.gh-steps > li > .btn { grid-column: 2; justify-self: stretch; justify-content: center; min-height: 44px; }
+.copy.mini { min-height: 40px; padding: 6px 14px; }
