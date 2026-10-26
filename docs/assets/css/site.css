@@ -384,7 +384,7 @@ ul.plain li { margin: 4px 0; }
 .preview { margin-top: var(--s-5); }
 .preview summary { cursor: pointer; color: var(--sea); font-weight: 600; }
 .preview pre { white-space: pre-wrap; background: var(--raised); border: 1px solid var(--line); border-radius: var(--r-2); padding: var(--s-4); font-size: 14px; line-height: 1.8; overflow-wrap: anywhere; font-family: var(--f-body); }
-@media (max-width: 960px) { .report-layout { grid-template-columns: 1fr; gap: 0; } .report-side { position: static; } .send-ways { grid-template-columns: 1fr; } }
+@media (max-width: 960px) { .report-layout { grid-template-columns: 1fr; gap: var(--s-6); } .report-side { position: static; } .send-ways { grid-template-columns: 1fr; } }
 
 /* Hall of fame */
 .hall { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
@@ -468,3 +468,9 @@ ul.plain li { margin: 4px 0; }
 /* The CVSS vector breaks only between its metrics */
 .vec { overflow-wrap: normal; word-break: normal; }
 .vec wbr { display: inline; }
+
+/* Numbers are LTR isolates, so in an RTL column they need an explicit right edge to line up with their labels */
+.watch-top .today b, .watch-top .sums b, .rail-stats dd { text-align: right; }
+.refs li:last-child { border-bottom: 0; }
+.copied:empty { min-height: 0; margin: 0; }
+#mail-note { margin-top: var(--s-3); }

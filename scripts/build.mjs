@@ -316,7 +316,7 @@ async function fill(body, ctx) {
       const c = (it.c || [])[0]; if (c) cw.set(c, (cw.get(c) || 0) + 1);
       if (it.v) vd.set(it.v, (vd.get(it.v) || 0) + 1);
     }
-    const bars = (m, label) => { const arr = [...m].sort((a, b) => b[1] - a[1]).slice(0, 8); const mx = arr[0]?.[1] || 1; return arr.map(([k, v]) => `<li><span>${label(k)}</span><span class="num">${v}</span><span class="bar"><i style="width:${Math.round((v / mx) * 100)}%"></i></span></li>`).join(''); };
+    const bars = (m, label) => { const arr = [...m].sort((a, b) => b[1] - a[1]).slice(0, 8); const mx = arr[0]?.[1] || 1; return arr.map(([k, v]) => `<li><span>${label(k)}</span><span class="num">${v.toLocaleString('en-US')}</span><span class="bar"><i style="width:${Math.round((v / mx) * 100)}%"></i></span></li>`).join(''); };
     map['{{top_cwe}}'] = bars(cw, (k) => esc(cweAr(k)?.name || k));
     map['{{top_vendor}}'] = bars(vd, (k) => `<bdi>${esc(k)}</bdi>`);
   }
