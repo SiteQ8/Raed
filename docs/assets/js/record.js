@@ -59,7 +59,7 @@ function panelScore(d) {
 <div class="meter" style="--c:var(--${cls === 'med' ? 'med' : cls})"><i style="width:${d.s * 10}%;background:var(--${cls})"></i></div>
 <p class="count-line">تقييم CVSS ${esc(d.cv)} بحسب ${esc(SRC_AR(d.cs))}</p>
 <dl class="facts">${rows}</dl>
-${d.vec ? `<p class="label">المتجه</p><p class="ltr" style="font-size:13.5px;overflow-wrap:anywhere;margin:0">${esc(d.vec)}</p>` : ''}
+${d.vec ? `<p class="label">المتجه</p><p class="ltr vec" style="font-size:13.5px;margin:0">${esc(d.vec).split('/').join('/<wbr>')}</p>` : ''}
 ${others.length ? `<p class="label">تقييمات أخرى</p><dl class="facts">${others.map((m) => `<dt>${esc(SRC_AR(m.src))} <bdi>${esc(m.v)}</bdi></dt><dd><span class="num">${m.score}</span> ${SEV_AR[String(m.sev || '').toUpperCase()] || ''}</dd>`).join('')}</dl>` : ''}
 </div>`;
 }
