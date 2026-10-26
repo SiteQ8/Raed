@@ -14,6 +14,17 @@ const TAG_AR = {
   'mailing-list': 'قائمة بريدية', 'permissions-required': 'يتطلب صلاحية', 'media-coverage': 'تغطية إعلامية', 'product': 'المنتج',
   'government-resource': 'مصدر حكومي', 'broken-link': 'رابط معطل', 'not-applicable': 'لا ينطبق', 'vdb-entry': 'قاعدة ثغرات',
 };
+// x_transferred only says the tag came over from the old CVE list, and x_refsource_* names the source.
+function refTags(tags) {
+  const out = [];
+  for (const t of tags || []) {
+    if (t === 'x_transferred') continue;
+    const m = /^x_refsource_(.+)$/i.exec(t);
+    const v = TAG_AR[t] || (m ? `المصدر ${m[1].replace(/_/g, ' ')}` : t);
+    if (!out.includes(v)) out.push(v);
+  }
+  return out;
+}
 const CREDIT_AR = { finder: 'اكتشفها', reporter: 'أبلغ عنها', analyst: 'حللها', coordinator: 'نسّق الإفصاح', 'remediation developer': 'طوّر الإصلاح', 'remediation reviewer': 'راجع الإصلاح', 'remediation verifier': 'تحقق من الإصلاح', tool: 'أداة', sponsor: 'راعٍ', other: 'أخرى' };
 const SRC_AR = (s) => (s === 'cna' ? 'الجهة المرقّمة' : /cisa/i.test(s) ? 'وكالة CISA' : s);
 
@@ -87,7 +98,7 @@ function affectedTable(d) {
     const prodName = a.product && a.product !== 'n/a' ? a.product : '';
     if (!prodName && !shown.length && !unaffected.length) continue;
     rows.push(`<tr><td><bdi>${esc(prodName || 'لم يُحدد')}</bdi>${a.vendor && a.vendor !== 'n/a' ? `<br><small style="color:var(--muted)"><bdi>${esc(a.vendor)}</bdi></small>` : ''}</td>
-<td>${shown.map((v) => html(v.range)).join('<br>') || (a.defaultStatus === 'affected' ? 'كل الإصدارات' : 'لم تُحدد')}${vs.length > shown.length + unaffected.length ? '<br><small style="color:var(--muted)">وإصدارات أخرى في السجل الأصلي</small>' : ''}</td>
+<td>${shown.map((v) => html(v.range)).join('<br>') || (a.defaultStatus === 'affected' ? 'كل الإصدارات' : 'لم تُذكر')}${vs.length > shown.length + unaffected.length ? '<br><small style="color:var(--muted)">وإصدارات أخرى في السجل الأصلي</small>' : ''}</td>
 <td>${unaffected.map((v) => html(v.range)).join('<br>') || '<span style="color:var(--muted)">لم تُذكر</span>'}</td></tr>`);
   }
   if (!rows.length) return '';
@@ -125,7 +136,7 @@ function render(d, kev, ep) {
     ${cweBlock(d)}
     ${affectedTable(d)}
     ${d.solutions || d.workarounds ? `<h2>الإصلاح والتخفيف</h2>${d.solutions ? `<p class="label">الحل كما نشرته الجهة المرقّمة</p><div class="original">${esc(d.solutions)}</div>` : ''}${d.workarounds ? `<p class="label">التخفيف المؤقت</p><div class="original">${esc(d.workarounds)}</div>` : ''}` : ''}
-    ${d.refs.length ? `<h2>المراجع</h2><ul class="refs">${d.refs.slice(0, 60).map((r) => `<li><a href="${esc(r.url)}" rel="noopener nofollow">${esc(r.url)}</a>${r.tags.map((t) => `<span class="tag">${esc(TAG_AR[t] || t)}</span>`).join('')}</li>`).join('')}</ul>` : ''}
+    ${d.refs.length ? `<h2>المراجع</h2><ul class="refs">${d.refs.slice(0, 60).map((r) => `<li><a href="${esc(r.url)}" rel="noopener nofollow">${esc(r.url)}</a>${refTags(r.tags).map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</li>`).join('')}</ul>` : ''}
     ${d.credits.length ? `<h2>الشكر</h2><ul class="refs">${d.credits.map((c) => `<li><bdi>${esc(c.who)}</bdi> <span class="tag">${esc(CREDIT_AR[c.type] || c.type)}</span></li>`).join('')}</ul>` : ''}
   </div>
   <aside>

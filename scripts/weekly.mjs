@@ -73,7 +73,7 @@ async function main() {
       const ra = kevAdded.filter((k) => k.ra).length;
       p.push(`وأدرجت CISA خلال الأسبوع ${nVuln(kevAdded.length)} في قائمتها للثغرات المستغلة فعلياً${ra ? `، ومنها ${ra === 1 ? 'واحدة يُعرف استخدامها' : ra === 2 ? 'اثنتان يُعرف استخدامهما' : `${ra} يُعرف استخدامها`} في حملات الفدية` : ''}، لذا تُقدَّم معالجتها على غيرها.`);
     }
-    if (epssTop[0]) p.push(`وأعلى ثغرات الأسبوع احتمالاً للاستغلال بحسب نظام EPSS هي ${iso(epssTop[0].i)} باحتمال ${iso((epssTop[0].e * 100).toFixed(1) + '%')} خلال الثلاثين يوماً المقبلة.`);
+    if (epssTop[0]) p.push(`وأعلى ثغرات الأسبوع احتمالاً للاستغلال بحسب نظام EPSS هي ${iso(epssTop[0].i)} باحتمال ${iso(String(Number((epssTop[0].e * 100).toFixed(1))) + '%')} خلال الثلاثين يوماً المقبلة.`);
     const out = {
       id: wk.id, y: wk.y, w: wk.w, from: ymd(start), to: ymd(end), generated: new Date().toISOString().slice(0, 10),
       titleAr, lineAr, paragraphsAr: p, total: live.length, rejected: items.length - live.length, sev, unscored,

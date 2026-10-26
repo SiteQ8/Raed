@@ -339,7 +339,7 @@ function weekBody(w) {
 ${sevs.map(([s, n]) => `<div><b class="num">${n.toLocaleString('en-US')}</b><span>${SEV_AR[s]}</span></div>`).join('')}
 <div><b class="num">${w.kevAdded.length}</b><span>أُضيفت إلى قائمة الثغرات المستغلة فعلياً</span></div>
 </div>
-<div class="prose">${w.paragraphsAr.map((p) => `<p>${html(p)}</p>`).join('')}</div>
+<div class="prose">${w.paragraphsAr.map((p) => `<p>${html(p).replace(/CVE-\d{4}-\d{4,}/g, (m) => `<span class="cid">${m}</span>`)}</p>`).join('')}</div>
 ${w.kevAdded.length ? `<h2>ما أُضيف إلى قائمة الثغرات المستغلة فعلياً</h2><ul class="side-list">${w.kevAdded.map((k) => `<li><a href="/record/?id=${k.i}">${k.i}</a><p>${html(`${iso(k.r)} من ${iso(k.v)}`)}</p><span class="meta">أُدرجت في ${dateAr(k.da)} وموعد المعالجة للجهات الاتحادية الأمريكية ${dateAr(k.due)}${k.ra ? ' وتستخدمها حملات فدية' : ''}</span></li>`).join('')}</ul>` : ''}
 <h2>أخطر ما نُشر هذا الأسبوع</h2>
 <ul class="reg">${w.top.map(rowHtml).join('\n')}</ul>

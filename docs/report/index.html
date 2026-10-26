@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>أبلغ عن ثغرة | رائد</title>
-<meta name="description" content="بوابة عربية للإبلاغ عن ثغرة أمنية في برمجية أو خدمة عربية: نموذج يجهّز البلاغ المنظم في متصفحك ثم ترسله عبر الإبلاغ الخاص في GitHub أو البريد، مع إفصاح منسّق خلال تسعين يوماً ونسبة الاكتشاف إليك.">
+<meta name="description" content="بوابة عربية للإبلاغ عن ثغرة أمنية في برمجية أو خدمة عربية: نموذج يجهّز البلاغ المنظم في متصفحك ثم ترسله أنت عبر الإبلاغ الخاص في GitHub أو البريد، مع إفصاح منسّق خلال تسعين يوماً ونسبة الاكتشاف إليك.">
 <link rel="canonical" href="https://cve.3li.info/report/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ar_AR">
 <meta property="og:site_name" content="رائد">
 <meta property="og:title" content="أبلغ عن ثغرة | رائد">
-<meta property="og:description" content="بوابة عربية للإبلاغ عن ثغرة أمنية في برمجية أو خدمة عربية: نموذج يجهّز البلاغ المنظم في متصفحك ثم ترسله عبر الإبلاغ الخاص في GitHub أو البريد، مع إفصاح منسّق خلال تسعين يوماً ونسبة الاكتشاف إليك.">
+<meta property="og:description" content="بوابة عربية للإبلاغ عن ثغرة أمنية في برمجية أو خدمة عربية: نموذج يجهّز البلاغ المنظم في متصفحك ثم ترسله أنت عبر الإبلاغ الخاص في GitHub أو البريد، مع إفصاح منسّق خلال تسعين يوماً ونسبة الاكتشاف إليك.">
 <meta property="og:url" content="https://cve.3li.info/report/">
 <meta property="og:image" content="https://cve.3li.info/assets/img/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -42,7 +42,7 @@
 <div class="wrap">
   <header class="head">
     <h1>أبلغ عن ثغرة</h1>
-    <p class="lead">وجدت ثغرة في برمجية أو خدمة عربية؟ اكتب بلاغك هنا بالعربية، فيجهّزه النموذج بلاغاً منظماً في متصفحك ثم ترسله أنت بإحدى طريقتين خاصتين، ولا يمر شيء منه بأي خادم.</p>
+    <p class="lead">وجدت ثغرة في برمجية أو خدمة عربية؟ اكتب بلاغك هنا بالعربية، فيجهّزه النموذج بلاغاً منظماً في متصفحك ثم ترسله أنت بإحدى طريقتين خاصتين، ولا يمر شيء منه بأي خادم لـ«رائد».</p>
   </header>
 
   <div class="report-layout">
@@ -128,20 +128,20 @@
         <h3>الإبلاغ الخاص في GitHub</h3>
         <p>الطريقة المفضلة، لأن البلاغ يبقى خاصاً بينك وبين «رائد» حتى النشر، وتتابعه وتتحاور فيه من الصفحة نفسها.</p>
         <ol class="gh-steps">
-          <li><span>افتح صفحة الإبلاغ الخاص وسجّل دخولك إلى GitHub، فيُنسخ البلاغ تلقائياً عند الضغط</span><a class="btn" id="open-gh" href="https://github.com/SiteQ8/Raed/security/advisories/new" target="_blank" rel="noopener">افتح GitHub</a></li>
+          <li><span>اضغط الزر فتُفتح صفحة الإبلاغ الخاص في GitHub ويُنسخ البلاغ معها، ثم سجّل دخولك إن طُلب منك</span><a class="btn" id="open-gh" href="https://github.com/SiteQ8/Raed/security/advisories/new" target="_blank" rel="noopener">افتح GitHub</a></li>
           <li><span>انسخ العنوان والصقه في خانة <bdi>Title</bdi></span><button class="btn quiet copy" type="button" data-copy="title">انسخ العنوان</button></li>
           <li><span>انسخ البلاغ والصقه في خانة <bdi>Description</bdi></span><button class="btn quiet copy" type="button" data-copy="body">انسخ البلاغ</button></li>
           <li><span>املأ إن شئت خانات المنتج والإصدارات ونوع الضعف بالقيم التالية، ثم اضغط <bdi>Submit report</bdi></span><dl class="gh-fields" id="gh-fields"></dl></li>
         </ol>
+        <p class="count-line copied" id="copied" role="status" aria-live="polite"></p>
       </div>
       <div class="way">
         <h3>البريد</h3>
-        <p>إن لم يكن لديك حساب في GitHub، يُفتح بريدك ببلاغ جاهز موجّه إلى <bdi>site@hotmail.com</bdi>.</p>
+        <p>وإن لم يكن لديك حساب في GitHub فاضغط «افتح البريد بالبلاغ» ليُفتح بريدك ببلاغ جاهز موجّه إلى <bdi>site@hotmail.com</bdi>.</p>
         <div class="actions"><a class="btn quiet" id="mail" href="#">افتح البريد بالبلاغ</a><button class="btn quiet" type="button" id="download">نزّل البلاغ ملفاً</button></div>
         <p class="help" id="mail-note" hidden>البلاغ أطول من أن يحمله رابط البريد كاملاً، لذا يُفتح البريد بالعنوان فقط، فالصق فيه البلاغ المنسوخ أو أرفق الملف.</p>
       </div>
     </div>
-    <p class="count-line" id="copied" role="status" aria-live="polite"></p>
     <details class="preview"><summary>اعرض نص البلاغ</summary><pre id="preview" dir="auto"></pre></details>
   </section>
 </div>

@@ -461,3 +461,5 @@ ul.plain li { margin: 4px 0; }
 
 /* The six weekly figures sit in two even rows of three in the reading column, never five and a stray one */
 .doc-main .stat-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-5) var(--s-6); }
+.cid { white-space: nowrap; direction: ltr; unicode-bidi: isolate; }
+.copied { margin-top: var(--s-3); min-height: 1.6em; }

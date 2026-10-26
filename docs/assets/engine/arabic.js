@@ -165,7 +165,7 @@ export function summaryAr(it) {
   if (!cw && !where && !it.vec) {
     // Older records often carry only free text, so say so plainly instead of inventing detail.
     let t = 'ثغرة لم تذكر الجهة المرقّمة نوعها ولا منتجها في حقول السجل المنظمة، لذا فالوصف الأصلي هو المرجع لتفاصيلها';
-    t += it.s != null && it.sv ? `، ويقدّر التقييم خطورتها بـ ${iso(Number(it.s).toFixed(1))} من 10 أي ${SEV_AR[it.sv] || ''}` : '، ولم يُنشر تقييم لخطورتها في السجل';
+    t += it.s != null && it.sv ? `، ويقدّر التقييم خطورتها بـ ${iso(Number(it.s).toFixed(1))} من 10 أي ${SEV_AR[it.sv] || ''}` : '، ولم يُنشر تقييم لخطورتها في السجل';
     if (it.k) t += '، وقد أدرجتها CISA في قائمة الثغرات المستغلة فعلياً';
     return t + '.';
   }
@@ -183,7 +183,7 @@ export function summaryAr(it) {
     s += `، وتمس ${joinAnd(imp.list)}`;
   }
   if (it.s != null && it.sv) {
-    s += `، ويقدّر التقييم خطورتها بـ ${iso(Number(it.s).toFixed(1))} من 10 أي ${SEV_AR[it.sv] || ''}`;
+    s += `، ويقدّر التقييم خطورتها بـ ${iso(Number(it.s).toFixed(1))} من 10 أي ${SEV_AR[it.sv] || ''}`;
   } else {
     s += '، ولم تنشر الجهة المرقّمة تقييماً لخطورتها بعد';
   }
