@@ -130,3 +130,22 @@ details.faq summary { font-size: 16.5px; padding-block: 6px; }
 .actions .btn { flex: 1 1 100%; justify-content: center; }
 .way { padding: var(--s-4); }
 .hall li { grid-template-columns: 1fr; gap: 4px; }
+
+/* Thumb targets: every control and every link that stands on its own line reaches 44px */
+.brand { min-height: 44px; }
+.hint button { display: inline-flex; align-items: center; min-height: 44px; padding: 0 4px; }
+.chip { min-height: 44px; }
+.gloss-index li a { display: flex; align-items: center; min-height: 44px; }
+details.faq summary { padding-block: 10px; }
+.foot li { margin: 0; }
+.foot li a, .side-list a, .refs li a, .rail-links a { display: inline-block; padding-block: 11px; line-height: 22px; }
+.side-list li { padding: var(--s-1) 0 var(--s-3); }
+.side-list a + p { margin-top: -6px; }
+.consent input { width: 24px; height: 24px; margin-top: 4px; }
+
+/* Lists inside text pages and the glossary stay one column on a phone */
+.doc-main .side-list li { display: block; }
+.term { padding: var(--s-4) 0; }
+.lost { padding-top: var(--s-5); }
+.field .choices label { min-height: 44px; }
+.field input[type='radio'] { width: 22px; height: 22px; min-height: 0; }
