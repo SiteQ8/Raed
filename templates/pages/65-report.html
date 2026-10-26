@@ -1,8 +1,8 @@
-<!-- {"title":"أبلغ عن ثغرة","desc":"بوابة عربية للإبلاغ عن ثغرة أمنية في برمجية أو خدمة عربية: نموذج يجهّز البلاغ المنظم في متصفحك ثم ترسله عبر الإبلاغ الخاص في GitHub أو البريد، مع إفصاح منسّق خلال تسعين يوماً ونسبة الاكتشاف إليك.","path":"/report/","nav":"","scripts":["/assets/js/report.js"]} -->
+<!-- {"title":"أبلغ عن ثغرة","desc":"بوابة عربية للإبلاغ عن ثغرة أمنية في برمجية أو خدمة عربية: نموذج يجهّز البلاغ المنظم في متصفحك ثم ترسله أنت عبر الإبلاغ الخاص في GitHub أو البريد، مع إفصاح منسّق خلال تسعين يوماً ونسبة الاكتشاف إليك.","path":"/report/","nav":"","scripts":["/assets/js/report.js"]} -->
 <div class="wrap">
   <header class="head">
     <h1>أبلغ عن ثغرة</h1>
-    <p class="lead">وجدت ثغرة في برمجية أو خدمة عربية؟ اكتب بلاغك هنا بالعربية، فيجهّزه النموذج بلاغاً منظماً في متصفحك ثم ترسله أنت بإحدى طريقتين خاصتين، ولا يمر شيء منه بأي خادم.</p>
+    <p class="lead">وجدت ثغرة في برمجية أو خدمة عربية؟ اكتب بلاغك هنا بالعربية، فيجهّزه النموذج بلاغاً منظماً في متصفحك ثم ترسله أنت بإحدى طريقتين خاصتين، ولا يمر شيء منه بأي خادم لـ«رائد».</p>
   </header>
 
   <div class="report-layout">
@@ -45,7 +45,7 @@
           <div class="field"><label for="f-state">حالة الثغرة</label><select id="f-state" name="state"><option value="private">لم تُنشر في أي مكان</option><option value="public">منشورة أو معروفة للعامة</option><option value="exploited">رأيت دليلاً على استغلالها</option></select></div>
         </div>
         <div class="field"><label for="f-desc">الوصف <span class="req">مطلوب</span></label><textarea id="f-desc" name="desc" rows="5" required dir="auto" placeholder="أين الثغرة وما سببها"></textarea></div>
-        <div class="field"><label for="f-steps">خطوات إعادة الإنتاج <span class="req">مطلوب</span></label><textarea id="f-steps" name="steps" rows="6" required dir="auto" placeholder="1. افتح الصفحة...&#10;2. أدخل القيمة...&#10;3. لاحظ أن..."></textarea></div>
+        <div class="field"><label for="f-steps">خطوات إظهار الثغرة <span class="req">مطلوب</span></label><textarea id="f-steps" name="steps" rows="6" required dir="auto" placeholder="1. افتح الصفحة...&#10;2. أدخل القيمة...&#10;3. لاحظ أن..."></textarea></div>
         <div class="field"><label for="f-impact">الأثر <span class="req">مطلوب</span></label><textarea id="f-impact" name="impact" rows="3" required dir="auto" placeholder="ما الذي يستطيع المهاجم فعله"></textarea></div>
         <div class="field"><label for="f-poc">إثبات المفهوم</label><textarea id="f-poc" name="poc" rows="3" dir="ltr" placeholder="Request, payload, or a private link"></textarea><p class="help">لا تضع هنا رابطاً عاماً لشيفرة استغلال، فالبلاغ خاص حتى يصدر الإصلاح.</p></div>
       </fieldset>
@@ -86,18 +86,22 @@
     <div class="send-ways">
       <div class="way">
         <h3>الإبلاغ الخاص في GitHub</h3>
-        <p>الطريقة المفضلة، فالبلاغ يبقى خاصاً بينك وبين «رائد» حتى النشر، ويمكن متابعته والحوار فيه من الصفحة نفسها.</p>
-        <ol class="plain-steps"><li>انسخ البلاغ بالزر أدناه.</li><li>افتح صفحة الإبلاغ الخاص وسجّل دخولك.</li><li>ضع العنوان في خانة Title والبلاغ في خانة Description ثم أرسل.</li></ol>
-        <div class="actions"><button class="btn" type="button" id="copy-gh">انسخ البلاغ وافتح GitHub</button></div>
+        <p>الطريقة المفضلة، لأن البلاغ يبقى خاصاً بينك وبين «رائد» حتى النشر، وتتابعه وتتحاور فيه من الصفحة نفسها.</p>
+        <ol class="gh-steps">
+          <li><span>اضغط الزر فتُفتح صفحة الإبلاغ الخاص في GitHub ويُنسخ البلاغ معها، ثم سجّل دخولك إن طُلب منك</span><a class="btn" id="open-gh" href="https://github.com/SiteQ8/Raed/security/advisories/new" target="_blank" rel="noopener">افتح GitHub</a></li>
+          <li><span>انسخ العنوان والصقه في خانة <bdi>Title</bdi></span><button class="btn quiet copy" type="button" data-copy="title">انسخ العنوان</button></li>
+          <li><span>انسخ البلاغ والصقه في خانة <bdi>Description</bdi></span><button class="btn quiet copy" type="button" data-copy="body">انسخ البلاغ</button></li>
+          <li><span>املأ إن شئت خانات المنتج والإصدارات ونوع الضعف بالقيم التالية، ثم اضغط <bdi>Submit report</bdi></span><dl class="gh-fields" id="gh-fields"></dl></li>
+        </ol>
+        <p class="count-line copied" id="copied" role="status" aria-live="polite"></p>
       </div>
       <div class="way">
         <h3>البريد</h3>
-        <p>إن لم يكن لديك حساب في GitHub، يُفتح بريدك ببلاغ جاهز موجّه إلى <bdi>site@hotmail.com</bdi>.</p>
+        <p>وإن لم يكن لديك حساب في GitHub فاضغط «افتح البريد بالبلاغ» ليُفتح بريدك ببلاغ جاهز موجّه إلى <bdi>site@hotmail.com</bdi>.</p>
         <div class="actions"><a class="btn quiet" id="mail" href="#">افتح البريد بالبلاغ</a><button class="btn quiet" type="button" id="download">نزّل البلاغ ملفاً</button></div>
         <p class="help" id="mail-note" hidden>البلاغ أطول من أن يحمله رابط البريد كاملاً، لذا يُفتح البريد بالعنوان فقط، فالصق فيه البلاغ المنسوخ أو أرفق الملف.</p>
       </div>
     </div>
-    <p class="count-line" id="copied" role="status" aria-live="polite"></p>
     <details class="preview"><summary>اعرض نص البلاغ</summary><pre id="preview" dir="auto"></pre></details>
   </section>
 </div>

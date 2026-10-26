@@ -13,8 +13,8 @@ const COUNTRY_AR = {
   Uzbekistan: 'أوزبكستان', Luxembourg: 'لوكسمبورغ', 'n/a': 'غير محدد',
 };
 const TYPE_AR = {
-  Vendor: 'مورّد', 'Open Source': 'مصدر مفتوح', Researcher: 'باحثون', 'Bug Bounty Provider': 'منصة مكافآت',
-  CERT: 'فريق استجابة', 'Hosted Service': 'خدمة مستضافة', Consultancy: 'استشارات', 'Vulnerability Coordinator': 'منسّق ثغرات',
+  Vendor: 'مورّد', 'Open Source': 'مشروع مفتوح المصدر', Researcher: 'باحثون', 'Bug Bounty Provider': 'منصة مكافآت الثغرات',
+  CERT: 'فريق استجابة للطوارئ', 'Hosted Service': 'خدمة مستضافة', Consultancy: 'استشارات', 'Vulnerability Coordinator': 'منسّق ثغرات',
 };
 const co = (c) => COUNTRY_AR[c] || c;
 const ty = (t) => TYPE_AR[t] || t;

@@ -29,15 +29,23 @@ export const COUNTRY_AR = {
 };
 
 export const TYPE_AR = {
-  Vendor: 'مورّد', 'Open Source': 'مصدر مفتوح', Researcher: 'باحثون', 'Bug Bounty Provider': 'منصة مكافآت الثغرات',
-  'CERT': 'فريق استجابة وطني', 'Hosted Service': 'خدمة مستضافة', Consultancy: 'استشارات', 'Vulnerability Coordinator': 'منسّق ثغرات',
+  Vendor: 'مورّد', 'Open Source': 'مشروع مفتوح المصدر', Researcher: 'باحثون', 'Bug Bounty Provider': 'منصة مكافآت الثغرات',
+  'CERT': 'فريق استجابة للطوارئ', 'Hosted Service': 'خدمة مستضافة', Consultancy: 'استشارات', 'Vulnerability Coordinator': 'منسّق ثغرات',
 };
+
+// Some CNAs write their scope with HTML and entities; the site shows it as plain text.
+const ENT = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ', '#39': "'" };
+function plain(x) {
+  return String(x).replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]+>/g, '')
+    .replace(/&(#x?[0-9a-f]+|\w+);/gi, (m, e) => (ENT[e.toLowerCase()] ?? (e[0] === '#' ? String.fromCodePoint(e[1].toLowerCase() === 'x' ? parseInt(e.slice(2), 16) : parseInt(e.slice(1), 10)) : m)))
+    .replace(/\s+/g, ' ').trim();
+}
 
 async function main() {
   const raw = await getJSON(SRC);
   const out = raw.map((c) => {
-    const adv = c.securityAdvisories?.advisories?.[0]?.url || '';
-    const pol = c.disclosurePolicy?.[0]?.url || '';
+    const adv = plain(c.securityAdvisories?.advisories?.[0]?.url || '');
+    const pol = plain(c.disclosurePolicy?.[0]?.url || '');
     return {
       s: c.shortName,
       n: c.organizationName,
@@ -45,7 +53,7 @@ async function main() {
       t: c.CNA?.type || [],
       root: c.CNA?.root?.shortName && c.CNA.root.shortName !== 'n/a' ? c.CNA.root.organizationName : c.CNA?.TLR?.organizationName || '',
       roles: (c.CNA?.roles || []).map((r) => r.role),
-      scope: (c.scope || '').replace(/\s+/g, ' ').trim().slice(0, 400),
+      scope: plain(c.scope || '').slice(0, 400),
       adv, pol,
       arab: ARAB.has(c.country) ? 1 : 0,
     };
