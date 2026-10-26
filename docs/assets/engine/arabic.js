@@ -45,22 +45,23 @@ export function timeAr(s) {
   return `${String(h).padStart(2, '0')}:${m} بتوقيت الكويت`;
 }
 
-// Counted nouns with digits: 1 and 2 take the word alone, 3 to 10 the plural, 11 and above the singular accusative.
-export function nVuln(n) {
+// Counted nouns with digits: 1 and 2 take the word alone, 3 to 10 the genitive plural,
+// 11 to 99 the singular accusative and 100 and above (with a last part of 0, 1 or 2) the singular genitive.
+// forms: { one, two, plural, acc, gen, zero }, where one and two are full phrases such as «ثغرة واحدة».
+export function countAr(n, forms) {
   const num = Number(n);
-  if (num === 1) return 'ثغرة واحدة';
-  if (num === 2) return 'ثغرتان';
-  if (num === 0) return 'لا ثغرات';
+  if (num === 0 && forms.zero) return forms.zero;
+  if (num === 1 && forms.one) return forms.one;
+  if (num === 2 && forms.two) return forms.two;
   const mod = num % 100;
-  return `${num.toLocaleString('en-US')} ${mod >= 3 && mod <= 10 ? 'ثغرات' : 'ثغرة'}`;
+  const word = mod >= 3 && mod <= 10 ? forms.plural : mod >= 11 ? forms.acc : forms.gen;
+  return `${num.toLocaleString('en-US')} ${word}`;
+}
+export function nVuln(n) {
+  return countAr(n, { zero: 'لا ثغرات', one: 'ثغرة واحدة', two: 'ثغرتان', plural: 'ثغرات', acc: 'ثغرة', gen: 'ثغرة' });
 }
 export function nRecord(n) {
-  const num = Number(n);
-  if (num === 1) return 'سجل واحد';
-  if (num === 2) return 'سجلان';
-  if (num === 0) return 'لا سجلات';
-  const mod = num % 100;
-  return `${num.toLocaleString('en-US')} ${mod >= 3 && mod <= 10 ? 'سجلات' : 'سجلاً'}`;
+  return countAr(n, { zero: 'لا سجلات', one: 'سجل واحد', two: 'سجلان', plural: 'سجلات', acc: 'سجلاً', gen: 'سجل' });
 }
 
 // ---------- CVSS ----------
@@ -108,11 +109,11 @@ function impacts(m) {
   const a = m.A || m.VA;
   const parts = [];
   if (c === 'H') parts.push('سرية البيانات');
-  if (i === 'H') parts.push('سلامتها');
+  if (i === 'H') parts.push(c === 'H' ? 'سلامتها' : 'سلامة البيانات');
   if (a === 'H') parts.push('توافر الخدمة');
   if (!parts.length) {
     if (c === 'L') parts.push('سرية البيانات');
-    if (i === 'L') parts.push('سلامتها');
+    if (i === 'L') parts.push(c === 'L' ? 'سلامتها' : 'سلامة البيانات');
     if (a === 'L') parts.push('توافر الخدمة');
     if (parts.length) return { soft: true, list: parts };
   }
@@ -137,10 +138,10 @@ export function epssAr(e, ep) {
   let tail = '';
   if (ep != null) {
     const top = (1 - ep) * 100;
-    if (top <= 1) tail = ` وهي ضمن أعلى ${iso('1%')} من كل الثغرات`;
-    else if (top <= 10) tail = ` وهي ضمن أعلى ${iso(Math.ceil(top) + '%')} من كل الثغرات`;
+    if (top <= 1) tail = ` وهي ضمن أعلى ${iso('1%')} من جميع الثغرات`;
+    else if (top <= 10) tail = ` وهي ضمن أعلى ${iso(Math.ceil(top) + '%')} من جميع الثغرات`;
   }
-  return `احتمال استغلالها خلال الثلاثين يوماً المقبلة ${iso(shown + '%')}${tail}`;
+  return `يبلغ احتمال استغلالها خلال الثلاثين يوماً المقبلة ${iso(shown + '%')}${tail}`;
 }
 
 // ---------- Summary ----------

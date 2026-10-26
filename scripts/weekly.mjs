@@ -62,16 +62,16 @@ async function main() {
     const epssTop = [...live].filter((x) => x.e != null).sort((a, b) => b.e - a.e).slice(0, 8);
     const titleAr = `${ordinalWeekAr(wk.w)} من ${wk.y}`;
     const range = `من ${dateAr(ymd(start), { year: false })} إلى ${dateAr(ymd(end))}`;
-    const lineAr = `نُشر ${range} ما مجموعه ${nVuln(live.length)} جديدة، منها ${sev.CRITICAL.toLocaleString('en-US')} حرجة و${sev.HIGH.toLocaleString('en-US')} عالية الخطورة، وأُضيف إلى قائمة الثغرات المستغلة فعلياً ${kevAdded.length ? nVuln(kevAdded.length) : 'لا شيء'}.`;
+    const lineAr = `نُشر ${range} ما مجموعه ${live.length === 2 ? 'ثغرتان جديدتان' : nVuln(live.length) + ' جديدة'}، منها ${sev.CRITICAL.toLocaleString('en-US')} حرجة و${sev.HIGH.toLocaleString('en-US')} عالية الخطورة، وأُضيف إلى قائمة الثغرات المستغلة فعلياً ${kevAdded.length ? nVuln(kevAdded.length) : 'لا شيء'}.`;
     const p = [];
     const topCwe = cwe[0] ? cweAr(cwe[0][0])?.name || cwe[0][0] : null;
     const pctCrit = live.length ? Math.round(((sev.CRITICAL + sev.HIGH) / live.length) * 100) : 0;
     p.push(`شكّلت الثغرات الحرجة والعالية ${iso(pctCrit + '%')} من سجلات الأسبوع${unscored ? `، بينما بقيت ${nVuln(unscored)} دون تقييم للخطورة حتى تاريخ النشرة` : ''}.`);
     if (topCwe) p.push(`وتصدّرت أنواعَ الضعف ${topCwe} بعدد ${cwe[0][1].toLocaleString('en-US')}${cwe[1] ? ` ثم ${cweAr(cwe[1][0])?.name || cwe[1][0]} بعدد ${cwe[1][1].toLocaleString('en-US')}` : ''}.`);
-    if (vendors[0]) p.push(`وكان ${iso(vendors[0][0])} أكثر الموردين وروداً في السجلات بعدد ${vendors[0][1].toLocaleString('en-US')}${vendors[1] ? ` يليه ${iso(vendors[1][0])} بعدد ${vendors[1][1].toLocaleString('en-US')}` : ''}.`);
+    if (vendors[0]) p.push(`وكان ${iso(vendors[0][0])} أكثر المورّدين وروداً في السجلات بعدد ${vendors[0][1].toLocaleString('en-US')}${vendors[1] ? ` يليه ${iso(vendors[1][0])} بعدد ${vendors[1][1].toLocaleString('en-US')}` : ''}.`);
     if (kevAdded.length) {
       const ra = kevAdded.filter((k) => k.ra).length;
-      p.push(`وأدرجت CISA خلال الأسبوع ${nVuln(kevAdded.length)} في قائمتها للثغرات المستغلة فعلياً${ra ? `، ومنها ${ra === 1 ? 'واحدة معروف استخدامها' : `${ra} معروف استخدامها`} في حملات الفدية` : ''}، لذا تستحق المعالجة قبل غيرها.`);
+      p.push(`وأدرجت CISA خلال الأسبوع ${nVuln(kevAdded.length)} في قائمتها للثغرات المستغلة فعلياً${ra ? `، ومنها ${ra === 1 ? 'واحدة يُعرف استخدامها' : ra === 2 ? 'اثنتان يُعرف استخدامهما' : `${ra} يُعرف استخدامها`} في حملات الفدية` : ''}، لذا تُقدَّم معالجتها على غيرها.`);
     }
     if (epssTop[0]) p.push(`وأعلى ثغرات الأسبوع احتمالاً للاستغلال بحسب نظام EPSS هي ${iso(epssTop[0].i)} باحتمال ${iso((epssTop[0].e * 100).toFixed(1) + '%')} خلال الثلاثين يوماً المقبلة.`);
     const out = {
