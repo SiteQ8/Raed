@@ -61,7 +61,7 @@ ${line('نوع الضعف (CWE)', cwe)}${line('مسار الهجوم (Attack vec
 ### الوصف (Description)
 ${d.desc}
 
-### خطوات إعادة الإنتاج (Steps to reproduce)
+### خطوات إظهار الثغرة (Steps to reproduce)
 ${d.steps}
 
 ### الأثر (Impact)

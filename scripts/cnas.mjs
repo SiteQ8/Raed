@@ -29,8 +29,8 @@ export const COUNTRY_AR = {
 };
 
 export const TYPE_AR = {
-  Vendor: 'مورّد', 'Open Source': 'مصدر مفتوح', Researcher: 'باحثون', 'Bug Bounty Provider': 'منصة مكافآت الثغرات',
-  'CERT': 'فريق استجابة وطني', 'Hosted Service': 'خدمة مستضافة', Consultancy: 'استشارات', 'Vulnerability Coordinator': 'منسّق ثغرات',
+  Vendor: 'مورّد', 'Open Source': 'مشروع مفتوح المصدر', Researcher: 'باحثون', 'Bug Bounty Provider': 'منصة مكافآت الثغرات',
+  'CERT': 'فريق استجابة للطوارئ', 'Hosted Service': 'خدمة مستضافة', Consultancy: 'استشارات', 'Vulnerability Coordinator': 'منسّق ثغرات',
 };
 
 async function main() {
