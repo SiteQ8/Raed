@@ -103,8 +103,10 @@ dl.fields dt { border-bottom: 0; padding-bottom: 0; }
 /* Steps, lists, figures */
 .steps > li { grid-template-columns: 36px 1fr; gap: var(--s-3); }
 .steps > li::before { font-size: 24px; }
-.stat-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-4); }
-.stat-row div b { font-size: 28px; }
+/* Figures sit in even rows of three, like the home page sums, number over its label on the same right edge */
+.stat-row, .doc-main .stat-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-4) var(--s-3); margin: var(--s-4) 0 var(--s-5); }
+.stat-row div b { font-size: 26px; }
+.stat-row div span { font-size: 13.5px; line-height: 1.5; display: block; }
 .listen { padding: var(--s-4); }
 .figure { margin: var(--s-5) calc(-1 * var(--s-4)); }
 .figure img { border-radius: 0; border-inline: 0; }
@@ -152,3 +154,14 @@ details.faq summary { padding-block: 10px; }
 .lost { padding-top: var(--s-5); }
 .field .choices label { min-height: 44px; }
 .field input[type='radio'] { width: 22px; height: 22px; min-height: 0; }
+
+/* CNA list on phones: name, then country and type on one quiet line, then the scope; filters side by side */
+#table tr { padding: var(--s-3) var(--s-4); }
+#table td.co, #table td.ty { display: inline; width: auto; min-width: 0; padding: 0; font-size: 14px; color: var(--ink-2); }
+#table td.co::before, #table td.ty::before { display: none; }
+#table td.ty::before { content: '·'; margin-inline: 8px; display: inline; font-size: 14px; color: var(--muted); }
+#table td.co, #table td.ty { display: inline-block; vertical-align: baseline; margin-top: var(--s-2); }
+#table td.sc { margin-top: var(--s-2); padding-top: var(--s-2); border-top: 1px solid var(--line-2); }
+#table td.sc::before { margin-bottom: 2px; }
+.filters:has(#country) { display: grid; grid-template-columns: 1fr 1fr; }
+.filters:has(#country) input[type='search'] { grid-column: 1 / -1; }
