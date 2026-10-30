@@ -210,5 +210,5 @@ test('text pages carry the reading column and the rail on wide screens', () => {
     assert.match(html, /<aside class="rail">/, path);
   }
   const home = readFileSync(new URL('../docs/index.html', import.meta.url), 'utf8');
-  assert.match(home, /class="hero-grid"/);
+  assert.match(home, /class="band"/);
 });
