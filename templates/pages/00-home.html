@@ -1,9 +1,9 @@
 <!-- {"title":"الرئيسية","desc":"رائد سجل عربي مفتوح للثغرات الأمنية المعلنة، يعرض كل سجل من سجلات برنامج CVE بالعربية مع درجة الخطورة واحتمال الاستغلال ويتجدد كل ساعة.","path":"/","nav":"","scripts":["/assets/js/home.js"]} -->
-<div class="wrap">
-  <section class="hero">
-    <div class="hero-grid">
-    <div class="hero-text">
-    <h1>كل ثغرة أمنية تُعلن في العالم، مكتوبة بالعربية</h1>
+<section class="band" aria-labelledby="band-h">
+  <img class="band-art" src="/assets/img/band.webp" srcset="/assets/img/band-960.webp 960w, /assets/img/band.webp 1920w" sizes="100vw" alt="رائد واقف على قمة كثيب يظلل عينيه ويتطلع نحو نجمة في الأفق، وخلفه قافلة من الإبل" width="1920" height="1074" fetchpriority="high">
+  <div class="wrap band-in">
+    <div class="band-text">
+    <h1 id="band-h">كل ثغرة أمنية تُعلن في العالم، مكتوبة بالعربية</h1>
     <p class="lead">يقرأ رائد كل سجل يصدر عن برنامج CVE خلال ساعة من نشره، ثم يعرض لكل ثغرة نوعها والمنتج المصاب وطريقة استغلالها ودرجة خطورتها واحتمال استغلالها.</p>
     <form class="find" action="/record/" method="get" role="search">
       <label for="q" class="skip">رقم الثغرة أو اسم المنتج</label>
@@ -13,9 +13,10 @@
     <p class="hint">جرّب <button type="button" data-try="CVE-2024-3094">CVE-2024-3094</button> أو <button type="button" data-try="Fortinet">Fortinet</button> أو <button type="button" data-try="WordPress">WordPress</button></p>
     <p class="hint">وجدت ثغرة في برمجية أو خدمة عربية؟ <a href="/report/">أبلغ عنها بالعربية</a>.</p>
     </div>
-    <figure class="hero-art"><img src="/assets/img/scout-hero.webp" alt="رائد واقف على قمة كثيب يظلل عينيه ويتطلع إلى الأفق، وخلفه قافلة من الإبل تتبعه" width="1128" height="752" fetchpriority="high"></figure>
-    </div>
-
+  </div>
+</section>
+<div class="wrap">
+  <section class="pulse" aria-label="حركة السجل">
     <div class="watch">
       <div class="watch-top">
         <div class="today"><b class="num">{{today_n}}</b><span>{{today_label}}</span></div>
