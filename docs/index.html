@@ -39,11 +39,11 @@
   </div>
 </header>
 <main id="main">
-<div class="wrap">
-  <section class="hero">
-    <div class="hero-grid">
-    <div class="hero-text">
-    <h1>كل ثغرة أمنية تُعلن في العالم، مكتوبة بالعربية</h1>
+<section class="band" aria-labelledby="band-h">
+  <img class="band-art" src="/assets/img/band.webp" srcset="/assets/img/band-960.webp 960w, /assets/img/band.webp 1920w" sizes="100vw" alt="رائد واقف على قمة كثيب يظلل عينيه ويتطلع نحو نجمة في الأفق، وخلفه قافلة من الإبل" width="1920" height="1074" fetchpriority="high">
+  <div class="wrap band-in">
+    <div class="band-text">
+    <h1 id="band-h">كل ثغرة أمنية تُعلن في العالم، مكتوبة بالعربية</h1>
     <p class="lead">يقرأ رائد كل سجل يصدر عن برنامج CVE خلال ساعة من نشره، ثم يعرض لكل ثغرة نوعها والمنتج المصاب وطريقة استغلالها ودرجة خطورتها واحتمال استغلالها.</p>
     <form class="find" action="/record/" method="get" role="search">
       <label for="q" class="skip">رقم الثغرة أو اسم المنتج</label>
@@ -53,9 +53,10 @@
     <p class="hint">جرّب <button type="button" data-try="CVE-2024-3094">CVE-2024-3094</button> أو <button type="button" data-try="Fortinet">Fortinet</button> أو <button type="button" data-try="WordPress">WordPress</button></p>
     <p class="hint">وجدت ثغرة في برمجية أو خدمة عربية؟ <a href="/report/">أبلغ عنها بالعربية</a>.</p>
     </div>
-    <figure class="hero-art"><img src="/assets/img/scout-hero.webp" alt="رائد واقف على قمة كثيب يظلل عينيه ويتطلع إلى الأفق، وخلفه قافلة من الإبل تتبعه" width="1128" height="752" fetchpriority="high"></figure>
-    </div>
-
+  </div>
+</section>
+<div class="wrap">
+  <section class="pulse" aria-label="حركة السجل">
     <div class="watch">
       <div class="watch-top">
         <div class="today"><b class="num">599</b><span>ثغرة نُشرت في آخر 24 ساعة</span></div>
@@ -74,62 +75,62 @@
       <h2>أحدث ما نُشر</h2>
       <ul class="reg">
 <li><a class="row" href="/record/?id=CVE-2026-103963">
-<span class="id"><b dir="ltr">CVE-2026-103963</b><small>30 أكتوبر</small></span>
+<span class="id"><b dir="ltr"><span class="pre">CVE-2026-</span>103963</b><small>30 أكتوبر</small></span>
 <span class="what"><span class="prod"><bdi>Red Hat Enterprise Linux 10</bdi> <small><bdi>Red Hat</bdi></small></span><p>ثغرة من نوع استهلاك غير منضبط للموارد في <bdi>Red Hat Enterprise Linux 10</bdi>، ويمكن استغلالها عبر الشبكة ودون أي صلاحيات ودون تدخل من المستخدم للمساس بتوافر الخدمة، ويقدّر التقييم خطورتها بـ <bdi>7.5</bdi> من 10 أي عالية.</p></span>
 <span class="marks"><span class="sev high">عالية <span class="num">7.5</span></span></span>
 </a></li>
 <li><a class="row" href="/record/?id=CVE-2026-107249">
-<span class="id"><b dir="ltr">CVE-2026-107249</b><small>30 أكتوبر</small></span>
+<span class="id"><b dir="ltr"><span class="pre">CVE-2026-</span>107249</b><small>30 أكتوبر</small></span>
 <span class="what"><span class="prod"><bdi>Block AJAX</bdi> <small><bdi>Drupal</bdi></small></span><p>ثغرة من نوع تعديل غير مضبوط لخصائص الكائن في <bdi>Block AJAX</bdi> من <bdi>Drupal</bdi>، ولم تنشر الجهة المرقّمة تقييماً لخطورتها بعد.</p></span>
 <span class="marks"><span class="sev na">بلا تقييم</span></span>
 </a></li>
 <li><a class="row" href="/record/?id=CVE-2026-107250">
-<span class="id"><b dir="ltr">CVE-2026-107250</b><small>30 أكتوبر</small></span>
+<span class="id"><b dir="ltr"><span class="pre">CVE-2026-</span>107250</b><small>30 أكتوبر</small></span>
 <span class="what"><span class="prod"><bdi>ECA Helper</bdi> <small><bdi>Drupal</bdi></small></span><p>ثغرة في <bdi>ECA Helper</bdi> من <bdi>Drupal</bdi>، ولم تنشر الجهة المرقّمة تقييماً لخطورتها بعد.</p></span>
 <span class="marks"><span class="sev na">بلا تقييم</span></span>
 </a></li>
 <li><a class="row" href="/record/?id=CVE-2026-107251">
-<span class="id"><b dir="ltr">CVE-2026-107251</b><small>30 أكتوبر</small></span>
+<span class="id"><b dir="ltr"><span class="pre">CVE-2026-</span>107251</b><small>30 أكتوبر</small></span>
 <span class="what"><span class="prod"><bdi>Entity Reference Manager (Merge entities)</bdi> <small><bdi>Drupal</bdi></small></span><p>ثغرة من نوع تخويل غير صحيح في <bdi>Entity Reference Manager (Merge entities)</bdi> من <bdi>Drupal</bdi>، ولم تنشر الجهة المرقّمة تقييماً لخطورتها بعد.</p></span>
 <span class="marks"><span class="sev na">بلا تقييم</span></span>
 </a></li>
 <li><a class="row" href="/record/?id=CVE-2026-107252">
-<span class="id"><b dir="ltr">CVE-2026-107252</b><small>30 أكتوبر</small></span>
+<span class="id"><b dir="ltr"><span class="pre">CVE-2026-</span>107252</b><small>30 أكتوبر</small></span>
 <span class="what"><span class="prod"><bdi>MathJax: LaTeX for Drupal</bdi> <small><bdi>Drupal</bdi></small></span><p>ثغرة من نوع البرمجة النصية عبر المواقع (XSS) في <bdi>MathJax: LaTeX for Drupal</bdi> من <bdi>Drupal</bdi>، ولم تنشر الجهة المرقّمة تقييماً لخطورتها بعد.</p></span>
 <span class="marks"><span class="sev na">بلا تقييم</span></span>
 </a></li>
 <li><a class="row" href="/record/?id=CVE-2026-107253">
-<span class="id"><b dir="ltr">CVE-2026-107253</b><small>30 أكتوبر</small></span>
+<span class="id"><b dir="ltr"><span class="pre">CVE-2026-</span>107253</b><small>30 أكتوبر</small></span>
 <span class="what"><span class="prod"><bdi>Orphans Media</bdi> <small><bdi>Drupal</bdi></small></span><p>ثغرة في <bdi>Orphans Media</bdi> من <bdi>Drupal</bdi>، ولم تنشر الجهة المرقّمة تقييماً لخطورتها بعد.</p></span>
 <span class="marks"><span class="sev na">بلا تقييم</span></span>
 </a></li>
 <li><a class="row" href="/record/?id=CVE-2026-107254">
-<span class="id"><b dir="ltr">CVE-2026-107254</b><small>30 أكتوبر</small></span>
+<span class="id"><b dir="ltr"><span class="pre">CVE-2026-</span>107254</b><small>30 أكتوبر</small></span>
 <span class="what"><span class="prod"><bdi>Authenticator Login Plus (2FA)</bdi> <small><bdi>Drupal</bdi></small></span><p>ثغرة من نوع تجاوز المصادقة عبر مسار بديل في <bdi>Authenticator Login Plus (2FA)</bdi> من <bdi>Drupal</bdi>، ولم تنشر الجهة المرقّمة تقييماً لخطورتها بعد.</p></span>
 <span class="marks"><span class="sev na">بلا تقييم</span></span>
 </a></li>
 <li><a class="row" href="/record/?id=CVE-2026-107257">
-<span class="id"><b dir="ltr">CVE-2026-107257</b><small>30 أكتوبر</small></span>
+<span class="id"><b dir="ltr"><span class="pre">CVE-2026-</span>107257</b><small>30 أكتوبر</small></span>
 <span class="what"><span class="prod"><bdi>Actstream</bdi> <small><bdi>Drupal</bdi></small></span><p>ثغرة من نوع تخويل غير صحيح في <bdi>Actstream</bdi> من <bdi>Drupal</bdi>، ولم تنشر الجهة المرقّمة تقييماً لخطورتها بعد.</p></span>
 <span class="marks"><span class="sev na">بلا تقييم</span></span>
 </a></li>
 <li><a class="row" href="/record/?id=CVE-2026-107258">
-<span class="id"><b dir="ltr">CVE-2026-107258</b><small>30 أكتوبر</small></span>
+<span class="id"><b dir="ltr"><span class="pre">CVE-2026-</span>107258</b><small>30 أكتوبر</small></span>
 <span class="what"><span class="prod"><bdi>Inline Entity Form Dialog</bdi> <small><bdi>Drupal</bdi></small></span><p>ثغرة من نوع تخويل غير صحيح في <bdi>Inline Entity Form Dialog</bdi> من <bdi>Drupal</bdi>، ولم تنشر الجهة المرقّمة تقييماً لخطورتها بعد.</p></span>
 <span class="marks"><span class="sev na">بلا تقييم</span></span>
 </a></li>
 <li><a class="row" href="/record/?id=CVE-2026-107259">
-<span class="id"><b dir="ltr">CVE-2026-107259</b><small>30 أكتوبر</small></span>
+<span class="id"><b dir="ltr"><span class="pre">CVE-2026-</span>107259</b><small>30 أكتوبر</small></span>
 <span class="what"><span class="prod"><bdi>Linked Field</bdi> <small><bdi>Drupal</bdi></small></span><p>ثغرة من نوع حقن قوالب جهة الخادم في <bdi>Linked Field</bdi> من <bdi>Drupal</bdi>، ولم تنشر الجهة المرقّمة تقييماً لخطورتها بعد.</p></span>
 <span class="marks"><span class="sev na">بلا تقييم</span></span>
 </a></li>
 <li><a class="row" href="/record/?id=CVE-2026-107261">
-<span class="id"><b dir="ltr">CVE-2026-107261</b><small>30 أكتوبر</small></span>
+<span class="id"><b dir="ltr"><span class="pre">CVE-2026-</span>107261</b><small>30 أكتوبر</small></span>
 <span class="what"><span class="prod"><bdi>Authenticator Login Plus (2FA)</bdi> <small><bdi>Drupal</bdi></small></span><p>ثغرة من نوع تجاوز المصادقة عبر مسار بديل في <bdi>Authenticator Login Plus (2FA)</bdi> من <bdi>Drupal</bdi>، ولم تنشر الجهة المرقّمة تقييماً لخطورتها بعد.</p></span>
 <span class="marks"><span class="sev na">بلا تقييم</span></span>
 </a></li>
 <li><a class="row" href="/record/?id=CVE-2026-107263">
-<span class="id"><b dir="ltr">CVE-2026-107263</b><small>30 أكتوبر</small></span>
+<span class="id"><b dir="ltr"><span class="pre">CVE-2026-</span>107263</b><small>30 أكتوبر</small></span>
 <span class="what"><span class="prod"><bdi>Gutenberg</bdi> <small><bdi>Drupal</bdi></small></span><p>ثغرة من نوع تخويل غير صحيح في <bdi>Gutenberg</bdi> من <bdi>Drupal</bdi>، ولم تنشر الجهة المرقّمة تقييماً لخطورتها بعد.</p></span>
 <span class="marks"><span class="sev na">بلا تقييم</span></span>
 </a></li>
@@ -138,7 +139,7 @@
     </section>
     <aside>
       <h2>أُضيفت مؤخراً إلى قائمة الثغرات المستغلة فعلياً</h2>
-      <ul class="side-list"><li><a href="/record/?id=CVE-2026-97229">CVE-2026-97229</a><p><bdi>Community Edition and Enterprise Edition</bdi> من <bdi>GitLab</bdi></p><span class="meta">أُدرجت في 29 أكتوبر 2026</span></li><li><a href="/record/?id=CVE-2026-76418">CVE-2026-76418</a><p><bdi>Secure Firewall ASA Software and Cisco Secure FTD Software</bdi> من <bdi>Cisco</bdi></p><span class="meta">أُدرجت في 29 أكتوبر 2026</span></li><li><a href="/record/?id=CVE-2026-46300">CVE-2026-46300</a><p><bdi>Kernel</bdi> من <bdi>Linux</bdi></p><span class="meta">أُدرجت في 28 أكتوبر 2026</span></li><li><a href="/record/?id=CVE-2026-41709">CVE-2026-41709</a><p><bdi>VMware ESX</bdi> من <bdi>Broadcom</bdi></p><span class="meta">أُدرجت في 28 أكتوبر 2026</span></li><li><a href="/record/?id=CVE-2026-48356">CVE-2026-48356</a><p><bdi>Commerce and Magento</bdi> من <bdi>Adobe</bdi></p><span class="meta">أُدرجت في 27 أكتوبر 2026</span></li><li><a href="/record/?id=CVE-2026-111497">CVE-2026-111497</a><p><bdi>Brotli</bdi> من <bdi>Google</bdi></p><span class="meta">أُدرجت في 27 أكتوبر 2026</span></li></ul>
+      <ul class="side-list"><li><a class="cve" dir="ltr" href="/record/?id=CVE-2026-97229"><span class="pre">CVE-2026-</span>97229</a><p><bdi>Community Edition and Enterprise Edition</bdi> من <bdi>GitLab</bdi></p><span class="meta">أُدرجت في 29 أكتوبر 2026</span></li><li><a class="cve" dir="ltr" href="/record/?id=CVE-2026-76418"><span class="pre">CVE-2026-</span>76418</a><p><bdi>Secure Firewall ASA Software and Cisco Secure FTD Software</bdi> من <bdi>Cisco</bdi></p><span class="meta">أُدرجت في 29 أكتوبر 2026</span></li><li><a class="cve" dir="ltr" href="/record/?id=CVE-2026-46300"><span class="pre">CVE-2026-</span>46300</a><p><bdi>Kernel</bdi> من <bdi>Linux</bdi></p><span class="meta">أُدرجت في 28 أكتوبر 2026</span></li><li><a class="cve" dir="ltr" href="/record/?id=CVE-2026-41709"><span class="pre">CVE-2026-</span>41709</a><p><bdi>VMware ESX</bdi> من <bdi>Broadcom</bdi></p><span class="meta">أُدرجت في 28 أكتوبر 2026</span></li><li><a class="cve" dir="ltr" href="/record/?id=CVE-2026-48356"><span class="pre">CVE-2026-</span>48356</a><p><bdi>Commerce and Magento</bdi> من <bdi>Adobe</bdi></p><span class="meta">أُدرجت في 27 أكتوبر 2026</span></li><li><a class="cve" dir="ltr" href="/record/?id=CVE-2026-111497"><span class="pre">CVE-2026-</span>111497</a><p><bdi>Brotli</bdi> من <bdi>Google</bdi></p><span class="meta">أُدرجت في 27 أكتوبر 2026</span></li></ul>
       <p class="count-line">تضم قائمة CISA اليوم 1,764 ثغرة ثبت استغلالها، ويمكنك تصفّح <a href="/kev/">القائمة كاملة</a>.</p>
       <h2>أكثر أنواع الضعف هذا الأسبوع</h2>
       <ul class="bars"><li><span>البرمجة النصية عبر المواقع (XSS)</span><span class="num">290</span><span class="bar"><i style="width:100%"></i></span></li><li><span>غياب التخويل</span><span class="num">167</span><span class="bar"><i style="width:58%"></i></span></li><li><span>حقن SQL</span><span class="num">80</span><span class="bar"><i style="width:28%"></i></span></li><li><span>اجتياز المسار</span><span class="num">73</span><span class="bar"><i style="width:25%"></i></span></li><li><span>إلغاء تسلسل بيانات غير موثوقة</span><span class="num">70</span><span class="bar"><i style="width:24%"></i></span></li><li><span>حقن أوامر نظام التشغيل</span><span class="num">63</span><span class="bar"><i style="width:22%"></i></span></li><li><span>القراءة خارج الحدود</span><span class="num">61</span><span class="bar"><i style="width:21%"></i></span></li><li><span>تخويل غير صحيح</span><span class="num">56</span><span class="bar"><i style="width:19%"></i></span></li></ul>
@@ -153,6 +154,7 @@
 </main>
 <footer class="foot">
   <div class="wrap">
+    <div class="foot-mark" aria-hidden="true"><b>رائد</b><span>«الرائد لا يكذب أهله»</span></div>
     <div class="cols">
       <div>
         <h4>رائد</h4>

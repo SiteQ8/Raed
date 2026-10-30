@@ -4,6 +4,8 @@ import { summaryAr, dateAr, SEV_AR, sevClass } from '../engine/arabic.js';
 export const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 export const html = (s) => esc(s).replace(/⁨/g, '<bdi>').replace(/⁩/g, '</bdi>');
 
+export const idHtml = (id) => { const m = /^(CVE-\d{4}-)(\d+)$/.exec(id); return m ? `<span class="pre">${m[1]}</span>${m[2]}` : esc(id); };
+
 export function sevMark(sv, s) {
   if (!sv) return '<span class="sev na">بلا تقييم</span>';
   return `<span class="sev ${sevClass(sv)}">${SEV_AR[sv]}${s != null && s !== '' ? ` <span class="num">${Number(s).toFixed(1)}</span>` : ''}</span>`;
@@ -12,7 +14,7 @@ export function sevMark(sv, s) {
 export function rowHtml(it) {
   const prod = it.r || it.v ? `<span class="prod"><bdi>${esc(it.r || it.v)}</bdi>${it.r && it.v && it.v !== it.r ? ` <small><bdi>${esc(it.v)}</bdi></small>` : ''}</span>` : '';
   return `<li><a class="row" href="/record/?id=${esc(it.i)}">
-<span class="id"><b dir="ltr">${esc(it.i)}</b><small>${dateAr(it.p, { year: false })}</small></span>
+<span class="id"><b dir="ltr">${idHtml(it.i)}</b><small>${dateAr(it.p, { year: false })}</small></span>
 <span class="what">${prod}<p>${html(summaryAr(it))}</p></span>
 <span class="marks">${sevMark(it.sv, it.s)}${it.k ? '<span class="kev">مستغلة فعلياً</span>' : ''}</span>
 </a></li>`;

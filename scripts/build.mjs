@@ -34,6 +34,9 @@ const NAV = [
   ['glossary', '/glossary/', 'المصطلحات'],
 ];
 
+// The serial carries the identity of a record, so the CVE-year prefix is set quieter than the number after it.
+const idHtml = (id) => { const m = /^(CVE-\d{4}-)(\d+)$/.exec(id); return m ? `<span class="pre">${m[1]}</span>${m[2]}` : esc(id); };
+
 export function layout({ title, desc, path, nav = '', body, scripts = [], head = '', noindex = false }) {
   const full = path === '/' ? `${NAME}: ${TAGLINE}` : `${title} | ${NAME}`;
   const navHtml = NAV.map(([k, href, label]) => `<a href="${href}"${k === nav ? ' aria-current="page"' : ''}>${label}</a>`).join('');
@@ -82,6 +85,7 @@ ${body}
 </main>
 <footer class="foot">
   <div class="wrap">
+    <div class="foot-mark" aria-hidden="true"><b>${NAME}</b><span>«الرائد لا يكذب أهله»</span></div>
     <div class="cols">
       <div>
         <h4>${NAME}</h4>
@@ -131,7 +135,7 @@ export function sevMark(sv, s) {
 export function rowHtml(it) {
   const prod = it.r || it.v ? `<span class="prod"><bdi>${esc(it.r || it.v)}</bdi>${it.r && it.v && it.v !== it.r ? ` <small><bdi>${esc(it.v)}</bdi></small>` : ''}</span>` : '';
   return `<li><a class="row" href="/record/?id=${it.i}">
-<span class="id"><b dir="ltr">${it.i}</b><small>${dateAr(it.p, { year: false })}</small></span>
+<span class="id"><b dir="ltr">${idHtml(it.i)}</b><small>${dateAr(it.p, { year: false })}</small></span>
 <span class="what">${prod}<p>${html(summaryAr(it))}</p></span>
 <span class="marks">${sevMark(it.sv, it.s)}${it.k ? '<span class="kev">مستغلة فعلياً</span>' : ''}</span>
 </a></li>`;
@@ -292,7 +296,7 @@ async function fill(body, ctx) {
     '{{window_n}}': (index.total || 0).toLocaleString('en-US'),
     '{{kev_total}}': kev.length.toLocaleString('en-US'),
     '{{newest_rows}}': newest.map(rowHtml).join('\n'),
-    '{{kev_side}}': kev.slice(0, 6).map((k) => `<li><a href="/record/?id=${k.i}">${k.i}</a><p>${html(`${iso(k.r)} من ${iso(k.v)}`)}</p><span class="meta">أُدرجت في ${dateAr(k.da)}${k.ra ? ' وتستخدمها حملات فدية' : ''}</span></li>`).join(''),
+    '{{kev_side}}': kev.slice(0, 6).map((k) => `<li><a class="cve" dir="ltr" href="/record/?id=${k.i}">${idHtml(k.i)}</a><p>${html(`${iso(k.r)} من ${iso(k.v)}`)}</p><span class="meta">أُدرجت في ${dateAr(k.da)}${k.ra ? ' وتستخدمها حملات فدية' : ''}</span></li>`).join(''),
     '{{week_link}}': weeks[0] ? `<a href="/week/${weeks[0].id}/">${esc(weeks[0].titleAr)}</a>` : '',
     '{{weeks_list}}': weeks.map((w) => `<li><a href="/week/${w.id}/">${esc(w.titleAr)}</a><p>${esc(w.lineAr)}</p></li>`).join('') || '<li><p>تصدر أول نشرة يوم الاثنين.</p></li>',
     '{{latest_day}}': latestDay || '',
@@ -340,7 +344,7 @@ ${sevs.map(([s, n]) => `<div><b class="num">${n.toLocaleString('en-US')}</b><spa
 <div><b class="num">${w.kevAdded.length}</b><span>أُضيفت إلى قائمة الثغرات المستغلة فعلياً</span></div>
 </div>
 <div class="prose">${w.paragraphsAr.map((p) => `<p>${html(p).replace(/CVE-\d{4}-\d{4,}/g, (m) => `<span class="cid">${m}</span>`)}</p>`).join('')}</div>
-${w.kevAdded.length ? `<h2>ما أُضيف إلى قائمة الثغرات المستغلة فعلياً</h2><ul class="side-list">${w.kevAdded.map((k) => `<li><a href="/record/?id=${k.i}">${k.i}</a><p>${html(`${iso(k.r)} من ${iso(k.v)}`)}</p><span class="meta">أُدرجت في ${dateAr(k.da)} وموعد المعالجة للجهات الاتحادية الأمريكية ${dateAr(k.due)}${k.ra ? ' وتستخدمها حملات فدية' : ''}</span></li>`).join('')}</ul>` : ''}
+${w.kevAdded.length ? `<h2>ما أُضيف إلى قائمة الثغرات المستغلة فعلياً</h2><ul class="side-list">${w.kevAdded.map((k) => `<li><a class="cve" dir="ltr" href="/record/?id=${k.i}">${idHtml(k.i)}</a><p>${html(`${iso(k.r)} من ${iso(k.v)}`)}</p><span class="meta">أُدرجت في ${dateAr(k.da)} وموعد المعالجة للجهات الاتحادية الأمريكية ${dateAr(k.due)}${k.ra ? ' وتستخدمها حملات فدية' : ''}</span></li>`).join('')}</ul>` : ''}
 <h2>أخطر ما نُشر هذا الأسبوع</h2>
 <ul class="reg">${w.top.map(rowHtml).join('\n')}</ul>
 <h2>الأعلى احتمالاً للاستغلال</h2>
