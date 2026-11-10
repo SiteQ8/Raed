@@ -576,13 +576,15 @@ ul.plain li { margin: 4px 0; }
 .rec-actions .count-line { margin: 0 var(--s-2); }
 #follow[aria-pressed='true'] { background: var(--sea-wash); border-color: var(--sea); color: var(--ink); }
 
-/* Home: the report call closes the hero as a full-width strip in the mark's own colours */
-.band-strip { display: block; background: #12302f; color: #f1ece0; text-decoration: none; font-size: 17px; line-height: 1.7; transition: background-color 160ms ease; }
-.band-strip .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 2px var(--s-4); padding-block: 14px; }
-.band-strip b { color: #e9b53a; font-weight: 600; }
-.band-strip b::after { content: '←'; display: inline-block; margin-inline-start: 8px; transition: transform 180ms ease; }
-.band-strip:hover { background: #0f5c63; }
-.band-strip:hover b::after { transform: translateX(-4px); }
-.band-strip:focus-visible { outline: 3px solid var(--ring); outline-offset: -3px; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme='light']) .band-strip { background: #173a3e; } }
-:root[data-theme='dark'] .band-strip { background: #173a3e; }
+/* Home: the disclosure section closes the page, text and actions beside three plain facts */
+.disclose { margin-top: var(--s-8); background: var(--surface); border-top: 1px solid var(--line); }
+.disclose-in { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: var(--s-8); align-items: center; padding-block: var(--s-8); }
+.disclose h2 { margin: 0 0 var(--s-3); font-size: clamp(28px, 2.6vw, 36px); line-height: 1.45; }
+.disclose-text p { margin: 0; max-width: 46ch; color: var(--ink-2); font-size: 18px; line-height: 1.9; }
+.disclose .actions { margin-top: var(--s-5); }
+.disclose-facts { margin: 0; border-top: 1px solid var(--line); }
+.disclose-facts > div { display: grid; grid-template-columns: 8.5em minmax(0, 1fr); gap: var(--s-4); padding: var(--s-4) 0; border-bottom: 1px solid var(--line); }
+.disclose-facts dt { color: var(--muted); font-size: 15px; line-height: 1.9; }
+.disclose-facts dd { margin: 0; font-weight: 600; line-height: 1.8; }
+@media (max-width: 900px) { .disclose-in { grid-template-columns: minmax(0, 1fr); gap: var(--s-6); padding-block: var(--s-7); } }
+.disclose { margin-bottom: calc(-1 * var(--s-9)); }

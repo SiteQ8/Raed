@@ -202,4 +202,8 @@ details.faq summary::after { top: 10px; }
 .count-row .btn { flex: 0 0 auto; }
 .rec-actions .btn { flex: 1 1 auto; justify-content: center; }
 .rec-actions .count-line { flex: 1 1 100%; margin: 0; }
-.band-strip { font-size: 16px; margin-top: var(--s-4); }
+.disclose { margin-top: var(--s-6); }
+.disclose-text p { font-size: 16.5px; }
+.disclose .actions .btn { flex: 1 1 100%; justify-content: center; min-height: 48px; }
+.disclose-facts > div { grid-template-columns: minmax(0, 1fr); gap: 0; padding: var(--s-3) 0; }
+.disclose .disclose-in { padding-block: var(--s-7); }
