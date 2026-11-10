@@ -575,3 +575,10 @@ ul.plain li { margin: 4px 0; }
 .rec-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2); margin: var(--s-4) 0 var(--s-2); }
 .rec-actions .count-line { margin: 0 var(--s-2); }
 #follow[aria-pressed='true'] { background: var(--sea-wash); border-color: var(--sea); color: var(--ink); }
+
+/* Home: the report call sits on a solid surface so it reads over the picture */
+.report-cta { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px var(--s-3); margin-top: var(--s-5); padding: 10px 18px; background: var(--raised); border: 1px solid var(--line-ctl); border-radius: var(--r-2); color: var(--ink); font-size: 16.5px; line-height: 1.7; text-decoration: none; box-shadow: 0 12px 28px -22px rgba(15, 50, 52, 0.5); transition: border-color 160ms ease, transform 160ms ease; }
+.report-cta b { color: var(--sea); font-weight: 700; text-decoration: underline; text-underline-offset: 5px; }
+.report-cta b::after { content: ' ←'; text-decoration: none; display: inline-block; margin-inline-start: 4px; }
+.report-cta:hover { border-color: var(--sea); }
+.report-cta:active { transform: scale(0.985); }

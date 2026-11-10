@@ -202,3 +202,4 @@ details.faq summary::after { top: 10px; }
 .count-row .btn { flex: 0 0 auto; }
 .rec-actions .btn { flex: 1 1 auto; justify-content: center; }
 .rec-actions .count-line { flex: 1 1 100%; margin: 0; }
+.report-cta { display: flex; padding: 12px 16px; }
