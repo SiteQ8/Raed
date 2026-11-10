@@ -1,4 +1,4 @@
-import { rowHtml, getJSON, norm, setParam, esc } from './ui.js';
+import { rowHtml, getJSON, norm, setParam, esc, downloadCsv, CSV_HEAD, csvRow } from './ui.js';
 import { dateAr, nVuln } from '../engine/arabic.js';
 
 const PAGE = 50;
@@ -57,6 +57,7 @@ async function draw() {
   const where = state.q ? `تطابق «${esc(state.q)}» في آخر ثلاثين يوماً` : `نُشرت ${dateAr(state.day, { weekday: true })}`;
   $('count').innerHTML = list.length ? `${nVuln(list.length)} ${where}` : `لا توجد ثغرات ${where} بهذه التصفية، فجرّب إزالة بعض الشروط أو اختيار يوم آخر.`;
   $('more').hidden = list.length <= state.shown;
+  $('csv').hidden = !list.length;
   drawDays();
 }
 
@@ -90,6 +91,10 @@ async function main() {
     setParam('q', ''); setParam('day', state.day); draw();
   });
   $('more').addEventListener('click', () => { state.shown += PAGE; draw(); });
+  $('csv').addEventListener('click', () => {
+    const rows = list.map((x) => (x.it ? csvRow(x.it.i, x.it.v, x.it.r, x.it.sv, x.it.s, x.it.p, x.it.k) : csvRow(x.ref[0], x.ref[1], x.ref[2], x.ref[4], x.ref[5], x.ref[6], x.ref[7])));
+    downloadCsv(state.q ? 'raed-search.csv' : `raed-${state.day}.csv`, CSV_HEAD, rows);
+  });
   if (state.q) search = await getJSON('/data/search.json');
   await draw();
   // Bring the chosen day into view by scrolling the strip itself; scrollIntoView would also move the keyboard starting point.

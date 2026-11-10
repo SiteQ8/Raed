@@ -1,0 +1,30 @@
+<!-- {"title":"قائمة المتابعة","desc":"اكتب أسماء المنتجات والمورّدين الذين تعتمد عليهم فتعرض لك قائمة المتابعة ثغراتهم المنشورة في آخر ثلاثين يوماً بالعربية، وتُحفظ القائمة في متصفحك فقط.","path":"/watch/","nav":"tools","scripts":["/assets/js/watch.js"]} -->
+<div class="wrap">
+  <header class="head">
+    <h1>قائمة المتابعة</h1>
+    <p class="lead">اكتب أسماء المنتجات والمورّدين الذين تعتمد عليهم، فتظهر لك ثغراتهم المنشورة في آخر ثلاثين يوماً، وتُحفظ قائمتك في متصفحك فقط.</p>
+  </header>
+  <form class="watch-add" id="add">
+    <label for="term" class="skip">اسم المنتج أو المورّد</label>
+    <input id="term" type="search" dir="auto" autocomplete="off" spellcheck="false" placeholder="اسم المنتج أو المورّد، مثل Fortinet أو WordPress" list="suggest">
+    <datalist id="suggest"></datalist>
+    <button class="btn" type="submit">أضف إلى القائمة</button>
+  </form>
+  <ul class="terms-list" id="terms" aria-label="ما تتابعه"></ul>
+  <div class="filters" id="tools-bar" hidden>
+    <div class="chips" role="group" aria-label="تصفية">
+      <button class="chip" type="button" data-f="hi" aria-pressed="false">الحرجة والعالية فقط</button>
+      <button class="chip" type="button" data-f="kev" aria-pressed="false">مستغلة فعلياً</button>
+      <button class="chip" type="button" data-f="new" aria-pressed="false">الجديد منذ زيارتي السابقة</button>
+    </div>
+    <div class="actions"><button class="btn quiet" type="button" id="csv">نزّل القائمة CSV</button><button class="btn quiet" type="button" id="share">انسخ رابط قائمتي</button></div>
+  </div>
+  <p class="count-line" id="count" aria-live="polite"></p>
+  <ul class="reg" id="list"></ul>
+  <div class="more"><button class="btn quiet" type="button" id="more" hidden>اعرض المزيد</button></div>
+  <div class="empty" id="empty" hidden>
+    <h2>ابدأ بإضافة ما تعتمد عليه</h2>
+    <p>أضف مورّداً مثل Microsoft أو منتجاً مثل FortiOS، ويمكنك البدء بأحد هذه الأسماء الأكثر وروداً في السجل هذا الشهر.</p>
+    <div class="chips" id="starters"></div>
+  </div>
+</div>

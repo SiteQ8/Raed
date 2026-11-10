@@ -31,6 +31,7 @@ const NAV = [
   ['week', '/week/', 'النشرة الأسبوعية'],
   ['about', '/about/', 'عن البرنامج'],
   ['cna', '/cna/', 'الجهات المرقّمة'],
+  ['tools', '/tools/', 'الأدوات'],
   ['glossary', '/glossary/', 'المصطلحات'],
 ];
 
@@ -100,6 +101,8 @@ ${body}
           <li><a href="/week/">النشرة الأسبوعية</a></li>
           <li><a href="/cna/join/">نحو جهة ترقيم عربية</a></li>
           <li><a href="/advisories/">نشرات رائد</a></li>
+          <li><a href="/tools/cvss/">حاسبة درجة الخطورة</a></li>
+          <li><a href="/watch/">قائمة المتابعة</a></li>
           <li><a href="/report/">أبلغ عن ثغرة</a></li>
           <li><a href="/hall-of-fame/">قاعة الشرف</a></li>
           <li><a href="/faq/">الأسئلة الشائعة</a></li>

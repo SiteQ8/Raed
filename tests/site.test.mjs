@@ -212,3 +212,37 @@ test('text pages carry the reading column and the rail on wide screens', () => {
   const home = readFileSync(new URL('../docs/index.html', import.meta.url), 'utf8');
   assert.match(home, /class="band"/);
 });
+
+test('the calculator matches published CVSS 3.1 base scores', async () => {
+  const { parse, score, severity, complete } = await import('../docs/assets/engine/cvss.js');
+  const known = [
+    ['CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H', 10.0, 'CRITICAL'],
+    ['CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H', 9.8, 'CRITICAL'],
+    ['CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H', 8.8, 'HIGH'],
+    ['CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H', 7.8, 'HIGH'],
+    ['CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N', 6.1, 'MEDIUM'],
+    ['CVSS:3.0/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N', 5.9, 'MEDIUM'],
+    ['AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N', 0, 'NONE'],
+  ];
+  for (const [v, s, sev] of known) {
+    const r = parse(v);
+    assert.ok(!r.error && complete(r.m), v);
+    assert.equal(score(r.m), s, v);
+    assert.equal(severity(score(r.m)), sev, v);
+  }
+  assert.equal(parse('CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N').error, 'version');
+  assert.equal(parse('hello').error, 'format');
+});
+
+test('the tools are built and reachable from the index and the sitemap', () => {
+  const map = readFileSync(join(ROOT, 'docs/sitemap.xml'), 'utf8');
+  const index = readFileSync(join(ROOT, 'docs/tools/index.html'), 'utf8');
+  for (const p of ['/tools/', '/tools/cvss/', '/watch/']) {
+    assert.ok(existsSync(join(ROOT, 'docs', p, 'index.html')), p);
+    assert.ok(map.includes(`https://cve.3li.info${p}`), `sitemap lacks ${p}`);
+  }
+  assert.match(index, /href="\/tools\/cvss\/"/);
+  assert.match(index, /href="\/watch\/"/);
+  const watch = readFileSync(join(ROOT, 'docs/assets/js/watch.js'), 'utf8');
+  assert.ok(!/XMLHttpRequest|sendBeacon/.test(watch), 'the watch list stays in the browser');
+});

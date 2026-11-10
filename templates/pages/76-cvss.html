@@ -1,0 +1,33 @@
+<!-- {"title":"حاسبة درجة الخطورة CVSS","desc":"حاسبة عربية لدرجة خطورة الثغرات وفق CVSS 3.1: اختر صفات الثغرة لتحصل على الدرجة والمتجه وشرحه بالعربية، أو الصق متجهاً جاهزاً لتفهم معناه.","path":"/tools/cvss/","nav":"tools","scripts":["/assets/js/cvss-tool.js"]} -->
+<div class="wrap">
+  <header class="head">
+    <h1>حاسبة درجة الخطورة</h1>
+    <p class="lead">تحسب درجة الخطورة الأساسية وفق نظام CVSS في إصداره 3.1، فاختر قيمة لكل مقياس من المقاييس الثمانية، أو الصق متجهاً جاهزاً ليُشرح لك.</p>
+  </header>
+  <div class="calc">
+    <form class="calc-form" id="calc" novalidate>
+      <div class="field paste"><label for="vec-in">الصق متجهاً لشرحه</label><input id="vec-in" dir="ltr" autocomplete="off" spellcheck="false" placeholder="CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"><p class="help" id="vec-msg" role="status" aria-live="polite"></p></div>
+      <div id="metrics"></div>
+      <div class="actions"><button class="btn quiet" type="button" id="reset">ابدأ من جديد</button></div>
+    </form>
+    <aside class="calc-out" aria-live="polite">
+      <div class="panel">
+        <h3>الدرجة</h3>
+        <div class="score na" id="score-box"><b class="num" id="score">0.0</b><span id="sev" class="sev na">اختر القيم</span></div>
+        <div class="meter"><i id="bar"></i></div>
+        <p class="count-line" id="left">بقيت ثمانية مقاييس.</p>
+        <p class="vec ltr" id="vec"></p>
+        <div class="actions"><button class="btn" type="button" id="copy-vec" disabled>انسخ المتجه</button><button class="btn quiet" type="button" id="copy-link" disabled>انسخ رابط هذه النتيجة</button></div>
+        <p class="count-line" id="done" role="status"></p>
+      </div>
+      <div class="panel" id="explain-box" hidden>
+        <h3>معنى المتجه</h3>
+        <p id="explain"></p>
+      </div>
+      <div class="panel">
+        <h3>حدود الحاسبة</h3>
+        <p class="count-line">الدرجة الأساسية تصف الثغرة نفسها لا بيئتك، لذا قد تكون خطورتها في مؤسستك أعلى أو أقل، أما الدرجة الرسمية فتنشرها الجهة المرقّمة في سجل الثغرة، ومعاني المقاييس في <a href="/glossary/">صفحة المصطلحات</a>.</p>
+      </div>
+    </aside>
+  </div>
+</div>

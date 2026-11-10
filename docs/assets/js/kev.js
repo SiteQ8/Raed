@@ -1,4 +1,4 @@
-import { getJSON, esc, html, norm, setParam, idHtml } from './ui.js';
+import { getJSON, esc, html, norm, setParam, idHtml, downloadCsv } from './ui.js';
 import { dateAr, nVuln, iso } from '../engine/arabic.js';
 import { cweAr } from '../engine/cwe.js';
 
@@ -6,7 +6,7 @@ const $ = (id) => document.getElementById(id);
 const PAGE = 60;
 const params = new URLSearchParams(location.search);
 const state = { q: params.get('q') || '', ra: params.get('ra') === '1', y: params.get('y') === '1', shown: PAGE };
-let all = [];
+let all = [], shown = [];
 
 function row(k) {
   const cw = (k.c || []).map(cweAr).find(Boolean);
@@ -31,6 +31,7 @@ function draw() {
   $('list').innerHTML = list.slice(0, state.shown).map(row).join('');
   $('count').textContent = list.length ? `${nVuln(list.length)} من أصل ${all.length.toLocaleString('en-US')}، مرتبة من الأحدث إدراجاً` : 'لا توجد ثغرات بهذه التصفية.';
   $('more').hidden = list.length <= state.shown;
+  shown = list; $('csv').hidden = !list.length;
 }
 
 async function main() {
@@ -44,6 +45,9 @@ async function main() {
     c.addEventListener('click', () => { state[c.dataset.f] = !state[c.dataset.f]; c.setAttribute('aria-pressed', String(state[c.dataset.f])); setParam(c.dataset.f, state[c.dataset.f] ? '1' : ''); state.shown = PAGE; draw(); });
   }
   $('more').addEventListener('click', () => { state.shown += PAGE; draw(); });
+  $('csv').addEventListener('click', () => downloadCsv('raed-kev.csv',
+    ['رقم الثغرة', 'المورّد', 'المنتج', 'الاسم في قائمة CISA', 'تاريخ الإدراج', 'موعد المعالجة', 'تستخدمها حملات فدية', 'الرابط'],
+    shown.map((k) => [k.i, k.v, k.r, k.n, k.da, k.due, k.ra ? 'نعم' : 'لا', `https://cve.3li.info/record/?id=${k.i}`])));
   draw();
 }
 

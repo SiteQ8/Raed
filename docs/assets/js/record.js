@@ -1,7 +1,7 @@
 import { detail } from '../engine/record.js';
 import { summaryAr, dateAr, timeAr, countAr, SEV_AR, sevClass, vectorAr, epssAr, versionsAr, SSVC_X, SSVC_A, SSVC_T, iso } from '../engine/arabic.js';
 import { cweAr } from '../engine/cwe.js';
-import { esc, html, sevMark, getJSON, idHtml } from './ui.js';
+import { esc, html, sevMark, getJSON, idHtml, copyText, watchTerms, saveWatch, norm } from './ui.js';
 
 const box = document.getElementById('rec');
 const status = document.getElementById('status');
@@ -59,7 +59,7 @@ function panelScore(d) {
 <div class="meter" style="--c:var(--${cls === 'med' ? 'med' : cls})"><i style="width:${d.s * 10}%;background:var(--${cls})"></i></div>
 <p class="count-line">تقييم CVSS ${esc(d.cv)} بحسب ${esc(SRC_AR(d.cs))}</p>
 <dl class="facts">${rows}</dl>
-${d.vec ? `<p class="label">المتجه</p><p class="ltr vec" style="font-size:13.5px;margin:0">${esc(d.vec).split('/').join('/<wbr>')}</p>` : ''}
+${d.vec ? `<p class="label">المتجه</p><p class="ltr vec" style="font-size:13.5px;margin:0">${esc(d.vec).split('/').join('/<wbr>')}</p>${/^CVSS:3\.[01]\//.test(d.vec) ? `<p class="count-line" style="margin-bottom:0"><a href="/tools/cvss/?v=${encodeURIComponent(d.vec)}">افتح المتجه في الحاسبة</a></p>` : ''}` : ''}
 ${others.length ? `<p class="label">تقييمات أخرى</p><dl class="facts">${others.map((m) => `<dt>${esc(SRC_AR(m.src))} <bdi>${esc(m.v)}</bdi></dt><dd><span class="num">${m.score}</span> ${SEV_AR[String(m.sev || '').toUpperCase()] || ''}</dd>`).join('')}</dl>` : ''}
 </div>`;
 }
@@ -126,6 +126,12 @@ function render(d, kev, ep) {
   <h1 class="cve">${idHtml(d.i)}</h1>
   <div class="state">${stateMark}${kev ? '<span class="kev">مستغلة فعلياً</span>' : ''}${d.r || d.v ? `<span class="prod-line"><bdi>${esc(d.r || d.v)}</bdi>${d.r && d.v && d.v !== d.r ? ` <small><bdi>${esc(d.v)}</bdi></small>` : ''}</span>` : ''}</div>
   <p class="summary">${html(summaryAr(it))}</p>
+  <div class="rec-actions">
+    <button class="btn quiet small" type="button" id="copy-sum">انسخ الخلاصة</button>
+    <button class="btn quiet small" type="button" id="copy-url">انسخ الرابط</button>
+    ${d.r || d.v ? `<button class="btn quiet small" type="button" id="follow" aria-pressed="false"></button>` : ''}
+    <span class="count-line" id="rec-msg" role="status"></span>
+  </div>
   <p class="dates">نُشر في ${dateAr(d.p)} الساعة ${timeAr(d.p)}، وعُدّل آخر مرة في ${dateAr(d.u)}، والجهة المرقّمة <bdi>${esc(d.a)}</bdi>${d.reserved ? `، وحُجز الرقم في ${dateAr(d.reserved)}` : ''}.</p>
 </header>
 <div class="rec-grid">
@@ -149,6 +155,26 @@ function render(d, kev, ep) {
     </ul></div>
   </aside>
 </div>`;
+  const msg = document.getElementById('rec-msg');
+  const say = (t) => { msg.textContent = t; };
+  const sum = `${d.i}: ${summaryAr(it).replace(/[\u2068\u2069]/g, '')} ${location.origin}/record/?id=${d.i}`;
+  document.getElementById('copy-sum').addEventListener('click', () => copyText(sum).then((ok) => say(ok ? 'نُسخت الخلاصة مع رابط السجل.' : 'تعذر النسخ التلقائي.')));
+  document.getElementById('copy-url').addEventListener('click', () => copyText(`${location.origin}/record/?id=${d.i}`).then((ok) => say(ok ? 'نُسخ الرابط.' : 'تعذر النسخ التلقائي.')));
+  const follow = document.getElementById('follow');
+  if (follow) {
+    const name = d.r || d.v;
+    const on = () => watchTerms().some((t) => norm(t) === norm(name));
+    const paint = () => { const o = on(); follow.setAttribute('aria-pressed', String(o)); follow.innerHTML = o ? 'تتابع هذا المنتج' : 'تابع هذا المنتج'; };
+    follow.addEventListener('click', () => {
+      const list = watchTerms();
+      if (on()) { saveWatch(list.filter((t) => norm(t) !== norm(name))); say('حُذف المنتج من قائمة المتابعة.'); }
+      else if (list.length >= 60) { say('بلغت قائمة المتابعة حدها وهو ستون اسماً.'); }
+      else { saveWatch([...list, name.slice(0, 60)]); msg.innerHTML = 'أُضيف المنتج إلى <a href="/watch/">قائمة المتابعة</a>.'; }
+      paint();
+    });
+    paint();
+  }
+
 }
 
 async function main() {
