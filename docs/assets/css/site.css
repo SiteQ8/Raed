@@ -576,9 +576,13 @@ ul.plain li { margin: 4px 0; }
 .rec-actions .count-line { margin: 0 var(--s-2); }
 #follow[aria-pressed='true'] { background: var(--sea-wash); border-color: var(--sea); color: var(--ink); }
 
-/* Home: the report call sits on a solid surface so it reads over the picture */
-.report-cta { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px var(--s-3); margin-top: var(--s-5); padding: 10px 18px; background: var(--raised); border: 1px solid var(--line-ctl); border-radius: var(--r-2); color: var(--ink); font-size: 16.5px; line-height: 1.7; text-decoration: none; box-shadow: 0 12px 28px -22px rgba(15, 50, 52, 0.5); transition: border-color 160ms ease, transform 160ms ease; }
-.report-cta b { color: var(--sea); font-weight: 700; text-decoration: underline; text-underline-offset: 5px; }
-.report-cta b::after { content: ' ←'; text-decoration: none; display: inline-block; margin-inline-start: 4px; }
-.report-cta:hover { border-color: var(--sea); }
-.report-cta:active { transform: scale(0.985); }
+/* Home: the report call closes the hero as a full-width strip in the mark's own colours */
+.band-strip { display: block; background: #12302f; color: #f1ece0; text-decoration: none; font-size: 17px; line-height: 1.7; transition: background-color 160ms ease; }
+.band-strip .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 2px var(--s-4); padding-block: 14px; }
+.band-strip b { color: #e9b53a; font-weight: 600; }
+.band-strip b::after { content: '←'; display: inline-block; margin-inline-start: 8px; transition: transform 180ms ease; }
+.band-strip:hover { background: #0f5c63; }
+.band-strip:hover b::after { transform: translateX(-4px); }
+.band-strip:focus-visible { outline: 3px solid var(--ring); outline-offset: -3px; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme='light']) .band-strip { background: #173a3e; } }
+:root[data-theme='dark'] .band-strip { background: #173a3e; }
