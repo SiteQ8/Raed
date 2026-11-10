@@ -209,3 +209,7 @@ details.faq summary::after { top: 10px; }
 .disclose .disclose-in { padding-block: var(--s-7); }
 .top-report { min-height: 44px; padding: 0 12px; font-size: 14.5px; }
 .top .wrap { gap: var(--s-2); }
+.try span { color: var(--ink); }
+.try { gap: 6px; }
+.try span { font-size: 15px; margin-inline-end: 0; }
+.try button { min-height: 44px; padding: 0 11px; font-size: 14px; }
