@@ -207,3 +207,5 @@ details.faq summary::after { top: 10px; }
 .disclose .actions .btn { flex: 1 1 100%; justify-content: center; min-height: 48px; }
 .disclose-facts > div { grid-template-columns: minmax(0, 1fr); gap: 0; padding: var(--s-3) 0; }
 .disclose .disclose-in { padding-block: var(--s-7); }
+.top-report { min-height: 44px; padding: 0 12px; font-size: 14.5px; }
+.top .wrap { gap: var(--s-2); }

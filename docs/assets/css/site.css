@@ -588,3 +588,8 @@ ul.plain li { margin: 4px 0; }
 .disclose-facts dd { margin: 0; font-weight: 600; line-height: 1.8; }
 @media (max-width: 900px) { .disclose-in { grid-template-columns: minmax(0, 1fr); gap: var(--s-6); padding-block: var(--s-7); } }
 .disclose { margin-bottom: calc(-1 * var(--s-9)); }
+
+/* Header: reporting is one tap away on every page */
+.top-report { flex: none; white-space: nowrap; padding: 8px 16px; font-size: 15px; }
+@media (max-width: 1180px) and (min-width: 961px) { .nav a { padding-inline: 7px; font-size: 15px; } .top .wrap { gap: var(--s-3); } .brand small { display: none; } }
+@media print { .top-report { display: none !important; } }

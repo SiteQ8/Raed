@@ -78,6 +78,7 @@ ${head}
     <a class="brand" href="/">${MARK}<span><b>${NAME}</b><small>${TAGLINE}</small></span></a>
     <button class="menu" type="button" aria-expanded="false" aria-controls="nav">القائمة</button>
     <nav class="nav" id="nav" aria-label="الأقسام">${navHtml}</nav>
+    <a class="btn small top-report" href="/report/"${nav === 'report' ? ' aria-current="page"' : ''}>أبلغ عن ثغرة</a>
     <button class="theme" type="button" aria-label="تبديل المظهر الفاتح والداكن"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
   </div>
 </header>
